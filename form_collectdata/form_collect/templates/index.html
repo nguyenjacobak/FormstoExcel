@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+    <style>
+      * {
+        font-family: poppins;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #ede6f6;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .main {
+        height: 230px;
+        width: 50vw;
+        box-sizing: border-box;
+        background-color: white;
+        border-top: 12px solid #663ab5;
+        border-radius: 10px;
+        margin: 13px;
+        margin-bottom: 0;
+        padding: 10px;
+        padding-left: 30px;
+        font-size: 13px;
+      }
+      .main h1 {
+        font-size: 25px;
+      }
+      .name {
+        background-color: white;
+        box-sizing: border-box;
+        height: 150px;
+        width: 50vw;
+        margin: 13px;
+        padding: 10px;
+        padding-left: 30px;
+        margin-bottom: 0;
+        border-radius: 10px;
+      }
+      input[type="text"],
+      [type="email"] {
+        border: none;
+        border-bottom: 1px solid black;
+        width: 90%;
+        padding: 5px;
+      }
+      .email {
+        background-color: white;
+        box-sizing: border-box;
+        height: 150px;
+        width: 50vw;
+        margin: 13px;
+        margin-bottom: 0;
+        padding: 10px;
+        padding-left: 30px;
+        border-radius: 10px;
+      }
+      /* button {
+        margin: 13px;
+        margin-bottom: 0;
+        align-self: flex-start;
+        position: relative;
+        left: 372px;
+        padding: 8px 19px;
+        border-radius: 3px;
+        background-color: #663ab5;
+        border: none;
+        color: white;
+      } */
+      .submit {
+        width: 50vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+      }
+      button {
+        margin: 13px;
+        margin-left: 0;
+        margin-bottom: 0;
+        padding: 8px 19px;
+        border-radius: 3px;
+        background-color: #663ab5;
+        border: none;
+        color: white;
+      }
+      button:hover {
+        background-color: #452286;
+        transition: ease-in 200ms;
+      }
+      .rule {
+        width: 50vw;
+        margin-top: 15px;
+        font-size: 13px;
+        color: grey;
+      }
+      .policy {
+        font-size: 14px;
+        color: grey;
+      }
+      .policy a {
+        text-decoration: none;
+        color: grey;
+        text-decoration: underline;
+      }
+      img {
+        margin-top: 13px;
+        height: 200px;
+        width: 50vw;
+        object-fit: fill;
+        object-position: center;
+        border-radius: 10px;
+      }
+
+      .Google {
+        text-align: center;
+      }
+      @media only screen and (max-width: 1000px){
+        img, .main, .name, .email,.submit, .rule, .policy, .Google {
+          width: 90vw;
+        }
+        img {
+          height: 125px;
+        }
+        .main {
+          height: 180px;
+          font-size: 12px;
+        }
+        .name, .email {
+          height: 110px;
+          font-size: 12px;
+        }
+
+        .main h1 {
+          font-size: 18px;
+        }
+        .main p,h4 {
+          margin: 10px 0px;
+        }
+        h1 {
+          font-size: 25px;
+        }
+        input[type="text"],
+        [type="email"] {
+          padding: 5;
+        }
+
+        button {
+          padding: 10px 22px;
+          border-radius: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <form action="" method="post">
+      {% csrf_token %}
+      <img src="{% static 'images/R.jpg' %}" alt="PTIT" >
+      <div class="main">
+        <h1>Forms</h1>
+        <hr />
+        <p>
+          All the Submissions to this form will be appended into the data file.
+        </p>
+        <h4 style="color: red;">* Required</h4>
+      </div>
+      <div class="name">
+        <h3>Name <span style="color: red;">*</span></h3>
+        <input type="text" name="name" id="" required />
+      </div>
+      <div class="email">
+        <h3>Email <span style="color: red;">*</span></h3>
+        <input type="email" name="email" id="" required />
+      </div>
+      <div class="submit">
+        <button>Submit</button>
+      </div>
+      <p class="rule">Never submit passwords through Forms</p>
+      <p class="policy">
+        <a href="#">Report Abuse.</a> <a href="#">Terms of condition.</a>
+        <a href="#">Privacy Policy.</a>
+        <h1 class="Google" style="color: grey; font-weight: 550; width: 50vw;">PTIT Forms</h1>
+      </p>
+    </form>
+  </body>
+</html>
