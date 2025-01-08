@@ -29,3 +29,7 @@ def index(request):
         return HttpResponse("Form submitted successfully!")
 
     return render(request, 'index.html')
+def form1(request):
+    return render(request,'hoiDongChuyenMon.html')
+def form2(request):
+    return render(request,'canBoPhanBien.html')
