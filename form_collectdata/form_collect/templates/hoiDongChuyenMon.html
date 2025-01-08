@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hội đồng chuyên môn</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .centered-table {
+            margin: 20px auto;
+            background-color: white;
+            border-collapse: collapse;
+            width: 80%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .centered-table th, .centered-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .centered-table th {
+            background-color: #f2f2f2;
+            font-size: 1.1em;
+        }
+        .centered-table td input[type="text"] {
+            width: 100px;
+        }
+        .centered-table td:nth-child(1) {
+            width: 50px;
+        }
+        .centered-table td:nth-child(2), .centered-table td:nth-child(3), .centered-table td:nth-child(4) {
+            width: 200px;
+        }
+        .centered-table td:nth-child(4), .centered-table td:nth-child(5), .centered-table td:nth-child(6), .centered-table td:nth-child(7), .centered-table td:nth-child(8) {
+            width: 50px;
+        }
+        .submit-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <table class="centered-table">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Họ tên</th>
+                <th>Mã sinh viên</th>
+                <th>Lớp</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><input type="text" name="ho_ten_1" placeholder="Họ tên"></td>
+                <td><input type="text" name="ma_sinh_vien_1" placeholder="Mã sinh viên"></td>
+                <td><input type="text" name="lop_1" placeholder="Lớp"></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><input type="text" name="ho_ten_2" placeholder="Họ tên"></td>
+                <td><input type="text" name="ma_sinh_vien_2" placeholder="Mã sinh viên"></td>
+                <td><input type="text" name="lop_2" placeholder="Lớp"></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><input type="text" name="ho_ten_3" placeholder="Họ tên"></td>
+                <td><input type="text" name="ma_sinh_vien_3" placeholder="Mã sinh viên"></td>
+                <td><input type="text" name="lop_3" placeholder="Lớp"></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><input type="text" name="ho_ten_4" placeholder="Họ tên"></td>
+                <td><input type="text" name="ma_sinh_vien_4" placeholder="Mã sinh viên"></td>
+                <td><input type="text" name="lop_4" placeholder="Lớp"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="centered-table">
+        <thead>
+            <tr>
+                <th>CLO</th>
+                <th>Tiêu chí (PIs)</th>
+                <th>Trọng số</th>
+                <th colspan="5">Điểm đánh giá sinh viên</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>SV 1</th>
+                <th>SV 2</th>
+                <th>SV 3</th>
+                <th>SV 4</th>
+                <th>SV 5</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2">CLO 1</td>
+                <td>C1.1. Tổng hợp được các kiến thức lý thuyết về thiết bị phần cứng, công cụ phần mềm liên quan đến đề tài.</td>
+                <td>35%</td>
+                <td><input type="text" name="clo1_c1_1_sv1"></td>
+                <td><input type="text" name="clo1_c1_1_sv2"></td>
+                <td><input type="text" name="clo1_c1_1_sv3"></td>
+                <td><input type="text" name="clo1_c1_1_sv4"></td>
+                <td><input type="text" name="clo1_c1_1_sv5"></td>
+            </tr>
+            <tr>
+                <td>C1.2. Khảo sát các thành phần liên quan đến đề tài</td>
+                <td>35%</td>
+                <td><input type="text" name="clo1_c1_2_sv1"></td>
+                <td><input type="text" name="clo1_c1_2_sv2"></td>
+                <td><input type="text" name="clo1_c1_2_sv3"></td>
+                <td><input type="text" name="clo1_c1_2_sv4"></td>
+                <td><input type="text" name="clo1_c1_2_sv5"></td>
+            </tr>
+            <tr>
+                <td>CLO 5</td>
+                <td>C5.1. Đóng góp cá nhân trong nhóm làm việc.</td>
+                <td>30%</td>
+                <td><input type="text" name="clo5_c5_1_sv1"></td>
+                <td><input type="text" name="clo5_c5_1_sv2"></td>
+                <td><input type="text" name="clo5_c5_1_sv3"></td>
+                <td><input type="text" name="clo5_c5_1_sv4"></td>
+                <td><input type="text" name="clo5_c5_1_sv5"></td>
+            </tr>
+            <tr>
+                <td colspan="3">Điểm GPA</td>
+                <td><input type="text" name="gpa_sv1"></td>
+                <td><input type="text" name="gpa_sv2"></td>
+                <td><input type="text" name="gpa_sv3"></td>
+                <td><input type="text" name="gpa_sv4"></td>
+                <td><input type="text" name="gpa_sv5"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="submit" class="submit-button">Submit</button>
+</body>
+</html>
