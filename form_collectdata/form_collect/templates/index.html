@@ -194,6 +194,50 @@
               window.location.href = `?name=${name}&project_type=${projectType}`;
           }
       }
+      function goToNextForm() {
+        const name = document.getElementById('name').value;
+        const projectType = document.getElementById('project_type').value;
+        const projectList = document.getElementById('project_list').value;
+        const formType = document.querySelector('input[name="form_type"]:checked').value;
+
+        if (name && projectType && projectList && formType) {
+            const params = new URLSearchParams({
+                name: name,
+                project_type: projectType,
+                project_list: projectList,
+                form_type: formType
+            });
+
+            let nextPage = '';
+            switch (formType) {
+                case 'hoiDongChuyenMon':
+                    nextPage = 'hoiDongChuyenMon';
+                    break;
+                case 'canBoHuongDan1':
+                    nextPage = 'baoCaoTienDoL1';
+                    break;
+                case 'canBoHuongDan2':
+                    nextPage = 'baoCaoTienDoL2';
+                    break;
+                case 'canBoHuongDan3':
+                    nextPage = 'huongdan3';
+                    break;
+                case 'canBoPhanBien':
+                    nextPage = 'canBoPhanBien';
+                    break;
+            }
+
+            fetch(`/get-students?project_name=${projectList}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        params.append('students', JSON.stringify(data));
+                        window.location.href = `${nextPage}?${params.toString()}`;
+                    });
+        } else {
+            alert('Please fill in all required fields.');
+        }
+    }
+
   </script>
   </head>
   <body>
@@ -219,15 +263,15 @@
       <div class="project-type">
         <h3>Loại đồ án <span style="color: red;">*</span></h3>
         <select name="project_type" id="project_type" required onchange="updateProjects()" required style="width: 100%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
-            <!-- <option value="">Select project type</option> -->
-            <option value="Cá nhân" {% if request.GET.project_type == "Đồ án cá nhân" %}selected{% endif %}>Đồ án cá nhân</option>
-            <option value="Nhóm" {% if request.GET.project_type == "Đồ án nhóm" %}selected{% endif %}>Đồ án nhóm</option>
+            <option value="">Select project type</option>
+            <option value="Đồ án cá nhân" {% if request.GET.project_type == "Đồ án cá nhân" %}selected{% endif %}>Đồ án cá nhân</option>
+            <option value="Đồ án nhóm" {% if request.GET.project_type == "Đồ án nhóm" %}selected{% endif %}>Đồ án nhóm</option>
         </select>
       </div>
       <div class="project-list">
         <h3>Tên đề tài đồ án/ khóa luận tốt nghiệp <span style="color: red;">*</span></h3>
         <select name="project_list" id="project_list" required style="width: 100%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
-          <!-- <option value="">Select a project</option> -->
+          <option value="">Select a project</option>
           {% for project in projects %}
             <option value="{{ project }}">{{ project }}</option>
           {% endfor %}
@@ -242,7 +286,7 @@
         <label class="form-label"><input type="radio" name="form_type" value="canBoPhanBien"> Cán bộ phản biện</label>
     </div>
     <div class="next">
-      <button type="button">Tiếp theo</button>
+      <button type="button" onclick="goToNextForm()">Tiếp theo</button>
     </div>
       <p class="policy">
         <a href="#">Report Abuse.</a> <a href="#">Terms of condition.</a>

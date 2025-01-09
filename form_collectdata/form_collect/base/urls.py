@@ -1,9 +1,11 @@
 from django.urls import path
 from . import views
 urlpatterns = [
-    path('',views.index,name='index'),
-    path('form1',views.form1,name='form1'),
-    path('form2',views.form2,name='form2'),
-    path('form3',views.formhd3,name='form3'),
-    path('get-projects/', views.get_projects, name='get_projects'),
+    path('', views.index, name='index'),
+    path('hoiDongChuyenMon', views.hoiDongChuyenMon, name='hoiDongChuyenMon'),
+    path('baoCaoTienDoL1', views.baoCaoTienDoL1, name='baoCaoTienDoL1'),
+    path('baoCaoTienDoL2', views.baoCaoTienDoL2, name='baoCaoTienDoL2'),
+    path('huongdan3', views.huongdan3, name='huongdan3'),
+    path('canBoPhanBien', views.canBoPhanBien, name='canBoPhanBien'),
+    path('get-students', views.get_students_view, name='get_students'),
 ]
