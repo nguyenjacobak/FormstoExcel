@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from openpyxl import Workbook,load_workbook
 import os
+import pandas as pd
 # Create your views here.
 def get_lecturers():
     file_path = os.path.join('DataBase', 'db.xlsx')
@@ -18,31 +19,23 @@ def get_lecturers():
             lecturers.add(name)
 
     return lecturers
+
+
 def get_projects(lecturer_name, project_type):
     file_path = os.path.join('DataBase', 'db.xlsx')
-    workbook = load_workbook(filename=file_path)
-    sheet = workbook.worksheets[4]  # Trang thứ 4 của file Excel
+    df = pd.read_excel(file_path, sheet_name="Danh sách các đồ án ", skiprows=12)
+    df = df.fillna(method='ffill')
+
     projects = []
+    cols = ['Tên đề tài đồ án/ khóa luận tốt nghiệp', 'Giáo viên hướng dẫn', 'Làm đồ án/Học phần TTTN']
+    for col in cols:
+        if col not in df.columns:
+            return projects
 
-    # Tìm các cột dựa trên tiêu đề
-    headers = {cell.value: idx for idx, cell in enumerate(sheet[1])}
-    lecturer_col = headers.get('Giáo viên hướng dẫn')
-    project_name_col = headers.get('Tên đề tài đồ án/ khóa luận tốt nghiệp')
-    project_type_col = headers.get('Làm đồ án/Học phần TTTN')
-
-    if lecturer_col is None or project_name_col is None or project_type_col is None:
-        return projects  # Trả về danh sách rỗng nếu không tìm thấy các cột cần thiết
-
-    for row in sheet.iter_rows(min_row=2, values_only=True):
-        lecturer = str(row[lecturer_col]).split('.')[-1].strip()  # Lấy phần tên sau học vị
-        if lecturer == lecturer_name:
-            project_name = row[project_name_col]
-            project_category = row[project_type_col]
-            if (project_type == "Cá nhân" and project_category == "Đồ án cá nhân") or \
-               (project_type == "Nhóm" and project_category == "Đồ án nhóm"):
-                projects.append(project_name)
-
+    projects = df[df['Giáo viên hướng dẫn'].str.contains(lecturer_name, case=False) & df['Làm đồ án/Học phần TTTN'].str.contains(project_type, case=False)]['Tên đề tài đồ án/ khóa luận tốt nghiệp']
     return projects
+
+
 def index(request):
     lecturers = get_lecturers()
     selected_lecturer = request.GET.get('name')
