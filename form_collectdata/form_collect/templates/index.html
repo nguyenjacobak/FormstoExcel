@@ -55,7 +55,18 @@
         width: 90%;
         padding: 5px;
       }
-      .email {
+      .project-type {
+        background-color: white;
+        box-sizing: border-box;
+        height: 150px;
+        width: 50vw;
+        margin: 13px;
+        margin-bottom: 0;
+        padding: 10px;
+        padding-left: 30px;
+        border-radius: 10px;
+      }
+      .project-list{
         background-color: white;
         box-sizing: border-box;
         height: 150px;
@@ -69,7 +80,7 @@
       .form-selection{
         background-color: white;
         box-sizing: border-box;
-        height: 150px;
+        height: 200px;
         width: 50vw;
         margin: 13px;
         margin-bottom: 0;
@@ -175,6 +186,15 @@
         }
       }
     </style>
+    <script>
+      function updateProjects() {
+          const name = document.getElementById('name').value;
+          const projectType = document.getElementById('project_type').value;
+          if (name && projectType) {
+              window.location.href = `?name=${name}&project_type=${projectType}`;
+          }
+      }
+  </script>
   </head>
   <body>
     <form>
@@ -189,18 +209,38 @@
       </div>
       <div class="name">
         <h3>Name <span style="color: red;">*</span></h3>
-        <input type="text" name="name" id="" required />
+        <select name="name" id="name" required onchange="updateProjects()" required style="width: 100%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
+          <option value="">Select a name</option>
+          {% for lecturer in lecturers %}
+              <option value="{{ lecturer }}" {% if lecturer == request.GET.name %}selected{% endif %}>{{ lecturer }}</option>
+          {% endfor %}
+        </select>
       </div>
-      <div class="email">
-        <h3>Email <span style="color: red;">*</span></h3>
-        <input type="email" name="email" id="" required />
+      <div class="project-type">
+        <h3>Loại đồ án <span style="color: red;">*</span></h3>
+        <select name="project_type" id="project_type" required onchange="updateProjects()" required style="width: 100%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
+            <option value="">Select project type</option>
+            <option value="Cá nhân" {% if request.GET.project_type == "Cá nhân" %}selected{% endif %}>Cá nhân</option>
+            <option value="Nhóm" {% if request.GET.project_type == "Nhóm" %}selected{% endif %}>Nhóm</option>
+        </select>
       </div>
-      <div class="form-selection">
+      <div class="project-list">
+        <h3>Đồ án hướng dẫn <span style="color: red;">*</span></h3>
+        <select name="project_list" id="project_list" required style="width: 100%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
+          <option value="">Select a project</option>
+          {% for project in projects %}
+            <option value="{{ project }}">{{ project }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      {% comment %} <div class="form-selection">
         <h3>Chọn loại form:<span style="color: red;">*</span></h3>
         <label class="form-label"><input type="radio" name="form_type" value="hoiDongChuyenMon" required> Hội đồng chuyên môn</label>
-        <label class="form-label"><input type="radio" name="form_type" value="canBoHuongDan"> Cán bộ hướng dẫn</label>
+        <label class="form-label"><input type="radio" name="form_type" value="canBoHuongDan1"> Cán bộ hướng dẫn 1</label>
+        <label class="form-label"><input type="radio" name="form_type" value="canBoHuongDan2"> Cán bộ hướng dẫn 2</label>
+        <label class="form-label"><input type="radio" name="form_type" value="canBoHuongDan3"> Cán bộ hướng dẫn 3</label>
         <label class="form-label"><input type="radio" name="form_type" value="canBoPhanBien"> Cán bộ phản biện</label>
-    </div>
+    </div> {% endcomment %}
     <div class="next">
       <button type="button" ">Next</button>
     </div>
