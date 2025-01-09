@@ -87,7 +87,7 @@
                 <div class="row mb-3">
                     <label class="col-md-4 col-form-label">Họ và tên người hướng dẫn thứ nhất/thứ hai:</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" name="nguoiHuongDan" id="nguoiHuongDan">
+                        <input type="text" class="form-control" name="nguoiHuongDan" id="nguoiHuongDan" value="{{ name }}">
                     </div>
                 </div>
 
@@ -108,7 +108,7 @@
                 <div class="row mb-3">
                     <label class="col-md-2 col-form-label">Tên đề tài:</label>
                     <div class="col-md-10">
-                        <textarea class="form-control" name="tenDeTai" id="tenDeTai" rows="2"></textarea>
+                        <textarea class="form-control" name="tenDeTai" id="tenDeTai" rows="2">{{project_list}}</textarea>
                     </div>
                 </div>
             </div>
@@ -124,43 +124,17 @@
                         <th>Họ và tên SV</th>
                         <th>Mã SV</th>
                         <th>Lớp</th>
-                        <th>TT</th>
-                        <th>Họ và tên SV</th>
-                        <th>Mã SV</th>
-                        <th>Lớp</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for student in students %}
                     <tr>
-                        <td>1.</td>
-                        <td><input type="text" class="form-control" name="tenSV1"></td>
-                        <td><input type="text" class="form-control" name="maSV1"></td>
-                        <td><input type="text" class="form-control" name="lopSV1"></td>
-                        <td>4.</td>
-                        <td><input type="text" class="form-control" name="tenSV4"></td>
-                        <td><input type="text" class="form-control" name="maSV4"></td>
-                        <td><input type="text" class="form-control" name="lopSV4"></td>
+                        <td>{{ forloop.counter }}</td>
+                        <td><input type="text" style="width: 100%;" value="{{ student.student_name }}"></td>
+                        <td><input type="text" style="width: 100%;" value="{{ student.student_id }}"></td>
+                        <td><input type="text" style="width: 100%;" value="{{ student.student_class }}"></td>
                     </tr>
-                    <tr>
-                        <td>2.</td>
-                        <td><input type="text" class="form-control" name="tenSV2"></td>
-                        <td><input type="text" class="form-control" name="maSV2"></td>
-                        <td><input type="text" class="form-control" name="lopSV2"></td>
-                        <td>5.</td>
-                        <td><input type="text" class="form-control" name="tenSV5"></td>
-                        <td><input type="text" class="form-control" name="maSV5"></td>
-                        <td><input type="text" class="form-control" name="lopSV5"></td>
-                    </tr>
-                    <tr>
-                        <td>3.</td>
-                        <td><input type="text" class="form-control" name="tenSV3"></td>
-                        <td><input type="text" class="form-control" name="maSV3"></td>
-                        <td><input type="text" class="form-control" name="lopSV3"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

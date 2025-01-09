@@ -10,16 +10,17 @@ def get_students_view(request):
     project_name = request.GET.get('project_name')
     students = get_students(project_name)
     return JsonResponse(students, safe=False)
+
 def get_students(project_name):
-    file_path = os.path.join('DataBase', 'db.xlsx')
-    df = pd.read_excel(file_path, sheet_name='Danh sách các đồ án ', skiprows=12)
+    file_path = os.path.join('DataBase', 'student_list.xlsx')
+    df = pd.read_excel(file_path)
     df = df.fillna(method='ffill')
 
     students = []
     for _, row in df.iterrows():
         if row['Tên đề tài đồ án/ khóa luận tốt nghiệp'] == project_name:
             student_id = row['Mã sinh viên']
-            student_name = f"{row['Họ và tên']} {row['Unnamed: X']}"  # Ghép hai cột nhỏ lại
+            student_name = row['Họ và tên']
             student_class = row['Lớp']
             students.append({
                 'student_id': student_id,
