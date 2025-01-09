@@ -33,3 +33,5 @@ def form1(request):
     return render(request,'hoiDongChuyenMon.html')
 def form2(request):
     return render(request,'canBoPhanBien.html')
+def formhd3(request):
+    return render(request,'huongdan3.html')
