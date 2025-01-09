@@ -15,10 +15,10 @@ def get_lecturers():
         if name and '(' not in name and ')' not in name:
             lecturers.add(name)
         name = str(row[2])  # Cột C
-        if name and '(' not in name and ')' not in name:
+        if name and '(' not in name and ')' not in name and name != 'None':
             lecturers.add(name)
 
-    return lecturers
+    return [lecture for lecture in lecturers if lecture is not None]
 
 
 def get_projects(lecturer_name, project_type):
@@ -33,6 +33,8 @@ def get_projects(lecturer_name, project_type):
             return projects
 
     projects = df[df['Giáo viên hướng dẫn'].str.contains(lecturer_name, case=False) & df['Làm đồ án/Học phần TTTN'].str.contains(project_type, case=False)]['Tên đề tài đồ án/ khóa luận tốt nghiệp']
+
+    projects = list(set(projects))
     return projects
 
 
