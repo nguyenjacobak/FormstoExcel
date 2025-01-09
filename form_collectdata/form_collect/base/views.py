@@ -2,33 +2,52 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from openpyxl import Workbook,load_workbook
 import os
+import pandas as pd
 # Create your views here.
+def get_lecturers():
+    file_path = os.path.join('DataBase', 'db.xlsx')
+    workbook = load_workbook(filename=file_path)
+    sheet = workbook.worksheets[3]  # Trang thứ 3 của file Excel
+    lecturers = set()
+
+    for row in sheet.iter_rows(min_row=2, max_col=3, values_only=True):
+        name = str(row[0])  # Cột A
+        if name and '(' not in name and ')' not in name:
+            lecturers.add(name)
+        name = str(row[2])  # Cột C
+        if name and '(' not in name and ')' not in name and name != 'None':
+            lecturers.add(name)
+
+    return [lecture for lecture in lecturers if lecture is not None]
+
+
+def get_projects(lecturer_name, project_type):
+    file_path = os.path.join('DataBase', 'db.xlsx')
+    df = pd.read_excel(file_path, sheet_name="Danh sách các đồ án ", skiprows=12)
+    df = df.fillna(method='ffill')
+
+    projects = []
+    cols = ['Tên đề tài đồ án/ khóa luận tốt nghiệp', 'Giáo viên hướng dẫn', 'Làm đồ án/Học phần TTTN']
+    for col in cols:
+        if col not in df.columns:
+            return projects
+
+    projects = df[df['Giáo viên hướng dẫn'].str.contains(lecturer_name, case=False) & df['Làm đồ án/Học phần TTTN'].str.contains(project_type, case=False)]['Tên đề tài đồ án/ khóa luận tốt nghiệp']
+
+    projects = list(set(projects))
+    return projects
+
+
 def index(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
+    lecturers = get_lecturers()
+    selected_lecturer = request.GET.get('name')
+    selected_project_type = request.GET.get('project_type')
+    projects = []
 
-        # Define the directory and file path
-        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        data_dir = os.path.join(base_dir, 'DataCollected')
-        if not os.path.exists(data_dir):
-            os.makedirs(data_dir)
-        file_path = os.path.join(data_dir, 'data.xlsx')
+    if selected_lecturer and selected_project_type:
+        projects = get_projects(selected_lecturer, selected_project_type)
 
-        # Create or load the workbook
-        if os.path.exists(file_path):
-            workbook = load_workbook(file_path)
-        else:
-            workbook = Workbook()
-            workbook.active.append(['Name', 'Email'])  # Add headers
-
-        sheet = workbook.active
-        sheet.append([name, email])
-
-        workbook.save(file_path)
-        return HttpResponse("Form submitted successfully!")
-
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'lecturers': lecturers, 'projects': projects})
 def form1(request):
     return render(request,'hoiDongChuyenMon.html')
 def form2(request):
