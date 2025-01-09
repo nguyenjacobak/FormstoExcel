@@ -30,13 +30,13 @@
             </p>
             <p>Niên khóa: 2020 - 2025</p>
             <p>Họ và tên người hướng dẫn thứ nhất/ thứ hai: 
-                <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder=""  value ="{{name}}"/>
+                {{ name }}
             </p>
             <p>Đơn vị công tác: 
                 <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" />
             </p>
             <p>Tên đề tài: 
-                <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" value ="{{project_list}}" />
+                {{ project_name}}
             </p>
             
         </div>
@@ -57,18 +57,17 @@
                     <th>Lớp</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="list-students">
                 {% for student in students %}
                 <tr>
                     <td>{{ forloop.counter }}</td>
-                    <td><input type="text" style="width: 100%;" value="{{ student.student_name }}"></td>
-                    <td><input type="text" style="width: 100%;" value="{{ student.student_id }}"></td>
-                    <td><input type="text" style="width: 100%;" value="{{ student.student_class }}"></td>
+                    <td>{{ student.fullname}}</td>
+                    <td>{{ student.msv }}</td>
+                    <td>{{ student.class }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-
 
         <table class="table table-bordered text-center align-middle">
             <thead class="table-light">
@@ -76,17 +75,20 @@
                     <th>CLO</th>
                     <th>Tiêu chí (PIs)</th>
                     <th>Trọng số</th>
-                    <th colspan="5">Điểm đánh giá sinh viên</th>
+                    <th colspan= "{{ students_count }}">Điểm đánh giá sinh viên</th>
                 </tr>
-                <tr>
+                <tr id="num-students-col">
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th>SV 1</th>
+                    {% for student in students %}
+                    <th>SV{{ forloop.counter }}</th>
+                    {% endfor %}
+                    <!-- <th>SV 1</th>
                     <th>SV 2</th>
                     <th>SV 3</th>
                     <th>SV 4</th>
-                    <th>SV 5</th>
+                    <th>SV 5</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -94,60 +96,78 @@
                     <td rowspan="1">CLO 2</td>
                     <td>C2.3. Trình bày được giải pháp để giải quyết vấn đề thực tiễn đặt ra liên quan đến đồ án.</td>
                     <td>20%</td>
+                    {% for student in students %}
+                    <td><input type="text" class="form-control"></td>
+                    {% endfor %}
+                    <!-- <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
-                    <td><input type="text" class="form-control"></td>
-                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td> -->
                 </tr>
                 <tr>
                     <td rowspan="1">CLO 3</td>
                     <td>C3.2. Thiết kế được các hệ thống điện tử đáp ứng yêu cầu đề ra.</td>
                     <td>20%</td>
+                    {% for student in students %}
+                    <td><input type="text" class="form-control"></td>
+                    {% endfor %}
+                    <!-- <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
-                    <td><input type="text" class="form-control"></td>
-                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td> -->
                 </tr>
                 <tr>
                     <td rowspan="1">CLO 4</td>
                     <td>C4.1. Nhận thức và thực hiện trách nhiệm nghề nghiệp, đạo đức trong thiết kế và triển khai hệ thống điện - điện tử.</td>
                     <td>20%</td>
+                    {% for student in students %}
+                    <td><input type="text" class="form-control"></td>
+                    {% endfor %}
+                    <!-- <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
-                    <td><input type="text" class="form-control"></td>
-                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td> -->
                 </tr>
                 <tr>
                     <td rowspan="2">CLO 6</td>
                     <td>C6.1. Khả năng viết và bố cục của báo cáo.</td>
                     <td>20%</td>
+                    {% for student in students %}
+                    <td><input type="text" class="form-control"></td>
+                    {% endfor %}
+                    <!-- <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
-                    <td><input type="text" class="form-control"></td>
-                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td> -->
                 </tr>
                 <tr>
                     <td>C6.2. Khả năng cung cấp dữ liệu để minh chứng cho đồ án.</td>
                     <td>20%</td>
+                    {% for student in students %}
+                    <td><input type="text" class="form-control"></td>
+                    {% endfor %}
+                    <!-- <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
-                    <td><input type="text" class="form-control"></td>
-                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td> -->
                 </tr>
             </tbody>
             <tfoot class="table-light">
                 <tr>
                     <td colspan="3">Điểm GPA</td>
+                    {% for student in students %}
+                    <td><input type="text" class="form-control"></td>
+                    {% endfor %}
+                    <!-- <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
-                    <td><input type="text" class="form-control"></td>
-                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td> -->
                 </tr>
             </tfoot>
         </table>
@@ -166,3 +186,29 @@
     </div>
 </body>
 </html>
+<script>
+    const dataPost = JSON.parse(localStorage.getItem('data'));
+    const csrfToken = getCookie('csrftoken');
+
+    fetch('/huongdan3', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+        },
+        body: JSON.stringify({ data: dataPost }),
+    }).then(response => response.text())
+    .then(html => {
+        document.body.innerHTML = html; // Thay đổi DOM nếu cần
+    });
+    
+    function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            const [key, value] = cookie.trim().split('=');
+            if (key === name) return decodeURIComponent(value);
+        }
+        return null;
+    }
+
+</script>

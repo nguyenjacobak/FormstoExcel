@@ -30,14 +30,13 @@
             </p>
             <p>Niên khóa: 2020 - 2025</p>
             <p>Họ và tên người hướng dẫn thứ nhất/ thứ hai: 
-                
-                <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder=""  value="{{ name }}" />
+                {{ name }}
             </p>
             <p>Đơn vị công tác: 
                 <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" />
             </p>
             <p>Tên đề tài: 
-                <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" value="{{ project_list }}" />
+                {{ projectName}}
             </p>
             
         </div>
@@ -63,9 +62,9 @@
                 {% for student in students %}
                 <tr>
                     <td>{{ forloop.counter }}</td>
-                    <td><input type="text" style="width: 100%;" value="{{ student.student_name }}"></td>
-                    <td><input type="text" style="width: 100%;" value="{{ student.student_id }}"></td>
-                    <td><input type="text" style="width: 100%;" value="{{ student.student_class }}"></td>
+                    <td>{{ student.fullname }}</td>
+                    <td>{{ student.msv }}</td>
+                    <td>{{ student.class}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -84,11 +83,9 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th>SV 1</th>
-                    <th>SV 2</th>
-                    <th>SV 3</th>
-                    <th>SV 4</th>
-                    <th>SV 5</th>
+                    {% for student in students %}
+                    <th>SV{{ forloop.counter }}</th>
+                    {% endfor %}
                 </tr>
             </thead>
             <tbody>
@@ -96,40 +93,35 @@
                     <td rowspan="2">CLO 1</td>
                     <td>C1.1. Tổng hợp được các kiến thức lý thuyết về thiết bị phần cứng, công cụ phần mềm liên quan đến đề tài.</td>
                     <td>35%</td>
-                    <td><input type="text" class="form-control" name="clo1_c1_1_sv1"></td>
-                    <td><input type="text" class="form-control" name="clo1_c1_1_sv2"></td>
-                    <td><input type="text" class="form-control" name="clo1_c1_1_sv3"></td>
-                    <td><input type="text" class="form-control" name="clo1_c1_1_sv4"></td>
-                    <td><input type="text" class="form-control" name="clo1_c1_1_sv5"></td>
+                    {% for student in students %}
+                    <td><input type="text" class="form-control" name="clo1_c1_1_sv{{ forloop.counter }}"></td>
+                    {% endfor %}
+
                 </tr>
                 <tr>
                     <td>C1.2. Khảo sát các thành phần liên quan đến đề tài</td>
                     <td>35%</td>
-                    <td><input type="text" class="form-control" name="clo1_c1_2_sv1"></td>
-                    <td><input type="text" class="form-control" name="clo1_c1_2_sv2"></td>
-                    <td><input type="text" class="form-control" name="clo1_c1_2_sv3"></td>
-                    <td><input type="text" class="form-control" name="clo1_c1_2_sv4"></td>
-                    <td><input type="text" class="form-control" name="clo1_c1_2_sv5"></td>
+                    {% for student in students %}
+                    <td><input type="text" class="form-control" name="clo1_c1_2_sv{{ forloop.counter }}"></td>
+                    {% endfor %}
+
                 </tr>
                 <tr>
                     <td>CLO 5</td>
                     <td>C5.1. Đóng góp cá nhân trong nhóm làm việc.</td>
                     <td>30%</td>
-                    <td><input type="text" class="form-control" name="clo5_c5_1_sv1"></td>
-                    <td><input type="text" class="form-control" name="clo5_c5_1_sv2"></td>
-                    <td><input type="text" class="form-control" name="clo5_c5_1_sv3"></td>
-                    <td><input type="text" class="form-control" name="clo5_c5_1_sv4"></td>
-                    <td><input type="text" class="form-control" name="clo5_c5_1_sv5"></td>
+                    {% for student in students %}
+                    <td><input type="text" class="form-control" name="clo5_c5_1_sv{{ forloop.counter }}"></td>
+                    {% endfor %}
+
                 </tr>
             </tbody>
             <tfoot>
                 <tr class="table-light">
                     <td colspan="3">Điểm GPA</td>
-                    <td><input type="text" class="form-control" name="gpa_sv1"></td>
-                    <td><input type="text" class="form-control" name="gpa_sv2"></td>
-                    <td><input type="text" class="form-control" name="gpa_sv3"></td>
-                    <td><input type="text" class="form-control" name="gpa_sv4"></td>
-                    <td><input type="text" class="form-control" name="gpa_sv5"></td>
+                    {% for student in students %}
+                    <td><input type="text" class="form-control" name="gpa_sv{{ forloop.counter }}"></td>
+                    {% endfor %}
                 </tr>
             </tfoot>
         </table>
@@ -147,3 +139,29 @@
     </div>
 </body>
 </html>
+<script>
+    const dataPost = JSON.parse(localStorage.getItem('data'));
+    const csrfToken = getCookie('csrftoken');
+
+    fetch('/hoiDongChuyenMon', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+        },
+        body: JSON.stringify({ data: dataPost }),
+    }).then(response => response.text())
+    .then(html => {
+        document.body.innerHTML = html; // Thay đổi DOM nếu cần
+    });
+    
+    function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            const [key, value] = cookie.trim().split('=');
+            if (key === name) return decodeURIComponent(value);
+        }
+        return null;
+    }
+
+</script>

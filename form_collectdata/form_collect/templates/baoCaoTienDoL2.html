@@ -87,7 +87,7 @@
                 <div class="row mb-3">
                     <label class="col-md-4 col-form-label">Họ và tên người hướng dẫn thứ nhất/thứ hai:</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" name="nguoiHuongDan" id="nguoiHuongDan" value="{{name}}">
+                        {{ name }}
                     </div>
                 </div>
 
@@ -108,7 +108,7 @@
                 <div class="row mb-3">
                     <label class="col-md-2 col-form-label">Tên đề tài:</label>
                     <div class="col-md-10">
-                        <textarea class="form-control" name="tenDeTai" id="tenDeTai" rows="2">{{project_list}}</textarea>
+                        {{ project_name}}
                     </div>
                 </div>
             </div>
@@ -130,9 +130,9 @@
                 {% for student in students %}
                 <tr>
                     <td>{{ forloop.counter }}</td>
-                    <td><input type="text" style="width: 100%;" value="{{ student.student_name }}"></td>
-                    <td><input type="text" style="width: 100%;" value="{{ student.student_id }}"></td>
-                    <td><input type="text" style="width: 100%;" value="{{ student.student_class }}"></td>
+                    <td><input type="text" style="width: 100%;" value="{{ student.fullname }}"></td>
+                    <td><input type="text" style="width: 100%;" value="{{ student.msv }}"></td>
+                    <td><input type="text" style="width: 100%;" value="{{ student.class }}"></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -157,11 +157,9 @@
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th>SV1</th>
-                        <th>SV2</th>
-                        <th>SV3</th>
-                        <th>SV4</th>
-                        <th>SV5</th>
+                        {% for student in students %}
+                        <th>SV{{ forloop.counter }}</th>
+                        {% endfor %}
                     </tr>
                 </thead>
                 <tbody>
@@ -169,49 +167,40 @@
                         <td rowspan="2">CLO 2</td>
                         <td>C2.1: Xác định được vấn đề cần thực hiện</td>
                         <td>25%</td>
-                        <td><input type="number" class="form-control" name="diemC21SV1" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC21SV2" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC21SV3" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC21SV4" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC21SV5" min="0" max="10" step="0.1"></td>
+                        {% for student in students %}
+                        <td><input type="number" class="form-control" name="diemC21{{ student.msv }}" min="0" max="10" step="0.1"></td>
+                        {% endfor %}
                     </tr>
                     <tr>
                         <td>C2.2: Phân tích được vấn đề của đề tài</td>
                         <td>25%</td>
-                        <td><input type="number" class="form-control" name="diemC22SV1" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC22SV2" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC22SV3" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC22SV4" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC22SV5" min="0" max="10" step="0.1"></td>
+                        {% for student in students %}   
+                        <td><input type="number" class="form-control" name="diemC22{{ student.msv }}" min="0" max="10" step="0.1"></td>
+                        {% endfor %}
                     </tr>
                     <tr>
                         <td>CLO 3</td>
                         <td>C3.1: Xác định được mô hình và cách tiếp cận thành phần</td>
                         <td>25%</td>
-                        <td><input type="number" class="form-control" name="diemC31SV1" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC31SV2" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC31SV3" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC31SV4" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC31SV5" min="0" max="10" step="0.1"></td>
+                        {% for student in students %}
+                        <td><input type="number" class="form-control" name="diemC31{{ student.msv }}" min="0" max="10" step="0.1"></td>
+                        {% endfor %}
+
                     </tr>
                     <tr>
                         <td>CLO 5</td>
                         <td>C5.2: Kỹ năng giao tiếp và phối hợp trong nhóm</td>
                         <td>25%</td>
-                        <td><input type="number" class="form-control" name="diemC52SV1" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC52SV2" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC52SV3" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC52SV4" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC52SV5" min="0" max="10" step="0.1"></td>
+                        {% for student in students %}
+                        <td><input type="number" class="form-control" name="diemC52{{ student.msv }}" min="0" max="10" step="0.1"></td>
+                        {% endfor %}
                     </tr>
                     <tr>
                         <td colspan="2" class="text-center">Điểm GPA</td>
                         <td></td>
-                        <td><input type="number" class="form-control" name="gpaSV1" readonly></td>
-                        <td><input type="number" class="form-control" name="gpaSV2" readonly></td>
-                        <td><input type="number" class="form-control" name="gpaSV3" readonly></td>
-                        <td><input type="number" class="form-control" name="gpaSV4" readonly></td>
-                        <td><input type="number" class="form-control" name="gpaSV5" readonly></td>
+                        {% for student in students %}
+                        <td><input type="number" class="form-control" name="gpaSV{{ forloop.counter }}" readonly></td>
+                        {% endfor %}
                     </tr>
                 </tbody>
             </table>
@@ -232,4 +221,34 @@
     <div class="mt-4">
         <p class="fw-bold">Ghi chú:</p>
         <ul class="small">
-            <li>Trong mẫu đề 02 CLO. Trường hợp có nhiều CLO cần đánh giá hơn thì Khoa chủ động bổ sung thêm theo yêu cầu.</li>
+            <li>Trong mẫu đề 02 CLO. Trường hợp có nhiều CLO cần đánh giá hơn thì Khoa chủ động bổ sung thêm theo yêu cầu.</li>z
+        </ul>  
+    </div>
+</div>
+</body>
+</html>
+<script>
+    const dataPost = JSON.parse(localStorage.getItem('data'));
+    const csrfToken = getCookie('csrftoken');
+
+    fetch('/baoCaoTienDoL2', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+        },
+        body: JSON.stringify({ data: dataPost }),
+    }).then(response => response.text())
+    .then(html => {
+        document.body.innerHTML = html; // Thay đổi DOM nếu cần
+    });
+    
+    function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            const [key, value] = cookie.trim().split('=');
+            if (key === name) return decodeURIComponent(value);
+        }
+        return null;
+    }
+</script>
