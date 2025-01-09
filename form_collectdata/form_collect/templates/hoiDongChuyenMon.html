@@ -1,149 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assessment Form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function confirmSubmission(event) {
+            event.preventDefault(); // Ngăn chặn form gửi đi ngay lập tức
+            var confirmation = confirm("Xác nhận nộp biểu mẫu?");
+            if (confirmation) {
+                document.getElementById("baoCaoForm").submit(); // Gửi form nếu người dùng xác nhận
+            }
+        }
+    </script>
     <style>
-        
         .form-control {
             outline: none;
-            box-shadow: none; /* Loại bỏ hiệu ứng đổ bóng của Bootstrap */
-            border: none; /* Giữ màu viền mặc định */
+            box-shadow: none;
+            /* Loại bỏ hiệu ứng đổ bóng của Bootstrap */
+            border: none;
+            /* Giữ màu viền mặc định */
         }
 
-        .table td, .table th {
+        .table td,
+        .table th {
             vertical-align: middle;
             text-align: center;
         }
     </style>
 </head>
+
 <body>
     <div class="container mt-5">
-        <h2 class="text-center mb-4">PHIẾU ĐÁNH GIÁ CỦA HỘI ĐỒNG CHUYÊN MÔN </h2>
-        <h4 class="text-center mb-4">Đối với Đồ án tốt nghiệp </h4>
+        <form id = "baoCaoForm" method="post" action="{% url 'hoiDongChuyenMon' %}">
+            {% csrf_token %}
+            <h2 class="text-center mb-4">PHIẾU ĐÁNH GIÁ CỦA HỘI ĐỒNG CHUYÊN MÔN </h2>
+            <h4 class="text-center mb-4">Đối với Đồ án tốt nghiệp </h4>
 
-        <div class="mb-4">
-            <p>Chương trình đào tạo đại học chính quy ngành: 
-                <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" />
+            <div class="mb-4">
+                <p>Chương trình đào tạo đại học chính quy ngành:
+                    <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;"
+                        placeholder="" />
+                </p>
+                <p>Niên khóa: 2020 - 2025</p>
+                <p>Họ và tên người hướng dẫn thứ nhất/ thứ hai:
+
+                    <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;"
+                        placeholder="" value="{{ name }}" />
+                </p>
+                <p>Đơn vị công tác:
+                    <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;"
+                        placeholder="" />
+                </p>
+                <p>Tên đề tài:
+                    <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;"
+                        placeholder="" value="{{ project_list }}" />
+                </p>
+
+            </div>
+
+            <h4>II. KẾT QUẢ ĐÁNH GIÁ (Trọng số ...%)</h4>
+            <p>Điểm mỗi tiêu chí tính theo thang điểm 10, làm tròn đến một số thập phân.</p>
+            <p>
+                Công thức tính điểm GPA: <br>
+                <strong>GPA = Tổng điểm tiêu chí * trọng số</strong>
             </p>
-            <p>Niên khóa: 2020 - 2025</p>
-            <p>Họ và tên người hướng dẫn thứ nhất/ thứ hai: 
-                
-                <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder=""  value="{{ name }}" />
-            </p>
-            <p>Đơn vị công tác: 
-                <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" />
-            </p>
-            <p>Tên đề tài: 
-                <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" value="{{ project_list }}" />
-            </p>
-            
-        </div>
-
-        <h4>II. KẾT QUẢ ĐÁNH GIÁ (Trọng số ...%)</h4>
-        <p>Điểm mỗi tiêu chí tính theo thang điểm 10, làm tròn đến một số thập phân.</p>
-        <p>
-            Công thức tính điểm GPA: <br>
-            <strong>GPA = Tổng điểm tiêu chí * trọng số</strong>
-        </p>
-
-               
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>TT</th>
-                    <th>Họ và tên SV</th>
-                    <th>Mã SV</th>
-                    <th>Lớp</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for student in students %}
-                <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td><input type="text" style="width: 100%;" value="{{ student.student_name }}"></td>
-                    <td><input type="text" style="width: 100%;" value="{{ student.student_id }}"></td>
-                    <td><input type="text" style="width: 100%;" value="{{ student.student_class }}"></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
 
 
-        <table class="table table-bordered table-hover table-striped text-center align-middle">
-            <thead class="table-light">
-                <tr>
-                    <th>CLO</th>
-                    <th>Tiêu chí (PIs)</th>
-                    <th>Trọng số</th>
-                    <th colspan="5">Điểm đánh giá sinh viên</th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>SV 1</th>
-                    <th>SV 2</th>
-                    <th>SV 3</th>
-                    <th>SV 4</th>
-                    <th>SV 5</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td rowspan="2">CLO 1</td>
-                    <td>C1.1. Tổng hợp được các kiến thức lý thuyết về thiết bị phần cứng, công cụ phần mềm liên quan đến đề tài.</td>
-                    <td>35%</td>
-                    <td><input type="text" class="form-control" name="clo1_c1_1_sv1"></td>
-                    <td><input type="text" class="form-control" name="clo1_c1_1_sv2"></td>
-                    <td><input type="text" class="form-control" name="clo1_c1_1_sv3"></td>
-                    <td><input type="text" class="form-control" name="clo1_c1_1_sv4"></td>
-                    <td><input type="text" class="form-control" name="clo1_c1_1_sv5"></td>
-                </tr>
-                <tr>
-                    <td>C1.2. Khảo sát các thành phần liên quan đến đề tài</td>
-                    <td>35%</td>
-                    <td><input type="text" class="form-control" name="clo1_c1_2_sv1"></td>
-                    <td><input type="text" class="form-control" name="clo1_c1_2_sv2"></td>
-                    <td><input type="text" class="form-control" name="clo1_c1_2_sv3"></td>
-                    <td><input type="text" class="form-control" name="clo1_c1_2_sv4"></td>
-                    <td><input type="text" class="form-control" name="clo1_c1_2_sv5"></td>
-                </tr>
-                <tr>
-                    <td>CLO 5</td>
-                    <td>C5.1. Đóng góp cá nhân trong nhóm làm việc.</td>
-                    <td>30%</td>
-                    <td><input type="text" class="form-control" name="clo5_c5_1_sv1"></td>
-                    <td><input type="text" class="form-control" name="clo5_c5_1_sv2"></td>
-                    <td><input type="text" class="form-control" name="clo5_c5_1_sv3"></td>
-                    <td><input type="text" class="form-control" name="clo5_c5_1_sv4"></td>
-                    <td><input type="text" class="form-control" name="clo5_c5_1_sv5"></td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr class="table-light">
-                    <td colspan="3">Điểm GPA</td>
-                    <td><input type="text" class="form-control" name="gpa_sv1"></td>
-                    <td><input type="text" class="form-control" name="gpa_sv2"></td>
-                    <td><input type="text" class="form-control" name="gpa_sv3"></td>
-                    <td><input type="text" class="form-control" name="gpa_sv4"></td>
-                    <td><input type="text" class="form-control" name="gpa_sv5"></td>
-                </tr>
-            </tfoot>
-        </table>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>TT</th>
+                        <th>Họ và tên SV</th>
+                        <th>Mã SV</th>
+                        <th>Lớp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><input type="text" style="width: 100%;" value="{{ student.student_name }}"></td>
+                        <td><input type="text" style="width: 100%;" value="{{ student.student_id }}"></td>
+                        <td><input type="text" style="width: 100%;" value="{{ student.student_class }}"></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
 
-        <div class="mt-4">
-            <p><strong>Nhận xét khác (về ý thức, thái độ làm việc của sinh viên):</strong></p>
-            <textarea class="form-control" rows="5"></textarea>
-        </div>
+            <table class="table table-bordered table-hover table-striped text-center align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>CLO</th>
+                        <th>Tiêu chí (PIs)</th>
+                        <th>Trọng số</th>
+                        <th colspan="5">Điểm đánh giá sinh viên</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>SV 1</th>
+                        <th>SV 2</th>
+                        <th>SV 3</th>
+                        <th>SV 4</th>
+                        <th>SV 5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="2">CLO 1</td>
+                        <td>C1.1. Tổng hợp được các kiến thức lý thuyết về thiết bị phần cứng, công cụ phần mềm liên
+                            quan đến đề tài.</td>
+                        <td>35%</td>
+                        <td><input type="text" class="form-control" name="clo1_c1_1_sv1"></td>
+                        <td><input type="text" class="form-control" name="clo1_c1_1_sv2"></td>
+                        <td><input type="text" class="form-control" name="clo1_c1_1_sv3"></td>
+                        <td><input type="text" class="form-control" name="clo1_c1_1_sv4"></td>
+                        <td><input type="text" class="form-control" name="clo1_c1_1_sv5"></td>
+                    </tr>
+                    <tr>
+                        <td>C1.2. Khảo sát các thành phần liên quan đến đề tài</td>
+                        <td>35%</td>
+                        <td><input type="text" class="form-control" name="clo1_c1_2_sv1"></td>
+                        <td><input type="text" class="form-control" name="clo1_c1_2_sv2"></td>
+                        <td><input type="text" class="form-control" name="clo1_c1_2_sv3"></td>
+                        <td><input type="text" class="form-control" name="clo1_c1_2_sv4"></td>
+                        <td><input type="text" class="form-control" name="clo1_c1_2_sv5"></td>
+                    </tr>
+                    <tr>
+                        <td>CLO 5</td>
+                        <td>C5.1. Đóng góp cá nhân trong nhóm làm việc.</td>
+                        <td>30%</td>
+                        <td><input type="text" class="form-control" name="clo5_c5_1_sv1"></td>
+                        <td><input type="text" class="form-control" name="clo5_c5_1_sv2"></td>
+                        <td><input type="text" class="form-control" name="clo5_c5_1_sv3"></td>
+                        <td><input type="text" class="form-control" name="clo5_c5_1_sv4"></td>
+                        <td><input type="text" class="form-control" name="clo5_c5_1_sv5"></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="table-light">
+                        <td colspan="3">Điểm GPA</td>
+                        <td><input type="text" class="form-control" name="gpa_sv1"></td>
+                        <td><input type="text" class="form-control" name="gpa_sv2"></td>
+                        <td><input type="text" class="form-control" name="gpa_sv3"></td>
+                        <td><input type="text" class="form-control" name="gpa_sv4"></td>
+                        <td><input type="text" class="form-control" name="gpa_sv5"></td>
+                    </tr>
+                </tfoot>
+            </table>
 
-        <div class="text-end mt-4">
-            <p><strong>NGƯỜI NHẬN XÉT</strong></p>
-            <p>(Ký, ghi rõ họ tên)</p>
-        </div>
+
+            <div class="mt-4">
+                <p><strong>Nhận xét khác (về ý thức, thái độ làm việc của sinh viên):</strong></p>
+                <textarea class="form-control" rows="5"></textarea>
+            </div>
+
+            <div class="text-end mt-4">
+                <p><strong>NGƯỜI NHẬN XÉT</strong></p>
+                <p>(Ký, ghi rõ họ tên)</p>
+            </div>
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-danger" onclick="confirmSubmission(event)">Submit</button>
+            </div>
     </div>
 </body>
+
 </html>

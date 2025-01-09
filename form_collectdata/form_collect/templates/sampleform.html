@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Select Options</title>
+    <script>
+        // Sample data extracted from the file
+        const data = [
+            { "student": "Hoàng Việt An", "advisor": "TS. Trịnh Trung Hiếu", "project": "Hệ thống phát hiện khí độc và thoát khí tự động" },
+            { "student": "Nguyễn Văn An", "advisor": "ThS. Nguyễn Quang Biên", "project": "Xây dựng hệ thống xác thực dữ liệu sử dụng FPGA" },
+            { "student": "Hoàng Tuấn Anh", "advisor": "TS. Nguyễn Ngọc Minh", "project": "Hệ thống nhận diện và theo dõi đối tượng" },
+            { "student": "Lưu Ngọc Anh", "advisor": "ThS. Trương Minh Đức", "project": "Thiết kế, thử nghiệm ổ cắm thông minh điều khiển từ xa" },
+            { "student": "Nguyễn Tuấn Anh", "advisor": "ThS. Phạm Văn Sự", "project": "Thiết kế bộ khuyếch đại vì sai folded cascode" }
+        ];
+
+        function filterOptions() {
+            const advisorSelect = document.getElementById("advisor").value;
+            const projectSelect = document.getElementById("project").value;
+            const studentSelect = document.getElementById("student").value;
+
+            const filteredData = data.filter(item => {
+                return (
+                    (advisorSelect === "" || item.advisor === advisorSelect) &&
+                    (projectSelect === "" || item.project === projectSelect) &&
+                    (studentSelect === "" || item.student === studentSelect)
+                );
+            });
+
+            updateOptions("advisor", filteredData.map(item => item.advisor));
+            updateOptions("project", filteredData.map(item => item.project));
+            updateOptions("student", filteredData.map(item => item.student));
+        }
+
+        function updateOptions(selectId, values) {
+            const select = document.getElementById(selectId);
+            const selectedValue = select.value;
+            select.innerHTML = "<option value=''>All</option>";
+
+            [...new Set(values)].forEach(value => {
+                const option = document.createElement("option");
+                option.value = value;
+                option.textContent = value;
+                select.appendChild(option);
+            });
+
+            select.value = selectedValue;
+        }
+
+        function initialize() {
+            updateOptions("advisor", data.map(item => item.advisor));
+            updateOptions("project", data.map(item => item.project));
+            updateOptions("student", data.map(item => item.student));
+        }
+
+        window.onload = initialize;
+    </script>
+</head>
+<body>
+    <h1>Dynamic Select Options</h1>
+
+    <label for="advisor">Giảng viên hướng dẫn:</label>
+    <select id="advisor" onchange="filterOptions()">
+        <option value="">All</option>
+    </select>
+
+    <label for="project">Tên đề tài/đồ án:</label>
+    <select id="project" onchange="filterOptions()">
+        <option value="">All</option>
+    </select>
+
+    <label for="student">Tên sinh viên:</label>
+    <select id="student" onchange="filterOptions()">
+        <option value="">All</option>
+    </select>
+</body>
+</html>
