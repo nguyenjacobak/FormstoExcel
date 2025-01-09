@@ -3,7 +3,31 @@ from django.http import HttpResponse
 from openpyxl import Workbook,load_workbook
 import os
 import pandas as pd
+from django.http import JsonResponse
+import json
 # Create your views here.
+def get_students_view(request):
+    project_name = request.GET.get('project_name')
+    students = get_students(project_name)
+    return JsonResponse(students, safe=False)
+def get_students(project_name):
+    file_path = os.path.join('DataBase', 'db.xlsx')
+    df = pd.read_excel(file_path, sheet_name='Danh sách các đồ án ', skiprows=12)
+    df = df.fillna(method='ffill')
+
+    students = []
+    for _, row in df.iterrows():
+        if row['Tên đề tài đồ án/ khóa luận tốt nghiệp'] == project_name:
+            student_id = row['Mã sinh viên']
+            student_name = f"{row['Họ và tên']} {row['Unnamed: X']}"  # Ghép hai cột nhỏ lại
+            student_class = row['Lớp']
+            students.append({
+                'student_id': student_id,
+                'student_name': student_name,
+                'student_class': student_class
+            })
+
+    return students
 def get_lecturers():
     file_path = os.path.join('DataBase', 'db.xlsx')
     workbook = load_workbook(filename=file_path)
@@ -48,9 +72,48 @@ def index(request):
         projects = get_projects(selected_lecturer, selected_project_type)
 
     return render(request, 'index.html', {'lecturers': lecturers, 'projects': projects})
-def form1(request):
-    return render(request,'hoiDongChuyenMon.html')
-def form2(request):
-    return render(request,'canBoPhanBien.html')
-def formhd3(request):
-    return render(request,'huongdan3.html')
+def hoiDongChuyenMon(request):
+    context = {
+        'name': request.GET.get('name'),
+        'project_type': request.GET.get('project_type'),
+        'project_list': request.GET.get('project_list'),
+        'form_type': request.GET.get('form_type'),
+        'students': json.loads(request.GET.get('students', '[]'))
+    }
+    return render(request, 'hoiDongChuyenMon.html', context)
+def baoCaoTienDoL1(request):
+    context = {
+        'name': request.GET.get('name'),
+        'project_type': request.GET.get('project_type'),
+        'project_list': request.GET.get('project_list'),
+        'form_type': request.GET.get('form_type'),
+        'students': json.loads(request.GET.get('students', '[]'))
+    }
+    return render(request, 'baoCaoTienDoL1.html', context)
+def baoCaoTienDoL2(request):
+    context = {
+        'name': request.GET.get('name'),
+        'project_type': request.GET.get('project_type'),
+        'project_list': request.GET.get('project_list'),
+        'form_type': request.GET.get('form_type'),
+        'students': json.loads(request.GET.get('students', '[]'))
+    }
+    return render(request, 'baoCaoTienDoL2.html', context)
+def huongdan3(request):
+    context = {
+        'name': request.GET.get('name'),
+        'project_type': request.GET.get('project_type'),
+        'project_list': request.GET.get('project_list'),
+        'form_type': request.GET.get('form_type'),
+        'students': json.loads(request.GET.get('students', '[]'))
+    }
+    return render(request, 'huongdan3.html', context)
+def canBoPhanBien(request):
+    context = {
+        'name': request.GET.get('name'),
+        'project_type': request.GET.get('project_type'),
+        'project_list': request.GET.get('project_list'),
+        'form_type': request.GET.get('form_type'),
+        'students': json.loads(request.GET.get('students', '[]'))
+    }
+    return render(request, 'canBoPhanBien.html', context)

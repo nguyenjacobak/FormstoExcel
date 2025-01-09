@@ -30,13 +30,14 @@
             </p>
             <p>Niên khóa: 2020 - 2025</p>
             <p>Họ và tên người hướng dẫn thứ nhất/ thứ hai: 
-                <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" />
+                
+                <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder=""  value="{{ name }}" />
             </p>
             <p>Đơn vị công tác: 
                 <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" />
             </p>
             <p>Tên đề tài: 
-                <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" />
+                <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" value="{{ project_list }}" />
             </p>
             
         </div>
@@ -48,6 +49,7 @@
             <strong>GPA = Tổng điểm tiêu chí * trọng số</strong>
         </p>
 
+               
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -57,37 +59,15 @@
                     <th>Lớp</th>
                 </tr>
             </thead>
-                        <tbody>
+            <tbody>
+                {% for student in students %}
                 <tr>
-                    <td>1</td>
-                    <td><input type="text" style="width: 100%;"></td>
-                    <td><input type="text" style="width: 100%;"></td>
-                    <td><input type="text" style="width: 100%;"></td>
+                    <td>{{ forloop.counter }}</td>
+                    <td><input type="text" style="width: 100%;" value="{{ student.student_name }}"></td>
+                    <td><input type="text" style="width: 100%;" value="{{ student.student_id }}"></td>
+                    <td><input type="text" style="width: 100%;" value="{{ student.student_class }}"></td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td><input type="text" style="width: 100%;"></td>
-                    <td><input type="text" style="width: 100%;"></td>
-                    <td><input type="text" style="width: 100%;"></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><input type="text" style="width: 100%;"></td>
-                    <td><input type="text" style="width: 100%;"></td>
-                    <td><input type="text" style="width: 100%;"></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td><input type="text" style="width: 100%;"></td>
-                    <td><input type="text" style="width: 100%;"></td>
-                    <td><input type="text" style="width: 100%;"></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td><input type="text" style="width: 100%;"></td>
-                    <td><input type="text" style="width: 100%;"></td>
-                    <td><input type="text" style="width: 100%;"></td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
 
