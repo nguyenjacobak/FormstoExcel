@@ -153,7 +153,7 @@
                         <td><input type="number" class="form-control" name="diemC52{{ student.msv }}" min="0" max="10" step="0.1"></td>
                         {% endfor %}
                     </tr>
-                    <tr>
+                    <tr class="table-light">
                         <td colspan="2" class="text-center">Điểm GPA</td>
                         <td></td>
                         {% for student in students %}
@@ -169,18 +169,10 @@
         <textarea class="form-control mb-3" name="nhanXet" rows="5"></textarea>
     </div>
 
-    <!-- Signature Section -->
-    <div class="text-end">
-        <p class="mb-1">NGƯỜI NHẬN XÉT</p>
-        <p class="fst-italic">(Ký, ghi rõ họ tên)</p>
-    </div>
-
-    <!-- Notes Section -->
-    <div class="mt-4">
-        <p class="fw-bold">Ghi chú:</p>
-        <ul class="small">
-            <li>Trong mẫu đề 02 CLO. Trường hợp có nhiều CLO cần đánh giá hơn thì Khoa chủ động bổ sung thêm theo yêu cầu.</li>z
-        </ul>  
+    <div class="d-flex justify-content-center w-100"> 
+        <button class="btn btn-primary mt-4 mb-5" id="submit">
+            Submit
+        </button>
     </div>
 </div>
 </body>
