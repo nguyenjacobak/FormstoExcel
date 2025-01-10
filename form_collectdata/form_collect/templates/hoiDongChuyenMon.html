@@ -21,6 +21,9 @@
 </head>
 <body>
     <div class="container mt-5">
+        <button class="btn btn-primary mb-4" onclick="window.location.href = '/'">
+            Quay lại trang chủ
+        </button>
         <h2 class="text-center mb-4">PHIẾU ĐÁNH GIÁ CỦA HỘI ĐỒNG CHUYÊN MÔN </h2>
         <h4 class="text-center mb-4">Đối với Đồ án tốt nghiệp </h4>
 
@@ -36,7 +39,7 @@
                 <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" />
             </p>
             <p>Tên đề tài: 
-                {{ projectName}}
+                {{ project_name }}
             </p>
             
         </div>
@@ -132,9 +135,10 @@
             <textarea class="form-control" rows="5"></textarea>
         </div>
 
-        <div class="text-end mt-4">
-            <p><strong>NGƯỜI NHẬN XÉT</strong></p>
-            <p>(Ký, ghi rõ họ tên)</p>
+        <div class="d-flex justify-content-center w-100"> 
+            <button class="btn btn-primary mt-4 mb-5" id="submit">
+                Submit
+            </button>
         </div>
     </div>
 </body>

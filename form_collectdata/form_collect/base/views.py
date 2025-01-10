@@ -5,6 +5,7 @@ import os
 import pandas as pd
 from django.http import JsonResponse
 import json
+
 # Create your views here.
 def get_students_view(request):
     project_name = request.GET.get('project_name')
@@ -12,23 +13,29 @@ def get_students_view(request):
     return JsonResponse(students, safe=False)
 
 def get_students(project_name):
-    file_path = os.path.join('DataBase', 'student_list.xlsx')
-    df = pd.read_excel(file_path)
+    file_path = os.path.join('DataBase', 'db.xlsx')
+    df = pd.read_excel(file_path, sheet_name="Danh sách các đồ án ", skiprows=12)
     df = df.fillna(method='ffill')
 
     students = []
-    for _, row in df.iterrows():
-        if row['Tên đề tài đồ án/ khóa luận tốt nghiệp'] == project_name:
-            student_id = row['Mã sinh viên']
-            student_name = row['Họ và tên']
-            student_class = row['Lớp']
-            students.append({
-                'student_id': student_id,
-                'student_name': student_name,
-                'student_class': student_class
-            })
-
+    col = 'Tên đề tài đồ án/ khóa luận tốt nghiệp'
+    df_students = df[df[col].str.contains(project_name, case=False)]
+    
+    first_students = list(df_students['Họ và tên'])
+    second_students = list(df_students['Unnamed: 3'])
+    fullname_students = [f"{first} {second}" for first, second in zip(first_students, second_students)]
+    msv_students = list(df_students['Mã sinh viên'])
+    day_of_birth_students = list(df_students['Năm sinh'])
+    class_students = list(df_students['Lớp'])
+    for i in range(len(fullname_students)):
+        students.append({
+            'fullname': fullname_students[i],
+            'msv': msv_students[i],
+            'day_of_birth': day_of_birth_students[i],
+            'class': class_students[i]
+        })
     return students
+
 def get_lecturers():
     file_path = os.path.join('DataBase', 'db.xlsx')
     workbook = load_workbook(filename=file_path)
@@ -73,48 +80,167 @@ def index(request):
         projects = get_projects(selected_lecturer, selected_project_type)
 
     return render(request, 'index.html', {'lecturers': lecturers, 'projects': projects})
+
 def hoiDongChuyenMon(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body.decode('utf-8'))  # Lấy dữ liệu từ body
+            data = data.get('data', {})
+            students = data.get('students', [])
+            students = list(students.values())
+            name = data.get('name', '')
+            project_type = data.get('projectType', '')
+            projectName = data.get('projectName', '')
+        except (json.JSONDecodeError, AttributeError):
+            return JsonResponse({'error': 'Dữ liệu không hợp lệ hoặc trống'}, status=400)
+
+        context = {
+            'students': students,
+            'students_count': len(students),
+            'name': name,
+            'project_type': project_type,
+            'project_name': projectName
+        }
+        print(context)
+        return render(request, 'hoiDongChuyenMon.html', context)
+    
+    # Xử lý GET request (truy cập trực tiếp từ trình duyệt)
     context = {
-        'name': request.GET.get('name'),
-        'project_type': request.GET.get('project_type'),
-        'project_list': request.GET.get('project_list'),
-        'form_type': request.GET.get('form_type'),
-        'students': json.loads(request.GET.get('students', '[]'))
+        'students': [],
+        'students_count': 0,
+        'name': '',
+        'project_type': '',
+        'project_name': ''
     }
     return render(request, 'hoiDongChuyenMon.html', context)
+
 def baoCaoTienDoL1(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body.decode('utf-8'))  # Lấy dữ liệu từ body
+            data = data.get('data', {})
+            students = data.get('students', [])
+            students = list(students.values())
+            name = data.get('name', '')
+            project_type = data.get('projectType', '')
+            projectName = data.get('projectName', '')
+        except (json.JSONDecodeError, AttributeError):
+            return JsonResponse({'error': 'Dữ liệu không hợp lệ hoặc trống'}, status=400)
+
+        context = {
+            'students': students,
+            'students_count': len(students),
+            'name': name,
+            'project_type': project_type,
+            'project_name': projectName
+        }
+        print(context)
+        return render(request, 'baoCaoTienDoL1.html', context)
+    
+    # Xử lý GET request (truy cập trực tiếp từ trình duyệt)
     context = {
-        'name': request.GET.get('name'),
-        'project_type': request.GET.get('project_type'),
-        'project_list': request.GET.get('project_list'),
-        'form_type': request.GET.get('form_type'),
-        'students': json.loads(request.GET.get('students', '[]'))
+        'students': [],
+        'students_count': 0,
+        'name': '',
+        'project_type': '',
+        'project_name': ''
     }
     return render(request, 'baoCaoTienDoL1.html', context)
+
 def baoCaoTienDoL2(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body.decode('utf-8'))  # Lấy dữ liệu từ body
+            data = data.get('data', {})
+            students = data.get('students', [])
+            students = list(students.values())
+            name = data.get('name', '')
+            project_type = data.get('projectType', '')
+            projectName = data.get('projectName', '')
+        except (json.JSONDecodeError, AttributeError):
+            return JsonResponse({'error': 'Dữ liệu không hợp lệ hoặc trống'}, status=400)
+
+        context = {
+            'students': students,
+            'students_count': len(students),
+            'name': name,
+            'project_type': project_type,
+            'project_name': projectName
+        }
+        print(context)
+        return render(request, 'baoCaoTienDoL2.html', context)
+    
+    # Xử lý GET request (truy cập trực tiếp từ trình duyệt)
     context = {
-        'name': request.GET.get('name'),
-        'project_type': request.GET.get('project_type'),
-        'project_list': request.GET.get('project_list'),
-        'form_type': request.GET.get('form_type'),
-        'students': json.loads(request.GET.get('students', '[]'))
+        'students': [],
+        'students_count': 0,
+        'name': '',
+        'project_type': '',
+        'project_name': ''
     }
     return render(request, 'baoCaoTienDoL2.html', context)
+
 def huongdan3(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body.decode('utf-8'))  # Lấy dữ liệu từ body
+            data = data.get('data', {})
+            students = data.get('students', [])
+            students = list(students.values())
+            name = data.get('name', '')
+            project_type = data.get('projectType', '')
+            projectName = data.get('projectName', '')
+        except (json.JSONDecodeError, AttributeError):
+            return JsonResponse({'error': 'Dữ liệu không hợp lệ hoặc trống'}, status=400)
+
+        context = {
+            'students': students,
+            'students_count': len(students),
+            'name': name,
+            'project_type': project_type,
+            'project_name': projectName
+        }
+        return render(request, 'huongdan3.html', context)
+    
+    # Xử lý GET request (truy cập trực tiếp từ trình duyệt)
     context = {
-        'name': request.GET.get('name'),
-        'project_type': request.GET.get('project_type'),
-        'project_list': request.GET.get('project_list'),
-        'form_type': request.GET.get('form_type'),
-        'students': json.loads(request.GET.get('students', '[]'))
+        'students': [],
+        'students_count': 0,
+        'name': '',
+        'project_type': '',
+        'project_name': ''
     }
     return render(request, 'huongdan3.html', context)
+
 def canBoPhanBien(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body.decode('utf-8'))  # Lấy dữ liệu từ body
+            data = data.get('data', {})
+            students = data.get('students', [])
+            students = list(students.values())
+            name = data.get('name', '')
+            project_type = data.get('projectType', '')
+            projectName = data.get('projectName', '')
+        except (json.JSONDecodeError, AttributeError):
+            return JsonResponse({'error': 'Dữ liệu không hợp lệ hoặc trống'}, status=400)
+
+        context = {
+            'students': students,
+            'students_count': len(students),
+            'name': name,
+            'project_type': project_type,
+            'project_name': projectName
+        }
+        print(context)
+        return render(request, 'canBoPhanBien.html', context)
+    
+    # Xử lý GET request (truy cập trực tiếp từ trình duyệt)
     context = {
-        'name': request.GET.get('name'),
-        'project_type': request.GET.get('project_type'),
-        'project_list': request.GET.get('project_list'),
-        'form_type': request.GET.get('form_type'),
-        'students': json.loads(request.GET.get('students', '[]'))
+        'students': [],
+        'students_count': 0,
+        'name': '',
+        'project_type': '',
+        'project_name': ''
     }
     return render(request, 'canBoPhanBien.html', context)
