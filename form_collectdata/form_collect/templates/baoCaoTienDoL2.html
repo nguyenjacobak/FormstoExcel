@@ -40,79 +40,35 @@
 </head>
 <body>
     <div class="container mt-4">
-        <!-- Header Section -->
-        <div class="row mb-4">
-            <div class="col-6">
-                <p class="small-text mb-0">Lần ban hành: 1</p>
-                <p class="small-text">Biểu mẫu KLTN.01</p>
-                <div>
-                    <p class="mb-1">BỘ THÔNG TIN TRUYỀN THÔNG</p>
-                    <p class="mb-1">HỌC VIỆN CÔNG NGHỆ</p>
-                    <p class="mb-3">BƯU CHÍNH VIỄN THÔNG</p>
-                </div>
-            </div>
-            <div class="col-6 text-end">
-                <p class="small-text mb-0">Ngày ban hành: 15/12/2024</p>
-                <p class="mb-1">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
-                <p class="mb-3">Độc lập - Tự do - Hạnh phúc</p>
-                <p class="mb-1">Hà Nội, ngày ... tháng ... năm 202...</p>
-            </div>
-        </div>
+        
 
         <!-- Form Title -->
-        <div class="form-header">
-            <h4 class="mb-2">PHIẾU ĐÁNH GIÁ QUÁ TRÌNH CỦA NGƯỜI HƯỚNG DẪN</h4>
-            <p class="mb-1">Đối với học phần đồ án tốt nghiệp</p>
-            <p>Báo cáo tiến độ lần thứ 2</p>
-        </div>
 
         <!-- General Information -->
+        <button class="btn btn-primary mb-4" onclick="window.history.back()">
+            Quay lại trang chủ
+        </button>
+        <h2 class="text-center mb-4">PHIẾU ĐÁNH GIÁ QUÁ TRÌNH CỦA NGƯỜI HƯỚNG DẪN (Lần 2) </h2>
+        <h4 class="text-center mb-4">Đối với Đồ án tốt nghiệp </h4>
+
         <div class="mb-4">
-            <h5>I. THÔNG TIN CHUNG</h5>
-            <div class="mb-3">
-                <div class="row mb-3">
-                    <label class="col-md-4 col-form-label">Chương trình đào tạo đại học chính quy ngành:</label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" name="nganh" id="nganh">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label class="col-md-2 col-form-label">Niên khóa:</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" name="nienKhoa" id="nienKhoa" value="2020 - 2025">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label class="col-md-4 col-form-label">Họ và tên người hướng dẫn thứ nhất/thứ hai:</label>
-                    <div class="col-md-8">
-                        {{ name }}
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label class="col-md-2 col-form-label">Đơn vị công tác:</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" name="donViCongTac" id="donViCongTac">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label class="col-md-2 col-form-label">Học hàm, học vị:</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" name="hocHam" id="hocHam">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label class="col-md-2 col-form-label">Tên đề tài:</label>
-                    <div class="col-md-10">
-                        {{ project_name}}
-                    </div>
-                </div>
-            </div>
+            <p>Chương trình đào tạo đại học chính quy ngành: 
+                <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" />
+            </p>
+            <p>Niên khóa: 2020 - 2025</p>
+            <p>Họ và tên người hướng dẫn thứ nhất/ thứ hai: 
+                {{ name }}
+            </p>
+            <p>Đơn vị công tác: 
+                <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" />
+            </p>
+            <p>Tên đề tài: 
+                {{ project_name}}
+            </p>
         </div>
+        <h5>II. KẾT QUẢ ĐÁNH GIÁ (Trọng số ...%)</h5>
+            <p class="text-danger small">Điểm mỗi tiêu chí tính theo thang điểm 10, làm tròn đến một số thập phân.</p>
+            <p class="small">Công thức tính điểm GPA: GPA = Tổng điểm tiêu chí * trọng số</p>
 
         <!-- Student List Table -->
         <div class="mb-4">
@@ -141,10 +97,7 @@
 
         <!-- Evaluation Section -->
         <div class="mb-4">
-            <h5>II. KẾT QUẢ ĐÁNH GIÁ (Trọng số ...%)</h5>
-            <p class="text-danger small">Điểm mỗi tiêu chí tính theo thang điểm 10, làm tròn đến một số thập phân.</p>
-            <p class="small">Công thức tính điểm GPA: GPA = Tổng điểm tiêu chí * trọng số</p>
-
+            
             <table class="table table-bordered">
                 <thead>
                     <tr>
