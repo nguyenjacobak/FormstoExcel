@@ -44,12 +44,7 @@
             
         </div>
 
-        <h4>II. KẾT QUẢ ĐÁNH GIÁ (Trọng số ...%)</h4>
-        <p>Điểm mỗi tiêu chí tính theo thang điểm 10, làm tròn đến một số thập phân.</p>
-        <p>
-            Công thức tính điểm GPA: <br>
-            <strong>GPA = Tổng điểm tiêu chí * trọng số</strong>
-        </p>
+        
 
                
         <table class="table table-bordered">
@@ -73,12 +68,18 @@
             </tbody>
         </table>
 
+        <h4>II. KẾT QUẢ ĐÁNH GIÁ (Trọng số ...%)</h4>
+        <p>Điểm mỗi tiêu chí tính theo thang điểm 10, làm tròn đến một số thập phân.</p>
+        <p>
+            Công thức tính điểm GPA: <br>
+            <strong>GPA = Tổng điểm tiêu chí * trọng số</strong>
+        </p>
 
-        <table class="table table-bordered table-hover table-striped text-center align-middle">
+        <table class="table table-bordered text-center align-middle">
             <thead class="table-light">
                 <tr>
-                    <th>CLO</th>
-                    <th>Tiêu chí (PIs)</th>
+                    <th style="width: 20%;">CLO</th>
+                    <th style="width: 20%;">Tiêu chí (PIs)</th>
                     <th>Trọng số</th>
                     <th colspan="5">Điểm đánh giá sinh viên</th>
                 </tr>
@@ -89,41 +90,55 @@
                     {% for student in students %}
                     <th>SV{{ forloop.counter }}</th>
                     {% endfor %}
+
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td rowspan="2">CLO 1</td>
-                    <td>C1.1. Tổng hợp được các kiến thức lý thuyết về thiết bị phần cứng, công cụ phần mềm liên quan đến đề tài.</td>
-                    <td>35%</td>
-                    {% for student in students %}
-                    <td><input type="text" class="form-control" name="clo1_c1_1_sv{{ forloop.counter }}"></td>
+                    <td rowspan="1"><strong class="fs-6">CLO 3</strong>. Thiết kế phần cứng và phần mềm, phân tích dữ liệu để đánh giá hiệu quả hoạt động của hệ thống điện – điện tử</td>
+                    <td>C3.3. Tiến hành được các thực nghiệm, cũng như phân tích, đánh giá và diễn giải các kết quả thực nghiệm.</td>
+                    <td>20%</td>
+                    {% for student in students %}   
+                    <td><input type="text" class="form-control"></td>
                     {% endfor %}
-
                 </tr>
                 <tr>
-                    <td>C1.2. Khảo sát các thành phần liên quan đến đề tài</td>
-                    <td>35%</td>
+                    <td rowspan="1"><strong class="fs-6">CLO 4</strong>. Thể hiện được đạo đức và trách nhiệm nghề nghiệp trong các thiết kế, triển khai các hệ thống điện tử</td>
+                    <td>C4.2. Giải thích được tác động của kết quả nghiên cứu đối với cộng đồng, xã hội, hoặc ngành nghề</td>
+                    <td>20%</td>
                     {% for student in students %}
-                    <td><input type="text" class="form-control" name="clo1_c1_2_sv{{ forloop.counter }}"></td>
+                    <td><input type="number" class="form-control text-center"></td>
                     {% endfor %}
-
                 </tr>
                 <tr>
-                    <td>CLO 5</td>
-                    <td>C5.1. Đóng góp cá nhân trong nhóm làm việc.</td>
-                    <td>30%</td>
+                    <td rowspan="1"><strong class="fs-6">CLO 5</strong>. Vận dụng kỹ năng làm việc nhóm trong nhóm ngành điện tử hoặc trong nhóm đa ngành nhằm giải quyết vấn đề hiệu quả</td>
+                    <td>C5.3. Hiệu quả giải quyết vấn đề của nhóm</td>
+                    <td>20%</td>
                     {% for student in students %}
-                    <td><input type="text" class="form-control" name="clo5_c5_1_sv{{ forloop.counter }}"></td>
+                    <td><input type="number" class="form-control text-center"></td>
                     {% endfor %}
-
+                </tr>
+                <tr>
+                    <td rowspan="2"><strong class="fs-6">CLO 6</strong>. Vận dụng kĩ tốt năng giao tiếp trong ngành điện - điện tử</td>
+                    <td>C6.3. Khả năng thuyết trình</td>
+                    <td>20%</td>
+                    {% for student in students %}
+                    <td><input type="number" class="form-control text-center"></td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>C6.4. Khả năng giao tiếp đối thoại và trả lời các câu hỏi của hội đồng.</td>
+                    <td>20%</td>
+                    {% for student in students %}
+                    <td><input type="number" class="form-control text-center"></td>
+                    {% endfor %}
                 </tr>
             </tbody>
-            <tfoot>
-                <tr class="table-light">
+            <tfoot class="table-light">
+                <tr>
                     <td colspan="3">Điểm GPA</td>
                     {% for student in students %}
-                    <td><input type="text" class="form-control" name="gpa_sv{{ forloop.counter }}"></td>
+                    <td><input type="number" class="form-control text-center"></td>
                     {% endfor %}
                 </tr>
             </tfoot>

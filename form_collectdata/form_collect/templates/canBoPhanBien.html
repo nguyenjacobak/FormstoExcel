@@ -44,12 +44,6 @@
             
         </div>
 
-        <h4>II. KẾT QUẢ ĐÁNH GIÁ (Trọng số ...%)</h4>
-        <p>Điểm mỗi tiêu chí tính theo thang điểm 10, làm tròn đến một số thập phân.</p>
-        <p>
-            Công thức tính điểm GPA: <br>
-            <strong>GPA = Tổng điểm tiêu chí * trọng số</strong>
-        </p>
 
         <table class="table table-bordered">
             <thead>
@@ -72,12 +66,18 @@
             </tbody>
         </table>
 
-
+        <h4>II. KẾT QUẢ ĐÁNH GIÁ (Trọng số ...%)</h4>
+        <p>Điểm mỗi tiêu chí tính theo thang điểm 10, làm tròn đến một số thập phân.</p>
+        <p>
+            Công thức tính điểm GPA: <br>
+            <strong>GPA = Tổng điểm tiêu chí * trọng số</strong>
+        </p>
+        
         <table class="table table-bordered text-center align-middle">
             <thead class="table-light">
                 <tr>
-                    <th>CLO</th>
-                    <th>Tiêu chí (PIs)</th>
+                    <th style="width: 20%;">CLO</th>
+                    <th style="width: 20%;">Tiêu chí (PIs)</th>
                     <th>Trọng số</th>
                     <th colspan="5">Điểm đánh giá sinh viên</th>
                 </tr>
@@ -93,15 +93,15 @@
             </thead>
             <tbody>
                 <tr>
-                    <td rowspan="1">CLO 2</td>
+                    <td rowspan="1"><strong class="fs-6">CLO 2</strong>. Phân tích giải pháp liên quan đến lĩnh vực điện - điện tử đảm bảo các yêu cầu kỹ thuật và đáp ứng mục tiêu đặt ra.</td>
                     <td>C2.3. Trình bày được giải pháp để giải quyết vấn đề thực tiễn đặt ra liên quan đến đồ án.</td>
                     <td>20%</td>
                     {% for student in students %}
-                    <td><input type="text" class="form-control"></td>
+                    <td><input type="number" class="form-control text-center"></td>
                     {% endfor %}
                 </tr>
                 <tr>
-                    <td rowspan="1">CLO 3</td>
+                    <td rowspan="1"><strong class="fs-6">CLO 3</strong>. Thiết kế phần cứng và phần mềm, phân tích dữ liệu để đánh giá hiệu quả hoạt động của hệ thống điện – điện tử</td>
                     <td>C3.2. Thiết kế được các hệ thống điện tử đáp ứng yêu cầu đề ra.</td>
                     <td>20%</td>
                     {% for student in students %}   
@@ -109,26 +109,26 @@
                     {% endfor %}
                 </tr>
                 <tr>
-                    <td rowspan="1">CLO 4</td>
+                    <td rowspan="1"><strong class="fs-6">CLO 4</strong>. Thể hiện được đạo đức và trách nhiệm nghề nghiệp trong các thiết kế, triển khai các hệ thống điện tử</td>
                     <td>C4.1. Nhận thức và thực hiện trách nhiệm nghề nghiệp, đạo đức trong thiết kế và triển khai hệ thống điện - điện tử.</td>
                     <td>20%</td>
                     {% for student in students %}
-                    <td><input type="text" class="form-control"></td>
+                    <td><input type="number" class="form-control text-center"></td>
                     {% endfor %}
                 </tr>
                 <tr>
-                    <td rowspan="2">CLO 6</td>
+                    <td rowspan="2"><strong class="fs-6">CLO 6</strong>. Vận dụng kĩ tốt năng giao tiếp trong ngành điện - điện tử</td>
                     <td>C6.1. Khả năng viết và bố cục của báo cáo.</td>
                     <td>20%</td>
                     {% for student in students %}
-                    <td><input type="text" class="form-control"></td>
+                    <td><input type="number" class="form-control text-center"></td>
                     {% endfor %}
                 </tr>
                 <tr>
                     <td>C6.2. Khả năng cung cấp dữ liệu để minh chứng cho đồ án.</td>
                     <td>20%</td>
                     {% for student in students %}
-                    <td><input type="text" class="form-control"></td>
+                    <td><input type="number" class="form-control text-center"></td>
                     {% endfor %}
                 </tr>
             </tbody>
@@ -136,7 +136,7 @@
                 <tr>
                     <td colspan="3">Điểm GPA</td>
                     {% for student in students %}
-                    <td><input type="text" class="form-control"></td>
+                    <td><input type="number" class="form-control text-center"></td>
                     {% endfor %}
                 </tr>
             </tfoot>
