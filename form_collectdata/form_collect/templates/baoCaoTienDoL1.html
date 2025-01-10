@@ -76,121 +76,103 @@
             </p>
         </div>
 
-        <!-- Student List Table -->
-        <div class="mb-4">
-            <p class="mb-2">Sinh viên thực hiện đề tài:</p>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>TT</th>
-                        <th>Họ và tên SV</th>
-                        <th>Mã SV</th>
-                        <th>Lớp</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for student in students %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ student.fullname }}</td>
-                        <td>{{ student.msv }}</td>
-                        <td>{{ student.class}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+        <form method="POST" action="{% url 'process_form_hd1' %}">
+            {% csrf_token %}
+            <input type="hidden" name="students_count" value="{{ students_count }}">
+            <input type="hidden" name="lecturer_name" value="{{ name }}">
+            <input type="hidden" name="project_type" value="{{ project_type }}">
+            <input type="hidden" name="project_name" value="{{ project_name }}">
+            <!-- Student List Table -->
+            <div class="mb-4">
+                <p class="mb-2">Sinh viên thực hiện đề tài:</p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>TT</th>
+                            <th>Họ và tên SV</th>
+                            <th>Mã SV</th>
+                            <th>Lớp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in students %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td><input type="hidden" name="student_fullname_{{ forloop.counter }}" value="{{ student.fullname }}">{{ student.fullname }}</td>
+                            <td><input type="hidden" name="student_msv_{{ forloop.counter }}" value="{{ student.msv }}">{{ student.msv }}</td>
+                            <td><input type="hidden" name="student_class_{{ forloop.counter }}" value="{{ student.class }}">{{ student.class }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 
-        <!-- Evaluation Section -->
-        <div class="mb-4">
-            <h5>II. KẾT QUẢ ĐÁNH GIÁ (Trọng số ...%)</h5>
-            <p class="text-danger small">Điểm mỗi tiêu chí tính theo thang điểm 10, làm tròn đến một số thập phân.</p>
-            <p class="small">Công thức tính điểm GPA: GPA = Tổng điểm tiêu chí * trọng số</p>
+            <!-- Evaluation Section -->
+            <div class="mb-4">
+                <table class="table table-bordered text-center align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 20%;">CLO</th>
+                            <th style="width: 20%;">Tiêu chí (PLr)</th>
+                            <th>Trọng số</th>
+                            <th colspan="{{ students_count }}">Điểm đánh giá sinh viên</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            {% for student in students %}
+                            <th>SV{{ forloop.counter }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2"><strong class="fs-6">CLO 1</strong>. Áp dụng kiến thức khoa học và công nghệ của ngành học để xác định các giải pháp nhằm giải quyết vấn đề kỹ thuật trong các hệ thống điện - điện tử.</td>
+                            <td>C1.1: Tổng hợp được các kiến thức lý thuyết và khoa học và công nghệ của ngành học để xác định vấn đề nghiên cứu nhằm giải quyết vấn đề kỹ thuật trong thực tiễn - thực tế</td>
+                            <td>35%</td>
+                            {% for student in students %}
+                            <td><input type="number" class="form-control text-center" name="diemC11SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>C1.2: Khảo sát các thành phần liên quan đến đề tài</td>
+                            <td>35%</td>
+                            {% for student in students %}
+                            <td><input type="number" class="form-control text-center" name="diemC12SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td><strong class="fs-6">CLO 5</strong>. Vận dụng kỹ năng làm việc nhóm trong nhóm ngành điện tử hoặc trong nhóm đa ngành nhằm giải quyết vấn đề hiệu quả</td>
+                            <td>C5.1: Đóng góp có nhóm trong nhóm làm việc</td>
+                            <td>30%</td>
+                            {% for student in students %}
+                            <td><input type="number" class="form-control text-center" name="diemC51SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                            {% endfor %}
+                        </tr>
+                        <tr class="table-light">
+                            <td colspan="2" class="text-center">Điểm GPA</td>
+                            <td></td>
+                            {% for student in students %}
+                            <td><input type="number" class="form-control text-center" name="gpaSV{{ forloop.counter }}"></td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-            <table class="table table-bordered text-center align-middle">
-                <thead class="table-light">
-                    <tr>
-                        <th style="width: 20%;">CLO</th>
-                        <th style="width: 20%;">Tiêu chí (PLr)</th>
-                        <th>Trọng số</th>
-                        <th colspan="{{ students_count }}">Điểm đánh giá sinh viên</th>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        {% for student in students %}
-                        <th>SV{{ forloop.counter }}</th>
-                        {% endfor %}
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td rowspan="2"><strong class="fs-6">CLO 1</strong>. Áp dụng kiến thức khoa học và công nghệ của ngành học để xác định các giải pháp nhằm giải quyết vấn đề kỹ thuật trong các hệ thống điện - điện tử.</td>
-                        <td>C1.1: Tổng hợp được các kiến thức lý thuyết và khoa học và công nghệ của ngành học để xác định vấn đề nghiên cứu nhằm giải quyết vấn đề kỹ thuật trong thực tiễn - thực tế</td>
-                        <td>35%</td>
-                        {% for student in students %}
-                        <td><input type="number" class="form-control text-center" name="diemC11SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
-                        {% endfor %}
-                        <!-- <td><input type="number" class="form-control" name="diemC11SV1" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC11SV2" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC11SV3" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC11SV4" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC11SV5" min="0" max="10" step="0.1"></td> -->
-                    </tr>
-                    <tr>
-                        <td>C1.2: Khảo sát các thành phần liên quan đến đề tài</td>
-                        <td>35%</td>
-                        {% for student in students %}
-                        <td><input type="number" class="form-control text-center" name="diemC12SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
-                        {% endfor %}
-                        <!-- <td><input type="number" class="form-control" name="diemC12SV1" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC12SV2" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC12SV3" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC12SV4" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC12SV5" min="0" max="10" step="0.1"></td> -->
-                    </tr>
-                    <tr>
-                        <td><strong class="fs-6">CLO 5</strong>. Vận dụng kỹ năng làm việc nhóm trong nhóm ngành điện tử hoặc trong nhóm đa ngành nhằm giải quyết vấn đề hiệu quả
-                            </td>
-                        <td>C5.1: Đóng góp có nhóm trong nhóm làm việc</td>
-                        <td>30%</td>
-                        {% for student in students %}
-                        <td><input type="number" class="form-control text-center" name="diemC51SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
-                        {% endfor %}
-                        <!-- <td><input type="number" class="form-control" name="diemC51SV1" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC51SV2" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC51SV3" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC51SV4" min="0" max="10" step="0.1"></td>
-                        <td><input type="number" class="form-control" name="diemC51SV5" min="0" max="10" step="0.1"></td> -->
-                    </tr>
-                    <tr class="table-light">
-                        <td colspan="2" class="text-center">Điểm GPA</td>
-                        <td></td>
-                        {% for student in students %}
-                        <td><input type="number" class="form-control text-center" name="gpaSV{{ forloop.counter }}"></td>
-                        {% endfor %}
-                        <!-- <td><input type="number" class="form-control" name="gpaSV1" readonly></td>
-                        <td><input type="number" class="form-control" name="gpaSV2" readonly></td>
-                        <td><input type="number" class="form-control" name="gpaSV3" readonly></td>
-                        <td><input type="number" class="form-control" name="gpaSV4" readonly></td>
-                        <td><input type="number" class="form-control" name="gpaSV5" readonly></td> -->
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <!-- Comments Section -->
+            <div class="mb-4">
+                <p>Nhận xét khác (về ý thức, thái độ làm việc của sinh viên):</p>
+                <textarea class="form-control mb-3" name="nhanXet" rows="5"></textarea>
+            </div>
 
-        <!-- Comments Section -->
-        <div class="mb-4">
-            <p>Nhận xét khác (về ý thức, thái độ làm việc của sinh viên):</p>
-            <textarea class="form-control mb-3" name="nhanXet" rows="5"></textarea>
-        </div>
-
-        <div class="d-flex justify-content-center w-100"> 
-            <button class="btn btn-primary mt-4 mb-5" id="submit">
-                Submit
-            </button>
-        </div>
+            <div class="d-flex justify-content-center w-100"> 
+                <button class="btn btn-primary mt-4 mb-5" id="submit" type="submit">
+                    Submit
+                </button>
+            </div>
+        </form>
 
     </div>
 </body>

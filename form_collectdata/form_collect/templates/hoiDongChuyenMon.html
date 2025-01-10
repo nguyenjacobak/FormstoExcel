@@ -46,27 +46,36 @@
 
         
 
-               
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>TT</th>
-                    <th>Họ và tên SV</th>
-                    <th>Mã SV</th>
-                    <th>Lớp</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for student in students %}
-                <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ student.fullname }}</td>
-                    <td>{{ student.msv }}</td>
-                    <td>{{ student.class}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <form method="POST" action="{% url 'process_form_hdcm' %}">
+        {% csrf_token %}
+        <input type="hidden" name="students_count" value="{{ students_count }}">
+        <input type="hidden" name="lecturer_name" value="{{ name }}">
+        <input type="hidden" name="project_type" value="{{ project_type }}">
+        <input type="hidden" name="project_name" value="{{ project_name }}">
+        <!-- Student List Table -->
+        <div class="mb-4">
+            <p class="mb-2">Sinh viên thực hiện đề tài:</p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>TT</th>
+                        <th>Họ và tên SV</th>
+                        <th>Mã SV</th>
+                        <th>Lớp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><input type="hidden" name="student_fullname_{{ forloop.counter }}" value="{{ student.fullname }}">{{ student.fullname }}</td>
+                        <td><input type="hidden" name="student_msv_{{ forloop.counter }}" value="{{ student.msv }}">{{ student.msv }}</td>
+                        <td><input type="hidden" name="student_class_{{ forloop.counter }}" value="{{ student.class }}">{{ student.class }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
         <h4>II. KẾT QUẢ ĐÁNH GIÁ (Trọng số ...%)</h4>
         <p>Điểm mỗi tiêu chí tính theo thang điểm 10, làm tròn đến một số thập phân.</p>
@@ -98,8 +107,8 @@
                     <td rowspan="1"><strong class="fs-6">CLO 3</strong>. Thiết kế phần cứng và phần mềm, phân tích dữ liệu để đánh giá hiệu quả hoạt động của hệ thống điện – điện tử</td>
                     <td>C3.3. Tiến hành được các thực nghiệm, cũng như phân tích, đánh giá và diễn giải các kết quả thực nghiệm.</td>
                     <td>20%</td>
-                    {% for student in students %}   
-                    <td><input type="text" class="form-control"></td>
+                    {% for student in students %}
+                            <td><input type="number" class="form-control text-center" name="diemC33SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                     {% endfor %}
                 </tr>
                 <tr>
@@ -107,7 +116,7 @@
                     <td>C4.2. Giải thích được tác động của kết quả nghiên cứu đối với cộng đồng, xã hội, hoặc ngành nghề</td>
                     <td>20%</td>
                     {% for student in students %}
-                    <td><input type="number" class="form-control text-center"></td>
+                            <td><input type="number" class="form-control text-center" name="diemC42SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                     {% endfor %}
                 </tr>
                 <tr>
@@ -115,7 +124,7 @@
                     <td>C5.3. Hiệu quả giải quyết vấn đề của nhóm</td>
                     <td>20%</td>
                     {% for student in students %}
-                    <td><input type="number" class="form-control text-center"></td>
+                            <td><input type="number" class="form-control text-center" name="diemC53SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                     {% endfor %}
                 </tr>
                 <tr>
@@ -123,14 +132,14 @@
                     <td>C6.3. Khả năng thuyết trình</td>
                     <td>20%</td>
                     {% for student in students %}
-                    <td><input type="number" class="form-control text-center"></td>
+                            <td><input type="number" class="form-control text-center" name="diemC63SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                     {% endfor %}
                 </tr>
                 <tr>
                     <td>C6.4. Khả năng giao tiếp đối thoại và trả lời các câu hỏi của hội đồng.</td>
                     <td>20%</td>
                     {% for student in students %}
-                    <td><input type="number" class="form-control text-center"></td>
+                            <td><input type="number" class="form-control text-center" name="diemC64SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                     {% endfor %}
                 </tr>
             </tbody>
@@ -138,7 +147,7 @@
                 <tr>
                     <td colspan="3">Điểm GPA</td>
                     {% for student in students %}
-                    <td><input type="number" class="form-control text-center"></td>
+                            <td><input type="number" class="form-control text-center" name="gpaSV{{ forloop.counter }}"></td>
                     {% endfor %}
                 </tr>
             </tfoot>
@@ -151,10 +160,11 @@
         </div>
 
         <div class="d-flex justify-content-center w-100"> 
-            <button class="btn btn-primary mt-4 mb-5" id="submit">
+            <button class="btn btn-primary mt-4 mb-5" id="submit" type="submit">
                 Submit
             </button>
         </div>
+    </form>
     </div>
 </body>
 </html>
