@@ -186,59 +186,7 @@
         }
       }
     </style>
-    <script>
-      function updateProjects() {
-          const name = document.getElementById('name').value;
-          const projectType = document.getElementById('project_type').value;
-          if (name && projectType) {
-              window.location.href = `?name=${name}&project_type=${projectType}`;
-          }
-      }
-      function goToNextForm() {
-        const name = document.getElementById('name').value;
-        const projectType = document.getElementById('project_type').value;
-        const projectList = document.getElementById('project_list').value;
-        const formType = document.querySelector('input[name="form_type"]:checked').value;
 
-        if (name && projectType && projectList && formType) {
-            const params = new URLSearchParams({
-                name: name,
-                project_type: projectType,
-                project_list: projectList,
-                form_type: formType
-            });
-
-            let nextPage = '';
-            switch (formType) {
-                case 'hoiDongChuyenMon':
-                    nextPage = 'hoiDongChuyenMon';
-                    break;
-                case 'canBoHuongDan1':
-                    nextPage = 'baoCaoTienDoL1';
-                    break;
-                case 'canBoHuongDan2':
-                    nextPage = 'baoCaoTienDoL2';
-                    break;
-                case 'canBoHuongDan3':
-                    nextPage = 'huongdan3';
-                    break;
-                case 'canBoPhanBien':
-                    nextPage = 'canBoPhanBien';
-                    break;
-            }
-
-            fetch(`/get-students?project_name=${projectList}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        params.append('students', JSON.stringify(data));
-                        window.location.href = `${nextPage}?${params.toString()}`;
-                    });
-        } else {
-            alert('Please fill in all required fields.');
-        }
-    }
-
-  </script>
   </head>
   <body>
     <form>
@@ -286,7 +234,7 @@
         <label class="form-label"><input type="radio" name="form_type" value="canBoPhanBien"> Cán bộ phản biện</label>
     </div>
     <div class="next">
-      <button type="button" onclick="goToNextForm()">Tiếp theo</button>
+      <button type="button" style="cursor: pointer;" onclick="goToNextForm()">Tiếp theo</button>
     </div>
       <p class="policy">
         <a href="#">Report Abuse.</a> <a href="#">Terms of condition.</a>
@@ -296,3 +244,63 @@
     </form>
   </body>
 </html>
+<!-- <script src="../static/js/index.js"></script> -->
+ <script>
+  function updateProjects() {
+    const name = document.getElementById('name').value;
+    const projectType = document.getElementById('project_type').value;
+    if (name && projectType) {
+        window.location.href = `?name=${name}&project_type=${projectType}`;
+    }
+  }
+
+  function goToNextForm() {
+    const name = document.getElementById('name').value;
+    const projectType = document.getElementById('project_type').value;
+    const projectName = document.getElementById('project_list').value;
+    const formType = document.querySelector('input[name="form_type"]:checked').value;
+    console.log(name, projectType, projectName, formType);
+
+    if (name && projectType && projectName && formType) {
+        let data = {
+              name: name,
+              projectType: projectType,
+              projectName: projectName,
+              formType: formType
+        }
+
+        let nextPage = '';
+        switch (formType) {
+            case 'hoiDongChuyenMon':
+                nextPage = 'hoiDongChuyenMon';
+                break;
+            case 'canBoHuongDan1':
+                nextPage = 'baoCaoTienDoL1';
+                break;
+            case 'canBoHuongDan2':
+                nextPage = 'baoCaoTienDoL2';
+                break;
+            case 'canBoHuongDan3':
+                nextPage = 'huongdan3';
+                break;
+            case 'canBoPhanBien':
+                nextPage = 'canBoPhanBien';
+                break;
+        }
+        localStorage.removeItem('data');
+        fetch(`/get-students?project_name=${projectName}`)
+                .then(response => response.json())
+                .then(students => {
+                  console.log(students);
+                  data['students'] = {};
+                   students.forEach(student => {
+                      data['students'][student.msv] = student; 
+                   });
+                  localStorage.setItem('data', JSON.stringify(data));
+                  window.location.href = `${nextPage}`;
+                });
+    } else {
+        alert('Please fill in all required fields.');
+    }
+  }
+</script>

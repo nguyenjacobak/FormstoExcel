@@ -1,51 +1,34 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phiếu Đánh Giá Quá Trình</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script>
-        function confirmSubmission(event) {
-            event.preventDefault(); // Ngăn chặn form gửi đi ngay lập tức
-            var confirmation = confirm("Xác nhận nộp biểu mẫu?");
-            if (confirmation) {
-                document.getElementById("baoCaoForm").submit(); // Gửi form nếu người dùng xác nhận
-            }
-        }
-    </script>
     <style>
         .form-header {
             text-align: center;
             margin-bottom: 20px;
         }
-
         .small-text {
             font-size: 0.9em;
         }
-
-        .table td,
-        .table th {
+        .table td, .table th {
             padding: 8px;
             vertical-align: middle;
         }
-
         .border-bottom-dot {
             border-bottom: 1px dotted #000;
         }
-
         .form-control {
             border: 1px solid #ced4da;
             padding: 0.375rem 0.75rem;
             border-radius: 0.25rem;
         }
-
         .form-control:focus {
             border-color: #86b7fe;
             box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
         }
-
         .col-form-label {
             padding-top: calc(0.375rem + 1px);
             padding-bottom: calc(0.375rem + 1px);
@@ -55,225 +38,189 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container mt-4">
-        <form id = "baoCaoForm" method="post" action="{% url 'baoCaoTienDoL1' %}">
-            {% csrf_token %}
-            <!-- Header Section -->
-            <div class="row mb-4">
-                <div class="col-6">
-                    <p class="small-text mb-0">Lần ban hành: 1</p>
-                    <p class="small-text">Biểu mẫu KLTN.01</p>
-                    <div>
-                        <p class="mb-1">BỘ THÔNG TIN TRUYỀN THÔNG</p>
-                        <p class="mb-1">HỌC VIỆN CÔNG NGHỆ</p>
-                        <p class="mb-3">BƯU CHÍNH VIỄN THÔNG</p>
-                    </div>
-                </div>
-                <div class="col-6 text-end">
-                    <p class="small-text mb-0">Ngày ban hành: 15/12/2024</p>
-                    <p class="mb-1">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
-                    <p class="mb-3">Độc lập - Tự do - Hạnh phúc</p>
-                    <p class="mb-1">Hà Nội, ngày ... tháng ... năm 202...</p>
-                </div>
-            </div>
-
-            <!-- Form Title -->
-            <div class="form-header">
-                <h4 class="mb-2">PHIẾU ĐÁNH GIÁ QUÁ TRÌNH CỦA NGƯỜI HƯỚNG DẪN</h4>
-                <p class="mb-1">Đối với học phần đồ án tốt nghiệp</p>
-                <p>Báo cáo tiến độ lần thứ 1</p>
-            </div>
-
-            <!-- General Information -->
+        <!-- General Information -->
+        <div class="mb-4">
+            <button class="btn btn-primary mb-4" onclick="window.history.back()">
+                Quay lại trang chủ
+            </button>
+            <h2 class="text-center mb-4">PHIẾU ĐÁNH GIÁ QUÁ TRÌNH CỦA NGƯỜI HƯỚNG DẪN (Lần 1) </h2>
+            <h4 class="text-center mb-4">Đối với Đồ án tốt nghiệp </h4>
+    
             <div class="mb-4">
-                <h5>I. THÔNG TIN CHUNG</h5>
-                <div class="mb-3">
-                    <div class="row mb-3">
-                        <label class="col-md-4 col-form-label">Chương trình đào tạo đại học chính quy ngành:</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" name="nganh" id="nganh">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label class="col-md-2 col-form-label">Niên khóa:</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" name="nienKhoa" id="nienKhoa" value="2020 - 2025">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label class="col-md-4 col-form-label">Họ và tên người hướng dẫn thứ nhất/thứ hai:</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" name="nguoiHuongDan" id="nguoiHuongDan"
-                                value="{{ name }}">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label class="col-md-2 col-form-label">Đơn vị công tác:</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" name="donViCongTac" id="donViCongTac">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label class="col-md-2 col-form-label">Học hàm, học vị:</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" name="hocHam" id="hocHam">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label class="col-md-2 col-form-label">Tên đề tài:</label>
-                        <div class="col-md-10">
-                            <textarea class="form-control" name="tenDeTai" id="tenDeTai"
-                                rows="2">{{project_list}}</textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Student List Table -->
-            <div class="mb-4">
-                <p class="mb-2">Sinh viên thực hiện đề tài:</p>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>TT</th>
-                            <th>Họ và tên SV</th>
-                            <th>Mã SV</th>
-                            <th>Lớp</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for student in students %}
-                        <tr>
-                            <td>{{ forloop.counter }}</td>
-                            <td><input type="text" style="width: 100%;" value="{{ student.student_name }}"></td>
-                            <td><input type="text" style="width: 100%;" value="{{ student.student_id }}"></td>
-                            <td><input type="text" style="width: 100%;" value="{{ student.student_class }}"></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Evaluation Section -->
-            <div class="mb-4">
-                <h5>II. KẾT QUẢ ĐÁNH GIÁ (Trọng số ...%)</h5>
-                <p class="text-danger small">Điểm mỗi tiêu chí tính theo thang điểm 10, làm tròn đến một số thập phân.
+                <p>Chương trình đào tạo đại học chính quy ngành: 
+                    <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" />
                 </p>
-                <p class="small">Công thức tính điểm GPA: GPA = Tổng điểm tiêu chí * trọng số</p>
+                <p>Niên khóa: 2020 - 2025</p>
+                <p>Họ và tên người hướng dẫn thứ nhất/ thứ hai: 
+                    {{ name }}
+                </p>
+                <p>Đơn vị công tác: 
+                    <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" />
+                </p>
+                <p>Tên đề tài: 
+                    {{ project_name}}
+                </p>
+                
+            </div>
+    
+            <h4>II. KẾT QUẢ ĐÁNH GIÁ (Trọng số ...%)</h4>
+            <p>Điểm mỗi tiêu chí tính theo thang điểm 10, làm tròn đến một số thập phân.</p>
+            <p>
+                Công thức tính điểm GPA: <br>
+                <strong>GPA = Tổng điểm tiêu chí * trọng số</strong>
+            </p>
+        </div>
 
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>CLO</th>
-                            <th>Tiêu chí (PLr)</th>
-                            <th>Trọng số</th>
-                            <th colspan="5">Điểm đánh giá sinh viên</th>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th>SV1</th>
-                            <th>SV2</th>
-                            <th>SV3</th>
-                            <th>SV4</th>
-                            <th>SV5</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td rowspan="2">CLO 1: Áp dụng kiến thức khoa học và công nghệ của ngành học để xác định các
-                                giải pháp nhằm giải quyết vấn đề kỹ thuật trong các hệ thống điện - điện tử.</td>
-                            <td>C1.1: Tổng hợp được các kiến thức lý thuyết và khoa học và công nghệ của ngành học để
-                                xác định vấn đề nghiên cứu nhằm giải quyết vấn đề kỹ thuật trong thực tiễn - thực tế
-                            </td>
-                            <td>35%</td>
-                            <td><input type="number" class="form-control" name="diemC11SV1" min="0" max="10" step="0.1">
-                            </td>
-                            <td><input type="number" class="form-control" name="diemC11SV2" min="0" max="10" step="0.1">
-                            </td>
-                            <td><input type="number" class="form-control" name="diemC11SV3" min="0" max="10" step="0.1">
-                            </td>
-                            <td><input type="number" class="form-control" name="diemC11SV4" min="0" max="10" step="0.1">
-                            </td>
-                            <td><input type="number" class="form-control" name="diemC11SV5" min="0" max="10" step="0.1">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>C1.2: Khảo sát các thành phần liên quan đến đề tài</td>
-                            <td>35%</td>
-                            <td><input type="number" class="form-control" name="diemC12SV1" min="0" max="10" step="0.1">
-                            </td>
-                            <td><input type="number" class="form-control" name="diemC12SV2" min="0" max="10" step="0.1">
-                            </td>
-                            <td><input type="number" class="form-control" name="diemC12SV3" min="0" max="10" step="0.1">
-                            </td>
-                            <td><input type="number" class="form-control" name="diemC12SV4" min="0" max="10" step="0.1">
-                            </td>
-                            <td><input type="number" class="form-control" name="diemC12SV5" min="0" max="10" step="0.1">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>CLO 5</td>
-                            <td>C5.1: Đóng góp có nhóm trong nhóm làm việc</td>
-                            <td>30%</td>
-                            <td><input type="number" class="form-control" name="diemC51SV1" min="0" max="10" step="0.1">
-                            </td>
-                            <td><input type="number" class="form-control" name="diemC51SV2" min="0" max="10" step="0.1">
-                            </td>
-                            <td><input type="number" class="form-control" name="diemC51SV3" min="0" max="10" step="0.1">
-                            </td>
-                            <td><input type="number" class="form-control" name="diemC51SV4" min="0" max="10" step="0.1">
-                            </td>
-                            <td><input type="number" class="form-control" name="diemC51SV5" min="0" max="10" step="0.1">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" class="text-center">Điểm GPA</td>
-                            <td></td>
-                            <td><input type="number" class="form-control" name="gpaSV1" readonly></td>
-                            <td><input type="number" class="form-control" name="gpaSV2" readonly></td>
-                            <td><input type="number" class="form-control" name="gpaSV3" readonly></td>
-                            <td><input type="number" class="form-control" name="gpaSV4" readonly></td>
-                            <td><input type="number" class="form-control" name="gpaSV5" readonly></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <!-- Student List Table -->
+        <div class="mb-4">
+            <p class="mb-2">Sinh viên thực hiện đề tài:</p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>TT</th>
+                        <th>Họ và tên SV</th>
+                        <th>Mã SV</th>
+                        <th>Lớp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ student.fullname }}</td>
+                        <td>{{ student.msv }}</td>
+                        <td>{{ student.class}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
-            <!-- Comments Section -->
-            <div class="mb-4">
-                <p>Nhận xét khác (về ý thức, thái độ làm việc của sinh viên):</p>
-                <textarea class="form-control mb-3" name="nhanXet" rows="5"></textarea>
-            </div>
+        <!-- Evaluation Section -->
+        <div class="mb-4">
+            <h5>II. KẾT QUẢ ĐÁNH GIÁ (Trọng số ...%)</h5>
+            <p class="text-danger small">Điểm mỗi tiêu chí tính theo thang điểm 10, làm tròn đến một số thập phân.</p>
+            <p class="small">Công thức tính điểm GPA: GPA = Tổng điểm tiêu chí * trọng số</p>
 
-            <!-- Signature Section -->
-            <div class="text-end">
-                <p class="mb-1">NGƯỜI NHẬN XÉT</p>
-                <p class="fst-italic">(Ký, ghi rõ họ tên)</p>
-            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>CLO</th>
+                        <th>Tiêu chí (PLr)</th>
+                        <th>Trọng số</th>
+                        <th colspan="{{ students_count }}">Điểm đánh giá sinh viên</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        {% for student in students %}
+                        <th>SV{{ forloop.counter }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="2">CLO 1: Áp dụng kiến thức khoa học và công nghệ của ngành học để xác định các giải pháp nhằm giải quyết vấn đề kỹ thuật trong các hệ thống điện - điện tử.</td>
+                        <td>C1.1: Tổng hợp được các kiến thức lý thuyết và khoa học và công nghệ của ngành học để xác định vấn đề nghiên cứu nhằm giải quyết vấn đề kỹ thuật trong thực tiễn - thực tế</td>
+                        <td>35%</td>
+                        {% for student in students %}
+                        <td><input type="number" class="form-control" name="diemC11SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                        {% endfor %}
+                        <!-- <td><input type="number" class="form-control" name="diemC11SV1" min="0" max="10" step="0.1"></td>
+                        <td><input type="number" class="form-control" name="diemC11SV2" min="0" max="10" step="0.1"></td>
+                        <td><input type="number" class="form-control" name="diemC11SV3" min="0" max="10" step="0.1"></td>
+                        <td><input type="number" class="form-control" name="diemC11SV4" min="0" max="10" step="0.1"></td>
+                        <td><input type="number" class="form-control" name="diemC11SV5" min="0" max="10" step="0.1"></td> -->
+                    </tr>
+                    <tr>
+                        <td>C1.2: Khảo sát các thành phần liên quan đến đề tài</td>
+                        <td>35%</td>
+                        {% for student in students %}
+                        <td><input type="number" class="form-control" name="diemC12SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                        {% endfor %}
+                        <!-- <td><input type="number" class="form-control" name="diemC12SV1" min="0" max="10" step="0.1"></td>
+                        <td><input type="number" class="form-control" name="diemC12SV2" min="0" max="10" step="0.1"></td>
+                        <td><input type="number" class="form-control" name="diemC12SV3" min="0" max="10" step="0.1"></td>
+                        <td><input type="number" class="form-control" name="diemC12SV4" min="0" max="10" step="0.1"></td>
+                        <td><input type="number" class="form-control" name="diemC12SV5" min="0" max="10" step="0.1"></td> -->
+                    </tr>
+                    <tr>
+                        <td>CLO 5</td>
+                        <td>C5.1: Đóng góp có nhóm trong nhóm làm việc</td>
+                        <td>30%</td>
+                        {% for student in students %}
+                        <td><input type="number" class="form-control" name="diemC51SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                        {% endfor %}
+                        <!-- <td><input type="number" class="form-control" name="diemC51SV1" min="0" max="10" step="0.1"></td>
+                        <td><input type="number" class="form-control" name="diemC51SV2" min="0" max="10" step="0.1"></td>
+                        <td><input type="number" class="form-control" name="diemC51SV3" min="0" max="10" step="0.1"></td>
+                        <td><input type="number" class="form-control" name="diemC51SV4" min="0" max="10" step="0.1"></td>
+                        <td><input type="number" class="form-control" name="diemC51SV5" min="0" max="10" step="0.1"></td> -->
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center">Điểm GPA</td>
+                        <td></td>
+                        {% for student in students %}
+                        <td><input type="number" class="form-control" name="gpaSV{{ forloop.counter }}" readonly></td>
+                        {% endfor %}
+                        <!-- <td><input type="number" class="form-control" name="gpaSV1" readonly></td>
+                        <td><input type="number" class="form-control" name="gpaSV2" readonly></td>
+                        <td><input type="number" class="form-control" name="gpaSV3" readonly></td>
+                        <td><input type="number" class="form-control" name="gpaSV4" readonly></td>
+                        <td><input type="number" class="form-control" name="gpaSV5" readonly></td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-            <!-- Notes Section -->
-            <div class="mt-4">
-                <p class="fw-bold">Ghi chú:</p>
-                <ul class="small">
-                    <li>Trong mẫu đề 02 CLO. Trường hợp có nhiều CLO cần đánh giá hơn thì Khoa chủ động bổ sung thêm
-                        theo yêu cầu.</li>
-                </ul>
-            </div>
-            <!-- Submit Button -->
-            <div class="text-center mt-4">
-                <button type="submit" class="btn btn-danger" onclick="confirmSubmission(event)">Submit</button>
-            </div>
-        </form>
+        <!-- Comments Section -->
+        <div class="mb-4">
+            <p>Nhận xét khác (về ý thức, thái độ làm việc của sinh viên):</p>
+            <textarea class="form-control mb-3" name="nhanXet" rows="5"></textarea>
+        </div>
+
+        <!-- Signature Section -->
+        <div class="text-end">
+            <p class="mb-1">NGƯỜI NHẬN XÉT</p>
+            <p class="fst-italic">(Ký, ghi rõ họ tên)</p>
+        </div>
+
+        <!-- Notes Section -->
+        <div class="mt-4">
+            <p class="fw-bold">Ghi chú:</p>
+            <ul class="small">
+                <li>Trong mẫu đề 02 CLO. Trường hợp có nhiều CLO cần đánh giá hơn thì Khoa chủ động bổ sung thêm theo yêu cầu.</li>
+            </ul>
+        </div>
     </div>
 </body>
-
 </html>
+<script>
+    const dataPost = JSON.parse(localStorage.getItem('data'));
+    const csrfToken = getCookie('csrftoken');
+
+    fetch('/baoCaoTienDoL1', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+        },
+        body: JSON.stringify({ data: dataPost }),
+    }).then(response => response.text())
+    .then(html => {
+        document.body.innerHTML = html; // Thay đổi DOM nếu cần
+    });
+    
+    function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            const [key, value] = cookie.trim().split('=');
+            if (key === name) return decodeURIComponent(value);
+        }
+        return null;
+    }
+
+</script>
