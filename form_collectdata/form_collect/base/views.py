@@ -8,11 +8,21 @@ import json
 
 # Create your views here.
 def get_students_view(request):
-    project_name = request.GET.get('project_name')
-    students = get_students(project_name)
+    data = request.body.decode('utf-8')
+    project_name = json.loads(data).get('project_name', '')
+    students = get_students_by_project_name(project_name)
     return JsonResponse(students, safe=False)
 
-def get_students(project_name):
+def get_all_students_view(request):
+    students = get_all_students()
+    return JsonResponse(students, safe=False)
+
+def get_all_councils_view(request):
+    councils = get_all_councils()
+    return JsonResponse(councils, safe=False)
+
+def get_students_by_project_name(project_name):
+    print(project_name, "AAA")
     file_path = os.path.join('DataBase', 'db.xlsx')
     df = pd.read_excel(file_path, sheet_name="Danh sách các đồ án ", skiprows=12)
     df = df.fillna(method='ffill')
@@ -53,7 +63,7 @@ def get_lecturers():
     return [lecture for lecture in lecturers if lecture is not None]
 
 
-def get_projects(lecturer_name, project_type):
+def get_projects_by_lecture_and_type(lecturer_name, project_type):
     file_path = os.path.join('DataBase', 'db.xlsx')
     df = pd.read_excel(file_path, sheet_name="Danh sách các đồ án ", skiprows=12)
     df = df.fillna(method='ffill')
@@ -69,17 +79,112 @@ def get_projects(lecturer_name, project_type):
     projects = list(set(projects))
     return projects
 
+####
+
+#### Process all data
+def get_all_councils():
+    file_path = os.path.join('DataBase', 'db.xlsx')
+    df = pd.read_excel(file_path, sheet_name="DS Hội đồng_DN", skiprows=2)
+    df = df.dropna(ignore_index=True)
+    df = df[df['Họ và tên'] != 'Họ và tên']
+    df
+
+    councils = {}
+    for i in range(len(df)):
+        member = df.iloc[i]
+        name = member['Họ và tên']
+        role = member['Nhiệm vụ'].replace('\xa0', '')
+        unit = member['Đơn vị']
+        id_council = f"HD{(i)//5 + 1}"
+        if councils.get(id_council) is None:
+            councils[id_council] = [{
+                'name': name,
+                'role': role,
+                'unit': unit
+            }]
+        else:
+            councils[id_council].append({
+                'name': name,
+                'role': role,
+                'unit': unit
+            })
+    return councils
+
+def get_all_students():
+    # file_path = os.path.join('DataBase', 'db.xlsx')
+    # df2 = pd.read_excel(file_path, sheet_name="DS SV các Hội đồng phân PB", skiprows=1)
+    # df2 = df2.drop(columns = ['Unnamed: 0'])
+    # df2.loc[1, 'Unnamed: 11'] = df2.loc[0, 'Unnamed: 11']
+    # df2.loc[1, 'Unnamed: 12'] = df2.loc[0, 'Unnamed: 12']
+    # df2.loc[1, 'Unnamed: 3'] = 'Tên'
+    # df2.columns = df2.iloc[1]
+    # df2 = df2.dropna(how='all', ignore_index=True)
+
+    # councils = get_all_councils()
+    # id_council = 'HD1'
+    # students = {
+    # }
+    # for i in range(len(df2)):
+    #     msv = df2.loc[i, 'Mã sinh viên']
+    #     if 'Hội đồng' in msv:
+    #         tmp = msv.split(' ')
+    #         id_council = f"HD{tmp[-1]}"
+    #         continue
+    #     if msv == 'Mã sinh viên':
+    #         continue
+    #     name = df2.loc[i, 'Họ và tên'] + ' ' + df2.loc[i, 'Tên']
+    #     day_of_birth = df2.loc[i, 'Năm sinh']
+    #     class_name = df2.loc[i, 'Lớp']
+    #     instructor = df2.loc[i, 'Giáo viên hướng dẫn']
+    #     subject = df2.loc[i, 'Bộ môn ']
+    #     project = df2.loc[i, 'Tên đề tài đồ án/ khóa luận tốt nghiệp']
+    #     project_type = df2.loc[i, 'Loại đồ án']
+    #     group = id_council + ' - ' + str(df2.loc[i, 'Nhóm']) if not pd.isnull(df2.loc[i, 'Nhóm']) else ''
+    #     opponent = df2.loc[i, 'Phản biện  (Khoa)'] if not pd.isna(df2.loc[i, 'Phản biện  (Khoa)']) else ''
+    #     council = councils[id_council]
+    #     students[msv] = {
+    #         'name': name,
+    #         'day_of_birth': day_of_birth,
+    #         'class_name': class_name,
+    #         'instructor': instructor,
+    #         'subject': subject,
+    #         'project': project,
+    #         'project_type': project_type,
+    #         'group': group,
+    #         'opponent': opponent,
+    #         'council': council
+    #     }
+
+    #     # Get students from final sheet
+    # new_students = students.copy()
+    # for msv in students.keys():
+    #     student = students[msv]
+    #     if student['project'] == 'None':
+    #         continue
+    #     project_name = student['project']
+    #     students_same_project = get_students_by_project_name(project_name)
+    #     for std in students_same_project:
+    #         msv_std = std['msv']
+    #         if msv_std not in students.keys():
+    #             fullname = std['fullname']
+    #             day_of_birth = std['day_of_birth']
+    #             class_name = std['class']
+                
+    #             new_students[msv_std] = students[msv].copy()
+    #             new_students[msv_std]['name'] = fullname
+    #             new_students[msv_std]['day_of_birth'] = day_of_birth
+    #             new_students[msv_std]['class_name'] = class_name
+    #             new_students[msv_std]['msv'] = msv_std
+    new_students = []
+    file_path = os.path.join('DataBase', 'students.json')
+    with open(file_path, 'r', encoding='utf-8') as f:
+        new_students = json.load(f)
+    return new_students
+#### End process all data
 
 def index(request):
     lecturers = get_lecturers()
-    selected_lecturer = request.GET.get('name')
-    selected_project_type = request.GET.get('project_type')
-    projects = []
-
-    if selected_lecturer and selected_project_type:
-        projects = get_projects(selected_lecturer, selected_project_type)
-
-    return render(request, 'index.html', {'lecturers': lecturers, 'projects': projects})
+    return render(request, 'index.html', {'lecturers': lecturers})
 
 def hoiDongChuyenMon(request):
     if request.method == 'POST':
@@ -244,3 +349,5 @@ def canBoPhanBien(request):
         'project_name': ''
     }
     return render(request, 'canBoPhanBien.html', context)
+
+
