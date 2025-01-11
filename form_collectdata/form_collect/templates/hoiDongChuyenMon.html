@@ -56,7 +56,7 @@
 
         
 
-    <form method="POST" action="{% url 'process_form_hdcm' %}">
+    <form method="POST" action="{% url 'process_form_hdcm_new' %}">
         {% csrf_token %}
         <input type="hidden" name="students_count" value="{{ students_count }}">
         <input type="hidden" name="lecturer_name" value="{{ name }}">

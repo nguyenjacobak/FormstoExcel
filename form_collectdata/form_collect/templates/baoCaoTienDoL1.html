@@ -76,7 +76,7 @@
             </p>
         </div>
 
-        <form method="POST" action="{% url 'process_form_hd1' %}">
+        <form method="POST" action="{% url 'process_form_hd1_new' %}">
             {% csrf_token %}
             <input type="hidden" name="students_count" value="{{ students_count }}">
             <input type="hidden" name="lecturer_name" value="{{ name }}">
