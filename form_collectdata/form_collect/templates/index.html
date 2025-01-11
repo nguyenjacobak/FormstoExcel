@@ -302,6 +302,7 @@ function updateRadioType() {
     const radioContainer = document.querySelector('.form-selection');
     const projectType = document.getElementById('project_type');
 
+
     function getRoleOfUserFromProject(projectName, name) {
         const students = JSON.parse(localStorage.getItem('students'));
         const roles = new Set();
@@ -319,25 +320,34 @@ function updateRadioType() {
         renderRoleOptions(roles);
     }
 
+    function attachRadioChangeEvent() {
+      const formTypeRadios = document.querySelectorAll('input[name="form_type"]');
+      const groupOptions = document.getElementById('groupOptions');
+
+      formTypeRadios.forEach(radio => {
+          radio.addEventListener('change', () => {
+              if (radio.value === "hoiDongChuyenMon" && radio.checked) {
+                  groupOptions.style.display = 'block'; // Hiện các tùy chọn nhóm
+              } else if (groupOptions) {
+                  groupOptions.style.display = 'none'; // Ẩn các tùy chọn nhóm chỉ khi không phải "Hội đồng chuyên môn"
+              }
+          });
+      });
+    }
+
     function renderRoleOptions(roles) {
         radioContainer.innerHTML = '<h3>Chọn loại phiếu đánh giá: <span style="color: red;">*</span></h3>';
 
-        if (roles.has('council')) {
-            radioContainer.innerHTML += `
-                <label class="form-label" style="margin-bottom: 16px;">
-                    <input type="radio" name="form_type" value="hoiDongChuyenMon"> Hội đồng chuyên môn
-                </label>`;
-        }
         if (roles.has('instructor')) {
             radioContainer.innerHTML += `
                 <label class="form-label" style="margin-bottom: 16px;">
-                    <input type="radio" name="form_type" value="canBoHuongDan1"> Người hướng dẫn (lần 1)
+                    <input type="radio" name="form_type" value="baoCaoTienDoL1"> Người hướng dẫn (lần 1)
                 </label>
                 <label class="form-label" style="margin-bottom: 16px;">
-                    <input type="radio" name="form_type" value="canBoHuongDan2"> Người hướng dẫn (lần 2)
+                    <input type="radio" name="form_type" value="baoCaoTienDoL2"> Người hướng dẫn (lần 2)
                 </label>
                 <label class="form-label" style="margin-bottom: 16px;">
-                    <input type="radio" name="form_type" value="canBoHuongDan3"> Người hướng dẫn (lần 3)
+                    <input type="radio" name="form_type" value="huongdan3"> Người hướng dẫn (lần 3)
                 </label>`;
         }
         if (roles.has('opponent')) {
@@ -346,6 +356,24 @@ function updateRadioType() {
                     <input type="radio" name="form_type" value="canBoPhanBien"> Cán bộ phản biện
                 </label>`;
         }
+        if (roles.has('council')) {
+            radioContainer.innerHTML += `
+                <label class="form-label" style="margin-bottom: 16px;">
+                    <input type="radio" name="form_type" value="hoiDongChuyenMon" id="hoiDongChuyenMon"> Hội đồng chuyên môn
+                </label>`;
+
+            radioContainer.innerHTML += `
+              <div id="groupOptions" style="display: none; margin-left: 20px">
+                  <label class="form-label" style="margin-bottom: 16px;">
+                      <input type="radio" name="group_type" value="doAnNhomGhep"> Đồ án nhóm ghép
+                  </label>
+                  <label class="form-label" style="margin-bottom: 16px;">
+                      <input type="radio" name="group_type" value="doAnNhomBinhThuong"> Đồ án nhóm bình thường
+                  </label>
+              </div>
+            `;
+        }
+        attachRadioChangeEvent();
     }
 
     projectList.addEventListener('change', () => {
@@ -366,6 +394,9 @@ function goToNextForm() {
     const projectType = document.getElementById('project_type').value;
     const projectName = document.getElementById('project_list').value;
     const formType = document.querySelector('input[name="form_type"]:checked')?.value;
+    const selectedRadioValue = document.querySelector('input[name="form_type"]:checked')?.value;
+    const selectedGroup = document.querySelector('input[name="group_type"]:checked')?.value;
+    const studentsInfo = JSON.parse(localStorage.getItem('students'));
 
     if (name && projectType && projectName && formType) {
         const csrfToken = getCookie('csrftoken');
@@ -380,11 +411,29 @@ function goToNextForm() {
             .then(response => response.json())
             .then(students => {
                 const data = { name, projectType, projectName, formType, students: {} };
+                console.log(0, projectName);
                 students.forEach(student => {
-                    data['students'][student.msv] = student;
+                    data['students'][student.msv] = studentsInfo[student.msv];
                 });
+                console.log(students);
+                const group = data['students'][Object.keys(data['students'])[0]]['group'];
                 localStorage.setItem('data', JSON.stringify(data));
-                window.location.href = formType === 'hoiDongChuyenMon' ? 'hoiDongChuyenMon' : `baoCaoTienDoL${formType.slice(-1)}`;
+                const listMsvOfStudent = Object.keys(data['students']);
+                let listMsvStr = '';
+                listMsvOfStudent.forEach(msv => {
+                    listMsvStr += `msv=${msv}&`;
+                });
+                listMsvStr = listMsvStr.slice(0, -1);
+                let newUrl = '';
+                console.log(selectedGroup)
+                if (selectedRadioValue === 'hoiDongChuyenMon' && selectedGroup === 'doAnNhomGhep') {
+                    newUrl = `/hoiDongChuyenMon?${listMsvStr}&groupType=${selectedGroup}&group=${group}`;
+                } else if (selectedRadioValue === 'hoiDongChuyenMon' && selectedGroup === 'doAnNhomBinhThuong') {
+                    newUrl = `/hoiDongChuyenMon?${listMsvStr}&groupType=${selectedGroup}&group=`;
+                } else {
+                    newUrl = `${formType}?${listMsvStr}`;
+                }
+                window.location.href = newUrl;
             });
     } else {
         alert('Please fill in all required fields.');

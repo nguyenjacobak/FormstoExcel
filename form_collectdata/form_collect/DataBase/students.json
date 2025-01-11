@@ -35,7 +35,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT017"
     },
     "B20DCDT029": {
         "name": "Trần Ngọc Danh",
@@ -73,7 +74,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT029"
     },
     "B20DCDT037": {
         "name": "Nguyễn Tiến Duy",
@@ -111,7 +113,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT037"
     },
     "B20DCDT100": {
         "name": "Trần Quang Hữu",
@@ -149,7 +152,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT100"
     },
     "B20DCDT132": {
         "name": "Trần Đức Mạnh",
@@ -187,7 +191,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT132"
     },
     "B20DCDT175": {
         "name": "Lê Sỹ Sang",
@@ -225,7 +230,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT175"
     },
     "B20DCDT126": {
         "name": "Nguyễn Thị Mai",
@@ -263,7 +269,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT126"
     },
     "B20DCDT076": {
         "name": "Tô Minh Hiếu",
@@ -301,7 +308,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT076"
     },
     "B20DCDT130": {
         "name": "Phạm Đăng Mạnh",
@@ -339,7 +347,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT130"
     },
     "B20DCDT199": {
         "name": "Nguyễn Xuân Thanh",
@@ -377,7 +386,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT199"
     },
     "B20DCDT109": {
         "name": "Đỗ Duy Khánh",
@@ -415,7 +425,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT109"
     },
     "B20DCDT105": {
         "name": "Đỗ Trung Kiển",
@@ -453,7 +464,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT105"
     },
     "B20DCDT181": {
         "name": "Đặng Thị Thanh Tâm",
@@ -491,7 +503,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT181"
     },
     "B20DCDT035": {
         "name": "Đinh Đức Duy",
@@ -529,7 +542,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT035"
     },
     "B20DCDT065": {
         "name": "Nguyễn Văn Hào",
@@ -567,7 +581,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT065"
     },
     "B20DCDT059": {
         "name": "Vũ Minh Đức",
@@ -605,7 +620,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT059"
     },
     "B20DCDT010": {
         "name": "Hoàng Tuấn Anh",
@@ -643,7 +659,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT010"
     },
     "B20DCDT122": {
         "name": "Vũ Văn Luật",
@@ -681,7 +698,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT122"
     },
     "B20DCDT089": {
         "name": "Nguyễn Văn Huy",
@@ -719,7 +737,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT089"
     },
     "B20DCDT228": {
         "name": "Lê Thế Vũ",
@@ -757,7 +776,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT228"
     },
     "B20DCDT014": {
         "name": "Nguyễn Tuấn Anh",
@@ -795,7 +815,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT014"
     },
     "B20DCDT004": {
         "name": "Hoàng Việt An",
@@ -833,7 +854,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT004"
     },
     "B20DCDT141": {
         "name": "Viên Bình Minh",
@@ -871,7 +893,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT141"
     },
     "B20DCDT169": {
         "name": "Đặng Bảo Quốc",
@@ -909,7 +932,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT169"
     },
     "B20DCDT056": {
         "name": "Nguyễn Trọng Đức",
@@ -947,7 +971,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT056"
     },
     "B20DCDT025": {
         "name": "Nguyễn Duy Cường",
@@ -985,7 +1010,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT025"
     },
     "B20DCDT128": {
         "name": "Đinh Quang Mạnh",
@@ -1023,7 +1049,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT128"
     },
     "B20DCDT194": {
         "name": "Nguyễn Sơn Tùng",
@@ -1061,7 +1088,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT194"
     },
     "B20DCDT131": {
         "name": "Tô Văn Mạnh",
@@ -1099,7 +1127,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT131"
     },
     "B20DCDT020": {
         "name": "Tạ Ngọc Bích",
@@ -1137,7 +1166,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT020"
     },
     "B20DCDT192": {
         "name": "Trương Minh Tuấn",
@@ -1175,7 +1205,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT192"
     },
     "B20DCDT158": {
         "name": "La Thị Hồng Nhung",
@@ -1213,7 +1244,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT158"
     },
     "B20DCDT190": {
         "name": "Nguyễn Trung Tuấn",
@@ -1251,7 +1283,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT190"
     },
     "B20DCDT197": {
         "name": "Lê Chí Tuyến",
@@ -1289,7 +1322,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT197"
     },
     "B20DCDT011": {
         "name": "Lưu Ngọc Anh",
@@ -1327,7 +1361,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT011"
     },
     "B20DCDT212": {
         "name": "Bùi Thị Hương Trà",
@@ -1365,7 +1400,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT212"
     },
     "B20DCDT049": {
         "name": "Phạm Thành Đạt",
@@ -1403,7 +1439,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT049"
     },
     "B20DCDT142": {
         "name": "Vũ Văn Mười",
@@ -1441,7 +1478,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT142"
     },
     "B20DCDT151": {
         "name": "Nguyễn Minh Nghĩa",
@@ -1479,7 +1517,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT151"
     },
     "B20DCDT173": {
         "name": "Đoàn Thị Như Quỳnh",
@@ -1517,7 +1556,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT173"
     },
     "B20DCDT203": {
         "name": "Phan Quang Thành",
@@ -1555,7 +1595,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT203"
     },
     "B20DCDT054": {
         "name": "Lưu Việt Đức",
@@ -1593,7 +1634,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT054"
     },
     "B20DCDT031": {
         "name": "Nguyễn Tiến Dũng",
@@ -1631,7 +1673,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT031"
     },
     "B20DCDT075": {
         "name": "Lê Trương Đức Hiếu",
@@ -1669,7 +1712,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT075"
     },
     "B20DCDT149": {
         "name": "Hoàng Trọng Nghĩa",
@@ -1707,7 +1751,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT149"
     },
     "B20DCDT064": {
         "name": "Tạ Hồng Hải",
@@ -1745,7 +1790,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT064"
     },
     "B20DCDT084": {
         "name": "Dương Quang Huy",
@@ -1783,7 +1829,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT084"
     },
     "B20DCDT125": {
         "name": "Lưu Thị Mai",
@@ -1821,7 +1868,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT125"
     },
     "B20DCDT033": {
         "name": "Phạm Tiến Dũng",
@@ -1859,7 +1907,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT033"
     },
     "B20DCDT201": {
         "name": "Lại Văn Thành",
@@ -1897,7 +1946,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT201"
     },
     "B20DCDT052": {
         "name": "Nguyễn Thành Đô",
@@ -1935,7 +1985,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT052"
     },
     "B20DCDT078": {
         "name": "Vũ Ngọc Hoàn",
@@ -1973,7 +2024,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT078"
     },
     "B20DCDT209": {
         "name": "Đồng Đức Thịnh",
@@ -2011,7 +2063,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT209"
     },
     "B20DCDT127": {
         "name": "Nguyễn Xuân Mai",
@@ -2049,7 +2102,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT127"
     },
     "B20DCDT174": {
         "name": "Nguyễn Thị Quỳnh",
@@ -2087,7 +2141,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT174"
     },
     "B20DCDT032": {
         "name": "Nguyễn Tiến Dũng",
@@ -2125,7 +2180,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT032"
     },
     "B20DCDT112": {
         "name": "Đỗ Trọng Khôi",
@@ -2163,7 +2219,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT112"
     },
     "B20DCDT154": {
         "name": "Bùi Hoàng Ngọc",
@@ -2201,7 +2258,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT154"
     },
     "B20DCDT196": {
         "name": "Phạm Tuyên",
@@ -2239,7 +2297,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT196"
     },
     "B20DCDT135": {
         "name": "Hoàng Văn Minh",
@@ -2277,7 +2336,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT135"
     },
     "B20DCDT022": {
         "name": "Vũ Văn Có",
@@ -2315,7 +2375,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT022"
     },
     "B20DCDT177": {
         "name": "Nguyễn Xuân Siêu",
@@ -2353,7 +2414,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT177"
     },
     "B20DCDT202": {
         "name": "Ngô Tiến Thành",
@@ -2391,7 +2453,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT202"
     },
     "B20DCDT028": {
         "name": "Nguyễn Văn Danh",
@@ -2429,7 +2492,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT028"
     },
     "B20DCDT104": {
         "name": "Vũ Khánh Kiên",
@@ -2467,7 +2531,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT104"
     },
     "B20DCDT136": {
         "name": "Nguyễn Duy Minh",
@@ -2505,7 +2570,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT136"
     },
     "B20DCDT095": {
         "name": "Mai Việt Hưng",
@@ -2543,7 +2609,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT095"
     },
     "B20DCDT119": {
         "name": "Ngô Hải Long",
@@ -2581,7 +2648,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT119"
     },
     "B20DCDT152": {
         "name": "Phan Chính Nghĩa",
@@ -2619,7 +2687,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT152"
     },
     "B20DCDT088": {
         "name": "Nguyễn Trọng Huy",
@@ -2657,7 +2726,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT088"
     },
     "B20DCDT015": {
         "name": "Nguyễn Tuấn Anh",
@@ -2695,7 +2765,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT015"
     },
     "B20DCDT098": {
         "name": "Nguyễn Quang Hưng",
@@ -2733,7 +2804,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT098"
     },
     "B20DCDT187": {
         "name": "Nguyễn Đỗ Anh Tú",
@@ -2771,7 +2843,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT187"
     },
     "B20DCDT215": {
         "name": "Đinh Văn Trung",
@@ -2809,7 +2882,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT215"
     },
     "B20DCDT005": {
         "name": "Nguyễn Văn An",
@@ -2847,7 +2921,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT005"
     },
     "B20DCDT058": {
         "name": "Trần Hữu Đức",
@@ -2885,7 +2960,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT058"
     },
     "B20DCDT138": {
         "name": "Nguyễn Nhật Minh",
@@ -2923,7 +2999,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT138"
     },
     "B20DCDT171": {
         "name": "Bùi Minh Quý",
@@ -2961,7 +3038,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT171"
     },
     "B20DCDT116": {
         "name": "Hà Hoàng Linh",
@@ -2999,7 +3077,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT116"
     },
     "B20DCDT159": {
         "name": "Lê Tiến Phát",
@@ -3037,7 +3116,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT159"
     },
     "B20DCDT178": {
         "name": "Lê Anh Sơn",
@@ -3075,7 +3155,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT178"
     },
     "B20DCDT213": {
         "name": "Nguyễn Năng Trà",
@@ -3113,7 +3194,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT213"
     },
     "B20DCDT118": {
         "name": "Nguyễn Tuấn Linh",
@@ -3151,7 +3233,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT118"
     },
     "B20DCDT227": {
         "name": "Xuân Tiến Vinh",
@@ -3189,7 +3272,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT227"
     },
     "B20DCDT016": {
         "name": "Nguyễn Việt Anh",
@@ -3227,7 +3311,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT016"
     },
     "B20DCDT124": {
         "name": "Nguyễn Công Lý",
@@ -3265,7 +3350,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT124"
     },
     "B20DCDT115": {
         "name": "Nguyễn Thị Liên",
@@ -3303,7 +3389,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT115"
     },
     "B20DCDT147": {
         "name": "Trần Đức Nam",
@@ -3341,7 +3428,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT147"
     },
     "B20DCDT164": {
         "name": "Nguyễn Thị Phượng",
@@ -3379,7 +3467,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT164"
     },
     "B20DCDT200": {
         "name": "Đinh Duy Thành",
@@ -3417,7 +3506,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT200"
     },
     "B20DCDT107": {
         "name": "Đào Trọng Khánh",
@@ -3455,7 +3545,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT107"
     },
     "B20DCDT134": {
         "name": "Đoàn Công Minh",
@@ -3493,7 +3584,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT134"
     },
     "B20DCDT077": {
         "name": "Ninh Thị Hoa",
@@ -3531,7 +3623,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT077"
     },
     "B20DCDT021": {
         "name": "Nguyễn Tiến Binh",
@@ -3569,7 +3662,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT021"
     },
     "B20DCDT092": {
         "name": "Giáp Thị Huyền",
@@ -3607,7 +3701,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT092"
     },
     "B20DCDT137": {
         "name": "Nguyễn Nhật Minh",
@@ -3645,7 +3740,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT137"
     },
     "B20DCDT185": {
         "name": "Trần Đức Tín",
@@ -3683,7 +3779,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT185"
     },
     "B20DCDT229": {
         "name": "Đỗ Đức Vượng",
@@ -3721,7 +3818,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT229"
     },
     "B20DCDT096": {
         "name": "Nguyễn Duy Hưng",
@@ -3759,7 +3857,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT096"
     },
     "B20DCDT180": {
         "name": "Phan Thế Sơn",
@@ -3797,7 +3896,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT180"
     },
     "B20DCDT073": {
         "name": "Hà Đức Hiếu",
@@ -3835,7 +3935,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT073"
     },
     "B20DCDT189": {
         "name": "Nguyễn Minh Tuấn",
@@ -3873,7 +3974,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT189"
     },
     "B20DCDT156": {
         "name": "Nguyễn Thị Nguyệt",
@@ -3911,7 +4013,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT156"
     },
     "B20DCDT026": {
         "name": "Trần Đình Chiến",
@@ -3949,7 +4052,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT026"
     },
     "B20DCDT055": {
         "name": "Nguyễn Minh Đức",
@@ -3987,7 +4091,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT055"
     },
     "B20DCDT218": {
         "name": "Trịnh Trung",
@@ -4025,7 +4130,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT218"
     },
     "B20DCDT040": {
         "name": "Vương Đức Duy",
@@ -4063,7 +4169,8 @@
                 "role": "Thư ký",
                 "unit": "Khoa KTĐT1"
             }
-        ]
+        ],
+        "msv": "B20DCDT040"
     },
     "B20DCDT090": {
         "name": "Thái Chử Tuấn Huy",

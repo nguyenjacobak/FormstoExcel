@@ -48,7 +48,7 @@
         <!-- Form Title -->
 
         <!-- General Information -->
-        <button class="btn btn-primary mb-4" onclick="window.history.back()">
+        <button class="btn btn-primary mb-4" onclick="window.location.href = '/'">
             Quay lại trang chủ
         </button>
         <h2 class="text-center mb-4">PHIẾU ĐÁNH GIÁ QUÁ TRÌNH CỦA NGƯỜI HƯỚNG DẪN (Lần 2) </h2>
@@ -72,32 +72,36 @@
         <h5>II. KẾT QUẢ ĐÁNH GIÁ (Trọng số ...%)</h5>
             <p class="text-danger small">Điểm mỗi tiêu chí tính theo thang điểm 10, làm tròn đến một số thập phân.</p>
             <p class="small">Công thức tính điểm GPA: GPA = Tổng điểm tiêu chí * trọng số</p>
-
+    <form method="POST" action="{% url 'process_form_hd2' %}">
+        {% csrf_token %}
+        <input type="hidden" name="students_count" value="{{ students_count }}">
+        <input type="hidden" name="lecturer_name" value="{{ name }}">
+        <input type="hidden" name="project_type" value="{{ project_type }}">
+        <input type="hidden" name="project_name" value="{{ project_name }}">
         <!-- Student List Table -->
         <div class="mb-4">
             <p class="mb-2">Sinh viên thực hiện đề tài:</p>
             <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>TT</th>
-                    <th>Họ và tên SV</th>
-                    <th>Mã SV</th>
-                    <th>Lớp</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for student in students %}
-                <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ student.fullname }}</td>
-                    <td>{{ student.msv }}</td>
-                    <td>{{ student.class}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th>TT</th>
+                        <th>Họ và tên SV</th>
+                        <th>Mã SV</th>
+                        <th>Lớp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><input type="hidden" name="student_fullname_{{ forloop.counter }}" value="{{ student.name }}">{{ student.name }}</td>
+                        <td><input type="hidden" name="student_msv_{{ forloop.counter }}" value="{{ student.msv }}">{{ student.msv }}</td>
+                        <td><input type="hidden" name="student_class_{{ forloop.counter }}" value="{{ student.class_name }}">{{ student.class_name }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-
         <!-- Evaluation Section -->
         <div class="mb-4">
             <h5>II. KẾT QUẢ ĐÁNH GIÁ (Trọng số ...%)</h5>
@@ -126,14 +130,14 @@
                         <td>C2.1: Xác định được vấn đề cần thực hiện</td>
                         <td>25%</td>
                         {% for student in students %}
-                        <td><input type="number" class="form-control" name="diemC21{{ student.msv }}" min="0" max="10" step="0.1"></td>
+                            <td><input type="number" class="form-control text-center" name="diemC21SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                         {% endfor %}
                     </tr>
                     <tr>
                         <td>C2.2: Phân tích được vấn đề của đề tài</td>
                         <td>25%</td>
-                        {% for student in students %}   
-                        <td><input type="number" class="form-control" name="diemC22{{ student.msv }}" min="0" max="10" step="0.1"></td>
+                        {% for student in students %}
+                            <td><input type="number" class="form-control text-center" name="diemC22SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                         {% endfor %}
                     </tr>
                     <tr>
@@ -141,7 +145,7 @@
                         <td>C3.1: Xác định được mô hình và cách tiếp cận thành phần</td>
                         <td>25%</td>
                         {% for student in students %}
-                        <td><input type="number" class="form-control" name="diemC31{{ student.msv }}" min="0" max="10" step="0.1"></td>
+                            <td><input type="number" class="form-control text-center" name="diemC31SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                         {% endfor %}
 
                     </tr>
@@ -150,14 +154,14 @@
                         <td>C5.2: Kỹ năng giao tiếp và phối hợp trong nhóm</td>
                         <td>25%</td>
                         {% for student in students %}
-                        <td><input type="number" class="form-control" name="diemC52{{ student.msv }}" min="0" max="10" step="0.1"></td>
+                            <td><input type="number" class="form-control text-center" name="diemC52SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                         {% endfor %}
                     </tr>
                     <tr class="table-light">
                         <td colspan="2" class="text-center">Điểm GPA</td>
                         <td></td>
                         {% for student in students %}
-                        <td><input type="number" class="form-control" name="gpaSV{{ forloop.counter }}" readonly></td>
+                            <td><input type="number" class="form-control text-center" name="gpaSV{{ forloop.counter }}"></td>
                         {% endfor %}
                     </tr>
                 </tbody>
@@ -170,18 +174,20 @@
     </div>
 
     <div class="d-flex justify-content-center w-100"> 
-        <button class="btn btn-primary mt-4 mb-5" id="submit">
+        <button class="btn btn-primary mt-4 mb-5" id="submit" type="submit">
             Submit
         </button>
     </div>
+    </form>
 </div>
 </body>
 </html>
 <script>
     const dataPost = JSON.parse(localStorage.getItem('data'));
+    const listMsvOfStudent  = window.location.search;
     const csrfToken = getCookie('csrftoken');
 
-    fetch('/baoCaoTienDoL2', {
+    fetch(`/baoCaoTienDoL2${listMsvOfStudent}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
