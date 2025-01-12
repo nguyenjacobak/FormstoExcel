@@ -27,9 +27,9 @@
                 Quay lại trang chủ
             </button>
             {% if studentsSameGroup and studentsSameGroup|length > 0 %}
-            <select name="" id="listStudents" style="padding:5px">
+            <select name="" id="listStudents" style="padding:5px; margin-bottom: 20px;">
                 {% for student in studentsSameGroup %}
-                <option value="{{ student.msv }}" msv="{{ student.msv }}" {% if student.msv == request.GET.msv %}selected{% endif %}>{{ student.name }} </option>
+                <option value="{{ student.msv }}" msv="{{ student.msv }}" {% if student.msv == request.GET.msv %}selected{% endif %}>{{ student.msv }} - {{ student.name }} </option>
                 {% endfor %}
             </select>
             {% endif %}
@@ -38,15 +38,15 @@
         <h4 class="text-center mb-4">Đối với Đồ án tốt nghiệp </h4>
 
         <div class="mb-4">
-            <p>Chương trình đào tạo đại học chính quy ngành: 
-                <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" />
+            <p>Chương trình đào tạo đại học chính quy ngành: Kỹ thuật điện điện tử
+                
             </p>
             <p>Niên khóa: 2020 - 2025</p>
             <p>Họ và tên người chấm ĐA/KLTN:
                 {{ name }}
             </p>
             <p>Đơn vị công tác: 
-                <input type="text" style="border: none; border-bottom: 2px dotted #000; outline: none;" placeholder="" />
+                {{ unit }}
             </p>
             <p>Tên đề tài: 
                 {{ project_name }}
@@ -94,7 +94,7 @@
             <strong>GPA = Tổng điểm tiêu chí * trọng số</strong>
         </p>
 
-        <table class="table table-bordered text-center align-middle">
+        <table class="table table-bordered text-center align-middle" id="result-table">
             <thead class="table-light">
                 <tr>
                     <th style="width: 20%;">CLO</th>
@@ -116,40 +116,40 @@
                 <tr>
                     <td rowspan="1"><strong class="fs-6">CLO 3</strong>. Thiết kế phần cứng và phần mềm, phân tích dữ liệu để đánh giá hiệu quả hoạt động của hệ thống điện – điện tử</td>
                     <td>C3.3. Tiến hành được các thực nghiệm, cũng như phân tích, đánh giá và diễn giải các kết quả thực nghiệm.</td>
-                    <td>20%</td>
+                    <td class="weight">20%</td>
                     {% for student in students %}
-                            <td><input type="number" class="form-control text-center" name="diemC33SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC33SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                     {% endfor %}
                 </tr>
                 <tr>
                     <td rowspan="1"><strong class="fs-6">CLO 4</strong>. Thể hiện được đạo đức và trách nhiệm nghề nghiệp trong các thiết kế, triển khai các hệ thống điện tử</td>
                     <td>C4.2. Giải thích được tác động của kết quả nghiên cứu đối với cộng đồng, xã hội, hoặc ngành nghề</td>
-                    <td>20%</td>
+                    <td class="weight">20%</td>
                     {% for student in students %}
-                            <td><input type="number" class="form-control text-center" name="diemC42SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC42SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                     {% endfor %}
                 </tr>
                 <tr>
                     <td rowspan="1"><strong class="fs-6">CLO 5</strong>. Vận dụng kỹ năng làm việc nhóm trong nhóm ngành điện tử hoặc trong nhóm đa ngành nhằm giải quyết vấn đề hiệu quả</td>
                     <td>C5.3. Hiệu quả giải quyết vấn đề của nhóm</td>
-                    <td>20%</td>
+                    <td class="weight">20%</td>
                     {% for student in students %}
-                            <td><input type="number" class="form-control text-center" name="diemC53SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC53SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                     {% endfor %}
                 </tr>
                 <tr>
                     <td rowspan="2"><strong class="fs-6">CLO 6</strong>. Vận dụng kĩ tốt năng giao tiếp trong ngành điện - điện tử</td>
                     <td>C6.3. Khả năng thuyết trình</td>
-                    <td>20%</td>
+                    <td class="weight">20%</td>
                     {% for student in students %}
-                            <td><input type="number" class="form-control text-center" name="diemC63SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC63SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                     {% endfor %}
                 </tr>
                 <tr>
                     <td>C6.4. Khả năng giao tiếp đối thoại và trả lời các câu hỏi của hội đồng.</td>
-                    <td>20%</td>
+                    <td class="weight">20%</td>
                     {% for student in students %}
-                            <td><input type="number" class="form-control text-center" name="diemC64SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC64SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                     {% endfor %}
                 </tr>
             </tbody>
@@ -157,7 +157,7 @@
                 <tr>
                     <td colspan="3">Điểm GPA</td>
                     {% for student in students %}
-                            <td><input type="number" class="form-control text-center" name="gpaSV{{ forloop.counter }}"></td>
+                            <td><p class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}"></p></td>
                     {% endfor %}
                 </tr>
             </tfoot>
@@ -184,7 +184,7 @@
     
     const queryString = window.location.search;
     const msvInUrl = new URLSearchParams(queryString).get('msv');
-    const currentStudent = JSON.parse(localStorage.getItem('students'))[msvInUrl];
+    // const currentStudent = JSON.parse(localStorage.getItem('students'))[msvInUrl];
     const csrfToken = getCookie('csrftoken');
     
     // Gửi dữ liệu qua POST request
@@ -194,12 +194,13 @@
             'Content-Type': 'application/json',
             'X-CSRFToken': csrfToken,
         },
-        body: JSON.stringify({ data: dataPost, students: students, currentStudent: currentStudent }),
+        body: JSON.stringify({ data: dataPost, students: students }),
     })
         .then(response => response.text())
         .then(html => {
             document.body.innerHTML = html; // Thay đổi DOM nếu cần
             changeMsv();
+            autoFillGPA();
         });
     
     function getCookie(name) {
@@ -212,19 +213,62 @@
     }
     
     function changeMsv(){
-        document.getElementById("listStudents").addEventListener("change", function () {
-            var msv = this.value; 
-            var url = new URL(window.location.href);
-            
-            url.searchParams.set('msv', msv);
-            
-            var groupType = url.searchParams.get('groupType');
-            var group = url.searchParams.get('group');
-            if (groupType) url.searchParams.set('groupType', groupType);
-            if (group) url.searchParams.set('group', group);
-            
-            window.location.href = url.toString();
-        });
+        if (document.getElementById('listStudents')){
+            document.getElementById("listStudents").addEventListener("change", function () {
+                var msv = this.value; 
+                var url = new URL(window.location.href);
+                
+                url.searchParams.set('msv', msv);
+                
+                var groupType = url.searchParams.get('groupType');
+                var group = url.searchParams.get('group');
+                if (groupType) url.searchParams.set('groupType', groupType);
+                if (group) url.searchParams.set('group', group);
+                updateDataLocalStorage(msv);
+                window.location.href = '/hoiDongChuyenMon' + url.search;
+            });
+        }
     }
 
+    function updateDataLocalStorage(msv){
+        const currentStudent = students[msv];
+        let data = JSON.parse(localStorage.getItem('data'));
+        let newData = {
+            'formType': data['formType'],
+            'name': data['name'],
+            'projectType': data['projectType'],
+            'projectName': currentStudent['project'],
+            'unit': data['unit'],
+            'students': currentStudent
+        }
+        localStorage.setItem('data', JSON.stringify(newData));
+    }
+    
+    function autoFillGPA(){
+        const inputs = document.querySelectorAll(".diem");
+        const weights = document.querySelectorAll(".weight");
+        inputs.forEach((input, index) => {
+            input.addEventListener("input", function () {
+                const studentId = parseInt(input.getAttribute('stt').slice(2)); // Lấy ID sinh viên
+                const studentInputs = document.querySelectorAll(`.diemSV${studentId}`); // Lấy tất cả ô điểm của sinh viên
+                const gpaInput = document.getElementById(`diemGPASV${studentId}`);
+                let total = 0;
+                let count = 0;
+
+                studentInputs.forEach((i, index) => {
+                    const value = parseFloat(i.value);
+                    if (!isNaN(value)) {
+                        const weight = parseFloat(weights[0].innerHTML.replace("%", "")) / 100
+                        total += value * weight;
+                        count++;
+                    }
+                });
+                if (count === studentInputs.length) {
+                    gpaInput.innerHTML = (total).toFixed(1); // Làm tròn đến 2 chữ số thập phân
+                } else {
+                    gpaInput.innerHTML = ""; // Nếu chưa đủ 4 ô, xóa giá trị GPA
+                }
+            });
+        });
+    }
 </script>
