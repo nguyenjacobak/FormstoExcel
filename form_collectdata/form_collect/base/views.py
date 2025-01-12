@@ -60,6 +60,7 @@ def get_lecturers():
         if name and '(' not in name and ')' not in name and name != 'None':
             lecturers.add(name)
     lecturesList = [lecture for lecture in lecturers if lecture is not None]
+    
     return sorted(lecturesList, key=lambda lecture: lecture.split()[-1])
 
 
@@ -114,27 +115,29 @@ def find_index_hd_in_excel(df2, id_hd):
 def get_all_councils():
     file_path = os.path.join('DataBase', 'db.xlsx')
     df = pd.read_excel(file_path, sheet_name="DS Hội đồng_DN", skiprows=2)
+    df = df.drop(columns = ['Unnamed: 4'])
     df = df.dropna(ignore_index=True)
     df = df[df['Họ và tên'] != 'Họ và tên']
-    df
-
     councils = {}
     for i in range(len(df)):
         member = df.iloc[i]
         name = member['Họ và tên']
         role = member['Nhiệm vụ'].replace('\xa0', '')
-        unit = member['Đơn vị']
+        abbr_unit = member['Đơn vị']
+        unit = member['Đơn vị.1']
         id_council = f"HD{(i)//5 + 1}"
         if councils.get(id_council) is None:
             councils[id_council] = [{
                 'name': name,
                 'role': role,
+                'abbr_unit': abbr_unit,
                 'unit': unit
             }]
         else:
             councils[id_council].append({
                 'name': name,
                 'role': role,
+                'abbr_unit': abbr_unit,
                 'unit': unit
             })
     return councils
@@ -148,7 +151,6 @@ def get_all_students():
     # df2.loc[1, 'Unnamed: 3'] = 'Tên'
     # df2.columns = df2.iloc[1]
     # df2 = df2.dropna(how='all', ignore_index=True)
-
     # councils = get_all_councils()
     # id_council = 'HD1'
     # students = {
@@ -181,9 +183,9 @@ def get_all_students():
     #         'project_type': project_type,
     #         'group': group,
     #         'opponent': opponent,
-    #         'council': council
+    #         'council': council,
+    #         'msv': msv
     #     }
-
     #     # Get students from final sheet
     # new_students = students.copy()
     # for msv in students.keys():
@@ -198,12 +200,13 @@ def get_all_students():
     #             fullname = std['fullname']
     #             day_of_birth = std['day_of_birth']
     #             class_name = std['class']
-                
+
     #             new_students[msv_std] = students[msv].copy()
+    #             new_students[msv_std]['msv'] = msv_std
     #             new_students[msv_std]['name'] = fullname
     #             new_students[msv_std]['day_of_birth'] = day_of_birth
     #             new_students[msv_std]['class_name'] = class_name
-    #             new_students[msv_std]['msv'] = msv_std
+
     new_students = []
     file_path = os.path.join('DataBase', 'students.json')
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -229,18 +232,16 @@ def hoiDongChuyenMon(request):
             name = data.get('name', '')
             project_type = data.get('projectType', '')
             projectName = data.get('projectName', '')
+            unit = data.get('unit', '')
 
             studentsMsvSameGroup = []
             if group is not None and group != '':
                 tmp = group.split(' - ')
                 council_id = int(tmp[0][2:])
                 group_id = int(tmp[1])
-                print(council_id, group_id)
                 studentsMsvSameGroup = find_student_by_council_and_group_id(council_id, group_id)
-                print(studentsMsvSameGroup)
             studentsSameGroup = [students[msv] for msv in studentsMsvSameGroup]
             
-
 
         except (json.JSONDecodeError, AttributeError):
             return JsonResponse({'error': 'Dữ liệu không hợp lệ hoặc trống'}, status=400)
@@ -253,9 +254,9 @@ def hoiDongChuyenMon(request):
             'name': name,
             'project_type': project_type,
             'project_name': projectName,
-            'studentsSameGroup': studentsSameGroup
+            'studentsSameGroup': studentsSameGroup,
+            'unit': unit
         }
-        print(context)
         return render(request, 'hoiDongChuyenMon.html', context)
     
     # Xử lý GET request (truy cập trực tiếp từ trình duyệt)

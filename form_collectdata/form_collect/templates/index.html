@@ -397,6 +397,7 @@ function goToNextForm() {
     const selectedRadioValue = document.querySelector('input[name="form_type"]:checked')?.value;
     const selectedGroup = document.querySelector('input[name="group_type"]:checked')?.value;
     const studentsInfo = JSON.parse(localStorage.getItem('students'));
+    const lecturesInfo = JSON.parse(localStorage.getItem('lecturers'));
 
     if (name && projectType && projectName && formType) {
         const csrfToken = getCookie('csrftoken');
@@ -411,12 +412,17 @@ function goToNextForm() {
             .then(response => response.json())
             .then(students => {
                 const data = { name, projectType, projectName, formType, students: {} };
-                console.log(0, projectName);
                 students.forEach(student => {
                     data['students'][student.msv] = studentsInfo[student.msv];
                 });
-                console.log(students);
                 const group = data['students'][Object.keys(data['students'])[0]]['group'];
+                let unit = '';
+                lecturesInfo.forEach(lecture => {
+                    if (lecture.name.split('. ')[1] === name) {
+                        unit = lecture.unit;
+                    }
+                });
+                data['unit'] = unit;
                 localStorage.setItem('data', JSON.stringify(data));
                 const listMsvOfStudent = Object.keys(data['students']);
                 let listMsvStr = '';
@@ -449,6 +455,19 @@ async function getStudentsData() {
             });
     }
 }
+
+async function getCouncilssData() {
+    if (!localStorage.getItem('lecturers')) {
+        await fetch('/get-all-councils')
+            .then(response => response.json())
+            .then(councils => {
+                let lectures = Object.values(councils).flat();
+                localStorage.setItem('lecturers', JSON.stringify(lectures));
+            });
+    }
+}
+
+getCouncilssData();
 
 getStudentsData().then(() => {
     updateProjects();
