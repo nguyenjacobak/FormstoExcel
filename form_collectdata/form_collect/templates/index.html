@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Static Template</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <title>Trang chủ</title>
     <style>
       * {
         font-family: poppins;
@@ -80,7 +81,6 @@
       .form-selection{
         background-color: white;
         box-sizing: border-box;
-        height: 200px;
         width: 50vw;
         margin: 13px;
         margin-bottom: 0;
@@ -200,38 +200,35 @@
         <h4 style="color: red;">* Required</h4>
       </div>
       <div class="name">
-        <h3>Họ và tên <span style="color: red;">*</span></h3>
-        <select name="name" id="name" required onchange="updateProjects()" required style="width: 100%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
+        <h3>Họ và tên người chấm <span style="color: red;">*</span></h3>
+        <select name="name" id="name" required required style="width: 95%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
           <!-- <option value="">Select a name</option> -->
           {% for lecturer in lecturers %}
-              <option value="{{ lecturer }}" {% if lecturer == request.GET.name %}selected{% endif %}>{{ lecturer }}</option>
+              <option value="{{ lecturer }}">{{ lecturer }}</option>
           {% endfor %}
         </select>
       </div>
       <div class="project-type">
         <h3>Loại đồ án <span style="color: red;">*</span></h3>
-        <select name="project_type" id="project_type" required onchange="updateProjects()" required style="width: 100%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
-            <option value="">Select project type</option>
-            <option value="Đồ án cá nhân" {% if request.GET.project_type == "Đồ án cá nhân" %}selected{% endif %}>Đồ án cá nhân</option>
-            <option value="Đồ án nhóm" {% if request.GET.project_type == "Đồ án nhóm" %}selected{% endif %}>Đồ án nhóm</option>
+        <select name="project_type" id="project_type" required required style="width: 95%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
+            <!-- <option value="">Select project type</option> -->
+            <option value="Đồ án cá nhân" >Đồ án cá nhân</option>
+            <option value="Đồ án nhóm">Đồ án nhóm</option>
         </select>
       </div>
       <div class="project-list">
         <h3>Tên đề tài đồ án/ khóa luận tốt nghiệp <span style="color: red;">*</span></h3>
-        <select name="project_list" id="project_list" required style="width: 100%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
-          <option value="">Select a project</option>
-          {% for project in projects %}
-            <option value="{{ project }}">{{ project }}</option>
-          {% endfor %}
+        <select name="project_list" id="project_list" required style="width: 95%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
+          <!-- <option value="">Select a project</option> -->
         </select>
       </div>
       <div class="form-selection">
         <h3>Chọn loại phiếu đánh giá: <span style="color: red;">*</span></h3>
-        <label class="form-label"><input type="radio" name="form_type" value="hoiDongChuyenMon" required> Hội đồng chuyên môn</label>
-        <label class="form-label"><input type="radio" name="form_type" value="canBoHuongDan1"> Người hướng dẫn lần 1</label>
-        <label class="form-label"><input type="radio" name="form_type" value="canBoHuongDan2"> Người hướng dẫn lần 2</label>
-        <label class="form-label"><input type="radio" name="form_type" value="canBoHuongDan3"> Người hướng dẫn lần 3</label>
-        <label class="form-label"><input type="radio" name="form_type" value="canBoPhanBien"> Cán bộ phản biện</label>
+        <!-- <label class="form-label" style="margin-bottom: 16px"><input type="radio" name="form_type" value="canBoHuongDan1"> Người hướng dẫn (lần 1)</label>
+        <label class="form-label" style="margin-bottom: 16px"><input type="radio" name="form_type" value="canBoHuongDan2"> Người hướng dẫn (lần 2)</label>
+        <label class="form-label" style="margin-bottom: 16px"><input type="radio" name="form_type" value="canBoHuongDan3"> Người hướng dẫn (lần 3)</label>
+        <label class="form-label" style="margin-bottom: 16px"><input type="radio" name="form_type" value="canBoPhanBien"> Cán bộ phản biện</label>
+        <label class="form-label" style="margin-bottom: 16px"><input type="radio" name="form_type" value="hoiDongChuyenMon" required> Hội đồng chuyên môn</label> -->
     </div>
     <div class="next">
       <button type="button" style="cursor: pointer;" onclick="goToNextForm()">Tiếp theo</button>
@@ -245,62 +242,238 @@
   </body>
 </html>
 <!-- <script src="../static/js/index.js"></script> -->
- <script>
-  function updateProjects() {
-    const name = document.getElementById('name').value;
-    const projectType = document.getElementById('project_type').value;
-    if (name && projectType) {
-        window.location.href = `?name=${name}&project_type=${projectType}`;
+<script>
+  function getCookie(name) {
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        const [key, value] = cookie.trim().split('=');
+        if (key === name) return decodeURIComponent(value);
     }
+    return null;
   }
 
-  function goToNextForm() {
+  function updateProjects() {
+    const selectName = document.getElementById('name');
+    const selectProjectType = document.getElementById('project_type');
+    const projectList = document.getElementById('project_list');
+
+    function getProjects() {
+        projectList.innerHTML = '';
+        if (localStorage.getItem('students')) {
+            const students = JSON.parse(localStorage.getItem('students'));
+            const projects = new Set();
+
+            Object.values(students).forEach(student => {
+                if (checkNameAndType(selectName.value, selectProjectType.value, student)) {
+                    projects.add(student['project']);
+                }
+            });
+
+            projects.forEach(project => {
+                const option = document.createElement('option');
+                option.value = project;
+                option.innerText = project;
+                projectList.appendChild(option);
+            });
+        }
+    }
+
+    function checkNameAndType(name, projectType, student) {
+        const councilOfStudents = student['council'];
+        const instructor = student['instructor'].split('. ')[1];
+        const councilsName = councilOfStudents.map(council => council['name'].split('. ')[1]);
+
+        const matchesInstructor = instructor === name;
+        const matchesCouncil = councilsName.includes(name);
+        const matchesType = student['project_type'] === projectType;
+
+        return (matchesInstructor || matchesCouncil) && matchesType;
+    }
+
+    selectName.addEventListener('change', getProjects);
+    selectProjectType.addEventListener('change', getProjects);
+
+    getProjects();
+}
+
+function updateRadioType() {
+    const selectName = document.getElementById('name');
+    const projectList = document.getElementById('project_list');
+    const radioContainer = document.querySelector('.form-selection');
+    const projectType = document.getElementById('project_type');
+
+
+    function getRoleOfUserFromProject(projectName, name) {
+        const students = JSON.parse(localStorage.getItem('students'));
+        const roles = new Set();
+
+        Object.values(students).forEach(student => {
+            if (student['project'] === projectName) {
+                student['council'].forEach(council => {
+                    if (council['name'].split('. ')[1] === name) roles.add('council');
+                });
+                if (student['instructor'].split('. ')[1] === name) roles.add('instructor');
+                if (student['opponent'].split('. ')[1] === name) roles.add('opponent');
+            }
+        });
+
+        renderRoleOptions(roles);
+    }
+
+    function attachRadioChangeEvent() {
+      const formTypeRadios = document.querySelectorAll('input[name="form_type"]');
+      const groupOptions = document.getElementById('groupOptions');
+      const selectProjectType = document.getElementById('project_type');
+
+      formTypeRadios.forEach(radio => {
+          radio.addEventListener('change', () => {
+              if (radio.value === "hoiDongChuyenMon" && radio.checked && selectProjectType.value === 'Đồ án cá nhân') {
+                  groupOptions.style.display = 'block'; 
+              } else if (groupOptions) {
+                  groupOptions.style.display = 'none'; 
+              }
+          });
+      });
+    }
+
+    function renderRoleOptions(roles) {
+        radioContainer.innerHTML = '<h3>Chọn loại phiếu đánh giá: <span style="color: red;">*</span></h3>';
+
+        if (roles.has('instructor')) {
+            radioContainer.innerHTML += `
+                <label class="form-label" style="margin-bottom: 16px;">
+                    <input type="radio" name="form_type" value="baoCaoTienDoL1"> Người hướng dẫn (lần 1)
+                </label>
+                <label class="form-label" style="margin-bottom: 16px;">
+                    <input type="radio" name="form_type" value="baoCaoTienDoL2"> Người hướng dẫn (lần 2)
+                </label>
+                <label class="form-label" style="margin-bottom: 16px;">
+                    <input type="radio" name="form_type" value="huongdan3"> Người hướng dẫn (lần 3)
+                </label>`;
+        }
+        if (roles.has('opponent')) {
+            radioContainer.innerHTML += `
+                <label class="form-label" style="margin-bottom: 16px;">
+                    <input type="radio" name="form_type" value="canBoPhanBien"> Cán bộ phản biện
+                </label>`;
+        }
+        if (roles.has('council')) {
+            radioContainer.innerHTML += `
+                <label class="form-label" style="margin-bottom: 16px;">
+                    <input type="radio" name="form_type" value="hoiDongChuyenMon" id="hoiDongChuyenMon"> Hội đồng chuyên môn
+                </label>`;
+
+            radioContainer.innerHTML += `
+              <div id="groupOptions" style="display: none; margin-left: 20px">
+                  <label class="form-label" style="margin-bottom: 16px;">
+                      <input type="radio" name="group_type" value="doAnNhomGhep"> Đồ án nhóm ghép
+                  </label>
+                  <label class="form-label" style="margin-bottom: 16px;">
+                      <input type="radio" name="group_type" value="doAnNhomBinhThuong"> Đồ án nhóm bình thường
+                  </label>
+              </div>
+            `;
+        }
+        attachRadioChangeEvent();
+    }
+
+    projectList.addEventListener('change', () => {
+        getRoleOfUserFromProject(projectList.value, selectName.value);
+    });
+    projectType.addEventListener('change', () => {
+        getRoleOfUserFromProject(projectList.value, selectName.value);
+    });
+    selectName.addEventListener('change', () => {
+        getRoleOfUserFromProject(projectList.value, selectName.value);
+    });
+
+    getRoleOfUserFromProject(projectList.value, selectName.value);
+}
+
+function goToNextForm() {
     const name = document.getElementById('name').value;
     const projectType = document.getElementById('project_type').value;
     const projectName = document.getElementById('project_list').value;
-    const formType = document.querySelector('input[name="form_type"]:checked').value;
-    console.log(name, projectType, projectName, formType);
+    const formType = document.querySelector('input[name="form_type"]:checked')?.value;
+    const selectedRadioValue = document.querySelector('input[name="form_type"]:checked')?.value;
+    const selectedGroup = document.querySelector('input[name="group_type"]:checked')?.value;
+    const studentsInfo = JSON.parse(localStorage.getItem('students'));
+    const lecturesInfo = JSON.parse(localStorage.getItem('lecturers'));
 
     if (name && projectType && projectName && formType) {
-        let data = {
-              name: name,
-              projectType: projectType,
-              projectName: projectName,
-              formType: formType
-        }
-
-        let nextPage = '';
-        switch (formType) {
-            case 'hoiDongChuyenMon':
-                nextPage = 'hoiDongChuyenMon';
-                break;
-            case 'canBoHuongDan1':
-                nextPage = 'baoCaoTienDoL1';
-                break;
-            case 'canBoHuongDan2':
-                nextPage = 'baoCaoTienDoL2';
-                break;
-            case 'canBoHuongDan3':
-                nextPage = 'huongdan3';
-                break;
-            case 'canBoPhanBien':
-                nextPage = 'canBoPhanBien';
-                break;
-        }
-        localStorage.removeItem('data');
-        fetch(`/get-students?project_name=${projectName}`)
-                .then(response => response.json())
-                .then(students => {
-                  console.log(students);
-                  data['students'] = {};
-                   students.forEach(student => {
-                      data['students'][student.msv] = student; 
-                   });
-                  localStorage.setItem('data', JSON.stringify(data));
-                  window.location.href = `${nextPage}`;
+        const csrfToken = getCookie('csrftoken');
+        fetch(`/get-students`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify({ project_name: projectName })
+        })
+            .then(response => response.json())
+            .then(students => {
+                const data = { name, projectType, projectName, formType, students: {} };
+                students.forEach(student => {
+                    data['students'][student.msv] = studentsInfo[student.msv];
                 });
+                const group = data['students'][Object.keys(data['students'])[0]]['group'];
+                let unit = '';
+                lecturesInfo.forEach(lecture => {
+                    if (lecture.name.split('. ')[1] === name) {
+                        unit = lecture.unit;
+                    }
+                });
+                data['unit'] = unit;
+                localStorage.setItem('data', JSON.stringify(data));
+                const listMsvOfStudent = Object.keys(data['students']);
+                let listMsvStr = '';
+                listMsvOfStudent.forEach(msv => {
+                    listMsvStr += `msv=${msv}&`;
+                });
+                listMsvStr = listMsvStr.slice(0, -1);
+                let newUrl = '';
+                console.log(selectedGroup)
+                if (selectedRadioValue === 'hoiDongChuyenMon' && selectedGroup === 'doAnNhomGhep') {
+                    newUrl = `/hoiDongChuyenMon?${listMsvStr}&groupType=${selectedGroup}&group=${group}`;
+                } else if (selectedRadioValue === 'hoiDongChuyenMon' && selectedGroup === 'doAnNhomBinhThuong') {
+                    newUrl = `/hoiDongChuyenMon?${listMsvStr}&groupType=${selectedGroup}&group=`;
+                } else {
+                    newUrl = `${formType}?${listMsvStr}`;
+                }
+                window.location.href = newUrl;
+            });
     } else {
         alert('Please fill in all required fields.');
     }
-  }
+}
+
+async function getStudentsData() {
+    if (!localStorage.getItem('students')) {
+        await fetch('/get-all-students')
+            .then(response => response.json())
+            .then(students => {
+                localStorage.setItem('students', JSON.stringify(students));
+            });
+    }
+}
+
+async function getCouncilssData() {
+    if (!localStorage.getItem('lecturers')) {
+        await fetch('/get-all-councils')
+            .then(response => response.json())
+            .then(councils => {
+                let lectures = Object.values(councils).flat();
+                localStorage.setItem('lecturers', JSON.stringify(lectures));
+            });
+    }
+}
+
+getCouncilssData();
+
+getStudentsData().then(() => {
+    updateProjects();
+    updateRadioType();
+});
+
+  
 </script>
