@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phiếu Đánh Giá Quá Trình</title>
+    <title>Phiếu người đánh giá lần 1</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .form-header {
@@ -76,7 +76,7 @@
             </p>
         </div>
 
-        <form method="POST" action="{% url 'process_form_hd1_new' %}">
+        <form id="evaluationForm">
             {% csrf_token %}
             <input type="hidden" name="students_count" value="{{ students_count }}">
             <input type="hidden" name="lecturer_name" value="{{ name }}">
@@ -130,31 +130,32 @@
                         <tr>
                             <td rowspan="2"><strong class="fs-6">CLO 1</strong>. Áp dụng kiến thức khoa học và công nghệ của ngành học để xác định các giải pháp nhằm giải quyết vấn đề kỹ thuật trong các hệ thống điện - điện tử.</td>
                             <td>C1.1: Tổng hợp được các kiến thức lý thuyết và khoa học và công nghệ của ngành học để xác định vấn đề nghiên cứu nhằm giải quyết vấn đề kỹ thuật trong thực tiễn - thực tế</td>
-                            <td>35%</td>
+                            <td class="weight">35%</td>
                             {% for student in students %}
-                            <td><input type="number" class="form-control text-center" name="diemC11SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC11SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                             {% endfor %}
                         </tr>
                         <tr>
                             <td>C1.2: Khảo sát các thành phần liên quan đến đề tài</td>
-                            <td>35%</td>
+                            <td class="weight">35%</td>
                             {% for student in students %}
-                            <td><input type="number" class="form-control text-center" name="diemC12SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC12SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                             {% endfor %}
                         </tr>
                         <tr>
                             <td><strong class="fs-6">CLO 5</strong>. Vận dụng kỹ năng làm việc nhóm trong nhóm ngành điện tử hoặc trong nhóm đa ngành nhằm giải quyết vấn đề hiệu quả</td>
                             <td>C5.1: Đóng góp có nhóm trong nhóm làm việc</td>
-                            <td>30%</td>
+                            <td class="weight">30%</td>
                             {% for student in students %}
-                            <td><input type="number" class="form-control text-center" name="diemC51SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC51SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
                             {% endfor %}
                         </tr>
                         <tr class="table-light">
                             <td colspan="2" class="text-center">Điểm GPA</td>
                             <td></td>
                             {% for student in students %}
-                            <td><input type="number" class="form-control text-center" name="gpaSV{{ forloop.counter }}"></td>
+                                                        <td><input class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}" readonly style="border: none; outline: none; background-color: #f8f9fa;"></input></td>
+
                             {% endfor %}
                         </tr>
                     </tbody>
@@ -164,7 +165,7 @@
             <!-- Comments Section -->
             <div class="mb-4">
                 <p>Nhận xét khác (về ý thức, thái độ làm việc của sinh viên):</p>
-                <textarea class="form-control mb-3" name="nhanXet" rows="5"></textarea>
+                <textarea class="form-control mb-3" name="nhanXet" rows="5" style="border:1px solid #000"></textarea>
             </div>
 
             <div class="d-flex justify-content-center w-100"> 
@@ -192,6 +193,8 @@
     }).then(response => response.text())
     .then(html => {
         document.body.innerHTML = html; // Thay đổi DOM nếu cần
+        autoFillGPA();
+        submitForm();
     });
     
     function getCookie(name) {
@@ -203,4 +206,62 @@
         return null;
     }
 
+    function autoFillGPA(){
+        const inputs = document.querySelectorAll(".diem");
+        const weights = document.querySelectorAll(".weight");
+        inputs.forEach((input, index) => {
+            input.addEventListener("input", function () {
+                const studentId = parseInt(input.getAttribute('stt').slice(2)); // Lấy ID sinh viên
+                const studentInputs = document.querySelectorAll(`.diemSV${studentId}`); // Lấy tất cả ô điểm của sinh viên
+                const gpaInput = document.getElementById(`diemGPASV${studentId}`);
+                let total = 0;
+                let count = 0;
+
+                studentInputs.forEach((i, index) => {
+                    const value = parseFloat(i.value);
+                    if (!isNaN(value)) {
+                        const weight = parseFloat(weights[0].innerHTML.replace("%", "")) / 100
+                        total += value * weight;
+                        count++;
+                    }
+                });
+                if (count === studentInputs.length) {
+                    gpaInput.value = (total).toFixed(1); // Làm tròn đến 2 chữ số thập phân
+                } else {
+                    gpaInput.value = ""; // Nếu chưa đủ 4 ô, xóa giá trị GPA
+                }
+            });
+        });
+    }
+
+    function submitForm(){
+        document.getElementById('evaluationForm').addEventListener('submit', async function(e) {
+            e.preventDefault(); 
+
+            const form = e.target;
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch("{% url 'process_form_hd3' %}", {
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken": formData.get('csrfmiddlewaretoken') 
+                    },
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    alert(data.message); 
+                    window.location.href = "/"; 
+                } else {
+                    const error = await response.json();
+                    alert(error.error || "Đã có lỗi xảy ra, vui lòng thử lại!");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Đã có lỗi xảy ra, vui lòng thử lại!");
+            }
+        });
+    }
 </script>

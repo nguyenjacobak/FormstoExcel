@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-    <title>Static Template</title>
+    <title>Trang chủ</title>
     <style>
       * {
         font-family: poppins;
@@ -323,13 +323,14 @@ function updateRadioType() {
     function attachRadioChangeEvent() {
       const formTypeRadios = document.querySelectorAll('input[name="form_type"]');
       const groupOptions = document.getElementById('groupOptions');
+      const selectProjectType = document.getElementById('project_type');
 
       formTypeRadios.forEach(radio => {
           radio.addEventListener('change', () => {
-              if (radio.value === "hoiDongChuyenMon" && radio.checked) {
-                  groupOptions.style.display = 'block'; // Hiện các tùy chọn nhóm
+              if (radio.value === "hoiDongChuyenMon" && radio.checked && selectProjectType.value === 'Đồ án cá nhân') {
+                  groupOptions.style.display = 'block'; 
               } else if (groupOptions) {
-                  groupOptions.style.display = 'none'; // Ẩn các tùy chọn nhóm chỉ khi không phải "Hội đồng chuyên môn"
+                  groupOptions.style.display = 'none'; 
               }
           });
       });
