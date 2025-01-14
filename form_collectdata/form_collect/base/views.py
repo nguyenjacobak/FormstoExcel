@@ -269,7 +269,6 @@ def hoiDongChuyenMon(request):
             projectName = [data.get('projectName', '')]
             unit = data.get('unit', '')
             studentsMsvSameGroup = []
-            print(group)
             if group is not None and group != '':
                 tmp = group.split(' - ')
                 council_id = int(tmp[0][2:])
@@ -277,11 +276,10 @@ def hoiDongChuyenMon(request):
                 studentsMsvSameGroup = find_student_by_council_and_group_id(council_id, group_id)
                 studentsData = [students[msv] for msv in studentsMsvSameGroup]
                 projectName = [f"{studentData['project']} ({studentData['msv']})" for studentData in studentsData]
-
+            for studentData in studentsData:
+                studentData['grade'] = getGradeOfStudent(studentData['msv'], name, "hoiDongChuyenMon")
         except (json.JSONDecodeError, AttributeError):
             return JsonResponse({'error': 'Dữ liệu không hợp lệ hoặc trống'}, status=400)
-        except Exception as e:
-            print(e)
 
         context = {
             'students': studentsData,
@@ -291,6 +289,7 @@ def hoiDongChuyenMon(request):
             'projects_name': projectName,
             'unit': unit
         }
+        print(context)
         return render(request, 'hoiDongChuyenMon.html', context)
     
     # Xử lý GET request (truy cập trực tiếp từ trình duyệt)
@@ -315,6 +314,8 @@ def baoCaoTienDoL1(request):
             name = data.get('name', '')
             project_type = data.get('projectType', '')
             projectName = data.get('projectName', '')
+            for studentData in students:
+                studentData['grade'] = getGradeOfStudent(studentData['msv'], name, "baoCaoTienDoL1")
         except (json.JSONDecodeError, AttributeError):
             return JsonResponse({'error': 'Dữ liệu không hợp lệ hoặc trống'}, status=400)
 
@@ -347,6 +348,8 @@ def baoCaoTienDoL2(request):
             name = data.get('name', '')
             project_type = data.get('projectType', '')
             projectName = data.get('projectName', '')
+            for studentData in students:
+                studentData['grade'] = getGradeOfStudent(studentData['msv'], name, "baoCaoTienDoL2")
         except (json.JSONDecodeError, AttributeError):
             return JsonResponse({'error': 'Dữ liệu không hợp lệ hoặc trống'}, status=400)
 
@@ -357,7 +360,6 @@ def baoCaoTienDoL2(request):
             'project_type': project_type,
             'project_name': projectName
         }
-        print(context)
         return render(request, 'baoCaoTienDoL2.html', context)
     
     # Xử lý GET request (truy cập trực tiếp từ trình duyệt)
@@ -380,6 +382,8 @@ def huongdan3(request):
             name = data.get('name', '')
             project_type = data.get('projectType', '')
             projectName = data.get('projectName', '')
+            for studentData in students:
+                studentData['grade'] = getGradeOfStudent(studentData['msv'], name, "huongdan3")
         except (json.JSONDecodeError, AttributeError):
             return JsonResponse({'error': 'Dữ liệu không hợp lệ hoặc trống'}, status=400)
 
@@ -412,6 +416,8 @@ def canBoPhanBien(request):
             name = data.get('name', '')
             project_type = data.get('projectType', '')
             projectName = data.get('projectName', '')
+            for studentData in students:
+                studentData['grade'] = getGradeOfStudent(studentData['msv'], name, "canBoPhanBien")
         except (json.JSONDecodeError, AttributeError):
             return JsonResponse({'error': 'Dữ liệu không hợp lệ hoặc trống'}, status=400)
 
@@ -422,7 +428,6 @@ def canBoPhanBien(request):
             'project_type': project_type,
             'project_name': projectName
         }
-        print(context)
         return render(request, 'canBoPhanBien.html', context)
     
     # Xử lý GET request (truy cập trực tiếp từ trình duyệt)
@@ -607,17 +612,17 @@ def process_form_hd1_new(request):
             if cell:
                 headers[cell.strip().lower()] = idx + 1
 
-        required_headers = ["Họ và tên",   " Mã sinh viên",   " Lớp",   
-                        " HDCM_uv1-họ tên",   " HDCM_uv1_C3.3",   " HDCM_uv1_C4.2",   " HDCM_uv1_C5.3",   " HDCM_uv1_C6.3",   " HDCM_uv1_C6.4",   " HDCM_uv1_gpa",
-                        " HDCM_uv2-họ tên",   " HDCM_uv2_C3.3",   " HDCM_uv2_C4.2",   " HDCM_uv2_C5.3",   " HDCM_uv2_C6.3",   " HDCM_uv2_C6.4",   " HDCM_uv2_gpa",   
-                        " HDCM_uv3-họ tên",   " HDCM_uv3_C3.3",   " HDCM_uv3_C4.2",   " HDCM_uv3_C5.3",   " HDCM_uv3_C6.3",   " HDCM_uv3_C6.4",   " HDCM_uv3_gpa",   
-                        " HDCM_uv4-họ tên",   " HDCM_uv4_C3.3",   " HDCM_uv4_C4.2",   " HDCM_uv4_C5.3",   " HDCM_uv4_C6.3",   " HDCM_uv4_C6.4",   " HDCM_uv4_gpa",   
-                        " HDCM_uv5-họ tên",   " HDCM_uv5_C3.3",   " HDCM_uv5_C4.2",   " HDCM_uv5_C5.3",   " HDCM_uv5_C6.3",   " HDCM_uv5_C6.4",   " HDCM_uv5_gpa",   
-                        " CBHD_1-họ tên",   " CBHD_1_C1.1",   " CBHD_1_C1.2",   " CBHD_1_C5.1",   " CBHD_1_gpa",   
-                        " CBHD_2-họ tên",   " CBHD_2_C2.1",   " CBHD_2_C2.2",   " CBHD_2_C3.1",   " CBHD_2_C5.2",   " CBHD_2_gpa",   
-                        " CBHD_3-họ tên",   " CBHD_3_C2.3",   " CBHD_3_C3.2",   " CBHD_3_C4.1",   " CBHD_3_C6.1",   " CBHD_3_C6.2",   " CBHD_3_gpa",   
-                        " CBPB-họ tên",   " CBPB_C2.3",   " CBPB_C3.2",   " CBPB_C4.1",   " CBPB_C6.1",   " CBPB_C6.2",   " CBPB_gpa"
-                        ]
+        required_headers = ['Họ và tên', 'Mã sinh viên', 'Lớp', 
+            'HDCM_uv1-họ tên', 'HDCM_uv1_C3.3', 'HDCM_uv1_C4.2', 'HDCM_uv1_C5.3', 'HDCM_uv1_C6.3', 'HDCM_uv1_C6.4', 'HDCM_uv1_gpa', 
+            'HDCM_uv2-họ tên', 'HDCM_uv2_C3.3', 'HDCM_uv2_C4.2', 'HDCM_uv2_C5.3', 'HDCM_uv2_C6.3', 'HDCM_uv2_C6.4', 'HDCM_uv2_gpa', 
+            'HDCM_uv3-họ tên', 'HDCM_uv3_C3.3', 'HDCM_uv3_C4.2', 'HDCM_uv3_C5.3', 'HDCM_uv3_C6.3', 'HDCM_uv3_C6.4', 'HDCM_uv3_gpa', 
+            'HDCM_uv4-họ tên', 'HDCM_uv4_C3.3', 'HDCM_uv4_C4.2', 'HDCM_uv4_C5.3', 'HDCM_uv4_C6.3', 'HDCM_uv4_C6.4', 'HDCM_uv4_gpa', 
+            'HDCM_uv5-họ tên', 'HDCM_uv5_C3.3', 'HDCM_uv5_C4.2', 'HDCM_uv5_C5.3', 'HDCM_uv5_C6.3', 'HDCM_uv5_C6.4', 'HDCM_uv5_gpa', 
+            'CBHD_1-họ tên', 'CBHD_1_C1.1', 'CBHD_1_C1.2', 'CBHD_1_C5.1', 'CBHD_1_gpa', 
+            'CBHD_2-họ tên', 'CBHD_2_C2.1', 'CBHD_2_C2.2', 'CBHD_2_C3.1', 'CBHD_2_C5.2', 'CBHD_2_gpa', 
+            'CBHD_3-họ tên', 'CBHD_3_C2.3', 'CBHD_3_C3.2', 'CBHD_3_C4.1', 'CBHD_3_C6.1', 'CBHD_3_C6.2', 'CBHD_3_gpa', 
+            'CBPB-họ tên', 'CBPB_C2.3', 'CBPB_C3.2', 'CBPB_C4.1', 'CBPB_C6.1', 'CBPB_C6.2', 'CBPB_gpa'
+            ]
         
 
         # Duyệt qua từng sinh viên
@@ -714,17 +719,17 @@ def process_form_hd2_new(request):
             if cell:
                 headers[cell.strip().lower()] = idx + 1
 
-        required_headers = ["Họ và tên",   " Mã sinh viên",   " Lớp",   
-                        " HDCM_uv1-họ tên",   " HDCM_uv1_C3.3",   " HDCM_uv1_C4.2",   " HDCM_uv1_C5.3",   " HDCM_uv1_C6.3",   " HDCM_uv1_C6.4",   " HDCM_uv1_gpa",
-                        " HDCM_uv2-họ tên",   " HDCM_uv2_C3.3",   " HDCM_uv2_C4.2",   " HDCM_uv2_C5.3",   " HDCM_uv2_C6.3",   " HDCM_uv2_C6.4",   " HDCM_uv2_gpa",   
-                        " HDCM_uv3-họ tên",   " HDCM_uv3_C3.3",   " HDCM_uv3_C4.2",   " HDCM_uv3_C5.3",   " HDCM_uv3_C6.3",   " HDCM_uv3_C6.4",   " HDCM_uv3_gpa",   
-                        " HDCM_uv4-họ tên",   " HDCM_uv4_C3.3",   " HDCM_uv4_C4.2",   " HDCM_uv4_C5.3",   " HDCM_uv4_C6.3",   " HDCM_uv4_C6.4",   " HDCM_uv4_gpa",   
-                        " HDCM_uv5-họ tên",   " HDCM_uv5_C3.3",   " HDCM_uv5_C4.2",   " HDCM_uv5_C5.3",   " HDCM_uv5_C6.3",   " HDCM_uv5_C6.4",   " HDCM_uv5_gpa",   
-                        " CBHD_1-họ tên",   " CBHD_1_C1.1",   " CBHD_1_C1.2",   " CBHD_1_C5.1",   " CBHD_1_gpa",   
-                        " CBHD_2-họ tên",   " CBHD_2_C2.1",   " CBHD_2_C2.2",   " CBHD_2_C3.1",   " CBHD_2_C5.2",   " CBHD_2_gpa",   
-                        " CBHD_3-họ tên",   " CBHD_3_C2.3",   " CBHD_3_C3.2",   " CBHD_3_C4.1",   " CBHD_3_C6.1",   " CBHD_3_C6.2",   " CBHD_3_gpa",   
-                        " CBPB-họ tên",   " CBPB_C2.3",   " CBPB_C3.2",   " CBPB_C4.1",   " CBPB_C6.1",   " CBPB_C6.2",   " CBPB_gpa"
-                        ]
+        required_headers = ['Họ và tên', 'Mã sinh viên', 'Lớp', 
+            'HDCM_uv1-họ tên', 'HDCM_uv1_C3.3', 'HDCM_uv1_C4.2', 'HDCM_uv1_C5.3', 'HDCM_uv1_C6.3', 'HDCM_uv1_C6.4', 'HDCM_uv1_gpa', 
+            'HDCM_uv2-họ tên', 'HDCM_uv2_C3.3', 'HDCM_uv2_C4.2', 'HDCM_uv2_C5.3', 'HDCM_uv2_C6.3', 'HDCM_uv2_C6.4', 'HDCM_uv2_gpa', 
+            'HDCM_uv3-họ tên', 'HDCM_uv3_C3.3', 'HDCM_uv3_C4.2', 'HDCM_uv3_C5.3', 'HDCM_uv3_C6.3', 'HDCM_uv3_C6.4', 'HDCM_uv3_gpa', 
+            'HDCM_uv4-họ tên', 'HDCM_uv4_C3.3', 'HDCM_uv4_C4.2', 'HDCM_uv4_C5.3', 'HDCM_uv4_C6.3', 'HDCM_uv4_C6.4', 'HDCM_uv4_gpa', 
+            'HDCM_uv5-họ tên', 'HDCM_uv5_C3.3', 'HDCM_uv5_C4.2', 'HDCM_uv5_C5.3', 'HDCM_uv5_C6.3', 'HDCM_uv5_C6.4', 'HDCM_uv5_gpa', 
+            'CBHD_1-họ tên', 'CBHD_1_C1.1', 'CBHD_1_C1.2', 'CBHD_1_C5.1', 'CBHD_1_gpa', 
+            'CBHD_2-họ tên', 'CBHD_2_C2.1', 'CBHD_2_C2.2', 'CBHD_2_C3.1', 'CBHD_2_C5.2', 'CBHD_2_gpa', 
+            'CBHD_3-họ tên', 'CBHD_3_C2.3', 'CBHD_3_C3.2', 'CBHD_3_C4.1', 'CBHD_3_C6.1', 'CBHD_3_C6.2', 'CBHD_3_gpa', 
+            'CBPB-họ tên', 'CBPB_C2.3', 'CBPB_C3.2', 'CBPB_C4.1', 'CBPB_C6.1', 'CBPB_C6.2', 'CBPB_gpa'
+            ]
         
 
         # Duyệt qua từng sinh viên
@@ -825,17 +830,17 @@ def process_form_hd3_new(request):
             if cell:
                 headers[cell.strip().lower()] = idx + 1
 
-        required_headers = ["Họ và tên",   " Mã sinh viên",   " Lớp",   
-                        " HDCM_uv1-họ tên",   " HDCM_uv1_C3.3",   " HDCM_uv1_C4.2",   " HDCM_uv1_C5.3",   " HDCM_uv1_C6.3",   " HDCM_uv1_C6.4",   " HDCM_uv1_gpa",
-                        " HDCM_uv2-họ tên",   " HDCM_uv2_C3.3",   " HDCM_uv2_C4.2",   " HDCM_uv2_C5.3",   " HDCM_uv2_C6.3",   " HDCM_uv2_C6.4",   " HDCM_uv2_gpa",   
-                        " HDCM_uv3-họ tên",   " HDCM_uv3_C3.3",   " HDCM_uv3_C4.2",   " HDCM_uv3_C5.3",   " HDCM_uv3_C6.3",   " HDCM_uv3_C6.4",   " HDCM_uv3_gpa",   
-                        " HDCM_uv4-họ tên",   " HDCM_uv4_C3.3",   " HDCM_uv4_C4.2",   " HDCM_uv4_C5.3",   " HDCM_uv4_C6.3",   " HDCM_uv4_C6.4",   " HDCM_uv4_gpa",   
-                        " HDCM_uv5-họ tên",   " HDCM_uv5_C3.3",   " HDCM_uv5_C4.2",   " HDCM_uv5_C5.3",   " HDCM_uv5_C6.3",   " HDCM_uv5_C6.4",   " HDCM_uv5_gpa",   
-                        " CBHD_1-họ tên",   " CBHD_1_C1.1",   " CBHD_1_C1.2",   " CBHD_1_C5.1",   " CBHD_1_gpa",   
-                        " CBHD_2-họ tên",   " CBHD_2_C2.1",   " CBHD_2_C2.2",   " CBHD_2_C3.1",   " CBHD_2_C5.2",   " CBHD_2_gpa",   
-                        " CBHD_3-họ tên",   " CBHD_3_C2.3",   " CBHD_3_C3.2",   " CBHD_3_C4.1",   " CBHD_3_C6.1",   " CBHD_3_C6.2",   " CBHD_3_gpa",   
-                        " CBPB-họ tên",   " CBPB_C2.3",   " CBPB_C3.2",   " CBPB_C4.1",   " CBPB_C6.1",   " CBPB_C6.2",   " CBPB_gpa"
-                        ]
+        required_headers = ['Họ và tên', 'Mã sinh viên', 'Lớp', 
+            'HDCM_uv1-họ tên', 'HDCM_uv1_C3.3', 'HDCM_uv1_C4.2', 'HDCM_uv1_C5.3', 'HDCM_uv1_C6.3', 'HDCM_uv1_C6.4', 'HDCM_uv1_gpa', 
+            'HDCM_uv2-họ tên', 'HDCM_uv2_C3.3', 'HDCM_uv2_C4.2', 'HDCM_uv2_C5.3', 'HDCM_uv2_C6.3', 'HDCM_uv2_C6.4', 'HDCM_uv2_gpa', 
+            'HDCM_uv3-họ tên', 'HDCM_uv3_C3.3', 'HDCM_uv3_C4.2', 'HDCM_uv3_C5.3', 'HDCM_uv3_C6.3', 'HDCM_uv3_C6.4', 'HDCM_uv3_gpa', 
+            'HDCM_uv4-họ tên', 'HDCM_uv4_C3.3', 'HDCM_uv4_C4.2', 'HDCM_uv4_C5.3', 'HDCM_uv4_C6.3', 'HDCM_uv4_C6.4', 'HDCM_uv4_gpa', 
+            'HDCM_uv5-họ tên', 'HDCM_uv5_C3.3', 'HDCM_uv5_C4.2', 'HDCM_uv5_C5.3', 'HDCM_uv5_C6.3', 'HDCM_uv5_C6.4', 'HDCM_uv5_gpa', 
+            'CBHD_1-họ tên', 'CBHD_1_C1.1', 'CBHD_1_C1.2', 'CBHD_1_C5.1', 'CBHD_1_gpa', 
+            'CBHD_2-họ tên', 'CBHD_2_C2.1', 'CBHD_2_C2.2', 'CBHD_2_C3.1', 'CBHD_2_C5.2', 'CBHD_2_gpa', 
+            'CBHD_3-họ tên', 'CBHD_3_C2.3', 'CBHD_3_C3.2', 'CBHD_3_C4.1', 'CBHD_3_C6.1', 'CBHD_3_C6.2', 'CBHD_3_gpa', 
+            'CBPB-họ tên', 'CBPB_C2.3', 'CBPB_C3.2', 'CBPB_C4.1', 'CBPB_C6.1', 'CBPB_C6.2', 'CBPB_gpa'
+            ]
         
 
         # Duyệt qua từng sinh viên
@@ -935,17 +940,17 @@ def process_form_pb_new(request):
             if cell:
                 headers[cell.strip().lower()] = idx + 1
 
-        required_headers = ["Họ và tên",   " Mã sinh viên",   " Lớp",   
-                        " HDCM_uv1-họ tên",   " HDCM_uv1_C3.3",   " HDCM_uv1_C4.2",   " HDCM_uv1_C5.3",   " HDCM_uv1_C6.3",   " HDCM_uv1_C6.4",   " HDCM_uv1_gpa",
-                        " HDCM_uv2-họ tên",   " HDCM_uv2_C3.3",   " HDCM_uv2_C4.2",   " HDCM_uv2_C5.3",   " HDCM_uv2_C6.3",   " HDCM_uv2_C6.4",   " HDCM_uv2_gpa",   
-                        " HDCM_uv3-họ tên",   " HDCM_uv3_C3.3",   " HDCM_uv3_C4.2",   " HDCM_uv3_C5.3",   " HDCM_uv3_C6.3",   " HDCM_uv3_C6.4",   " HDCM_uv3_gpa",   
-                        " HDCM_uv4-họ tên",   " HDCM_uv4_C3.3",   " HDCM_uv4_C4.2",   " HDCM_uv4_C5.3",   " HDCM_uv4_C6.3",   " HDCM_uv4_C6.4",   " HDCM_uv4_gpa",   
-                        " HDCM_uv5-họ tên",   " HDCM_uv5_C3.3",   " HDCM_uv5_C4.2",   " HDCM_uv5_C5.3",   " HDCM_uv5_C6.3",   " HDCM_uv5_C6.4",   " HDCM_uv5_gpa",   
-                        " CBHD_1-họ tên",   " CBHD_1_C1.1",   " CBHD_1_C1.2",   " CBHD_1_C5.1",   " CBHD_1_gpa",   
-                        " CBHD_2-họ tên",   " CBHD_2_C2.1",   " CBHD_2_C2.2",   " CBHD_2_C3.1",   " CBHD_2_C5.2",   " CBHD_2_gpa",   
-                        " CBHD_3-họ tên",   " CBHD_3_C2.3",   " CBHD_3_C3.2",   " CBHD_3_C4.1",   " CBHD_3_C6.1",   " CBHD_3_C6.2",   " CBHD_3_gpa",   
-                        " CBPB-họ tên",   " CBPB_C2.3",   " CBPB_C3.2",   " CBPB_C4.1",   " CBPB_C6.1",   " CBPB_C6.2",   " CBPB_gpa"
-                        ]
+        required_headers = ['Họ và tên', 'Mã sinh viên', 'Lớp', 
+            'HDCM_uv1-họ tên', 'HDCM_uv1_C3.3', 'HDCM_uv1_C4.2', 'HDCM_uv1_C5.3', 'HDCM_uv1_C6.3', 'HDCM_uv1_C6.4', 'HDCM_uv1_gpa', 
+            'HDCM_uv2-họ tên', 'HDCM_uv2_C3.3', 'HDCM_uv2_C4.2', 'HDCM_uv2_C5.3', 'HDCM_uv2_C6.3', 'HDCM_uv2_C6.4', 'HDCM_uv2_gpa', 
+            'HDCM_uv3-họ tên', 'HDCM_uv3_C3.3', 'HDCM_uv3_C4.2', 'HDCM_uv3_C5.3', 'HDCM_uv3_C6.3', 'HDCM_uv3_C6.4', 'HDCM_uv3_gpa', 
+            'HDCM_uv4-họ tên', 'HDCM_uv4_C3.3', 'HDCM_uv4_C4.2', 'HDCM_uv4_C5.3', 'HDCM_uv4_C6.3', 'HDCM_uv4_C6.4', 'HDCM_uv4_gpa', 
+            'HDCM_uv5-họ tên', 'HDCM_uv5_C3.3', 'HDCM_uv5_C4.2', 'HDCM_uv5_C5.3', 'HDCM_uv5_C6.3', 'HDCM_uv5_C6.4', 'HDCM_uv5_gpa', 
+            'CBHD_1-họ tên', 'CBHD_1_C1.1', 'CBHD_1_C1.2', 'CBHD_1_C5.1', 'CBHD_1_gpa', 
+            'CBHD_2-họ tên', 'CBHD_2_C2.1', 'CBHD_2_C2.2', 'CBHD_2_C3.1', 'CBHD_2_C5.2', 'CBHD_2_gpa', 
+            'CBHD_3-họ tên', 'CBHD_3_C2.3', 'CBHD_3_C3.2', 'CBHD_3_C4.1', 'CBHD_3_C6.1', 'CBHD_3_C6.2', 'CBHD_3_gpa', 
+            'CBPB-họ tên', 'CBPB_C2.3', 'CBPB_C3.2', 'CBPB_C4.1', 'CBPB_C6.1', 'CBPB_C6.2', 'CBPB_gpa'
+            ]
         
 
         # Duyệt qua từng sinh viên
@@ -994,3 +999,47 @@ def process_form_pb_new(request):
 
     # Nếu không phải POST, chuyển về baoCaoTienDoL1
     return JsonResponse({'message': 'Chấm điểm không thành công'})
+
+def getGradeOfStudent(msv, name, formType):
+    grade_student = {
+    }
+    file_path = os.path.join('DataCollected', 'final_new.xlsx')
+    df = pd.read_excel(file_path)
+    df_sv = df[df['Mã sinh viên'] == msv]
+    if df_sv.empty:
+        return None
+    prefix_column = 'ZZZ'
+    formTypeToPrefix = {
+        'baoCaoTienDoL1': 'CBHD_1',
+        'baoCaoTienDoL2': 'CBHD_2',
+        'huongdan3': 'CBHD_3',
+        'canBoPhanBien': 'CBPB',
+        'hoiDongChuyenMon': 'HDCM'
+    }
+
+    for column in df_sv.columns:
+        if df.loc[0, column] == name:
+            column_tmp = column.split('-')
+            if formTypeToPrefix[formType] in column_tmp[0]:
+                prefix_column = column_tmp[0]
+                break
+    grade_columns = [
+            'HDCM_uv1_C3.3', 'HDCM_uv1_C4.2', 'HDCM_uv1_C5.3', 'HDCM_uv1_C6.3', 'HDCM_uv1_C6.4', 'HDCM_uv1_gpa', 
+            'HDCM_uv2_C3.3', 'HDCM_uv2_C4.2', 'HDCM_uv2_C5.3', 'HDCM_uv2_C6.3', 'HDCM_uv2_C6.4', 'HDCM_uv2_gpa', 
+            'HDCM_uv3_C3.3', 'HDCM_uv3_C4.2', 'HDCM_uv3_C5.3', 'HDCM_uv3_C6.3', 'HDCM_uv3_C6.4', 'HDCM_uv3_gpa', 
+            'HDCM_uv4_C3.3', 'HDCM_uv4_C4.2', 'HDCM_uv4_C5.3', 'HDCM_uv4_C6.3', 'HDCM_uv4_C6.4', 'HDCM_uv4_gpa', 
+            'HDCM_uv5_C3.3', 'HDCM_uv5_C4.2', 'HDCM_uv5_C5.3', 'HDCM_uv5_C6.3', 'HDCM_uv5_C6.4', 'HDCM_uv5_gpa', 
+            'CBHD_1_C1.1', 'CBHD_1_C1.2', 'CBHD_1_C5.1', 'CBHD_1_gpa', 
+            'CBHD_2_C2.1', 'CBHD_2_C2.2', 'CBHD_2_C3.1', 'CBHD_2_C5.2', 'CBHD_2_gpa', 
+            'CBHD_3_C2.3', 'CBHD_3_C3.2', 'CBHD_3_C4.1', 'CBHD_3_C6.1', 'CBHD_3_C6.2', 'CBHD_3_gpa', 
+           'CBPB_C2.3', 'CBPB_C3.2', 'CBPB_C4.1', 'CBPB_C6.1', 'CBPB_C6.2', 'CBPB_gpa'
+    ]
+    print(2)
+    true_columns = []
+    for column in grade_columns:
+        if column.startswith(prefix_column):
+            true_columns.append(column)
+    for column in true_columns:
+        if not pd.isnull(df_sv[column].values[0]):
+            grade_student[column.split('_')[-1].replace(".", "_")] = df_sv[column].values[0]
+    return grade_student

@@ -132,30 +132,45 @@
                             <td>C1.1: Tổng hợp được các kiến thức lý thuyết và khoa học và công nghệ của ngành học để xác định vấn đề nghiên cứu nhằm giải quyết vấn đề kỹ thuật trong thực tiễn - thực tế</td>
                             <td class="weight">35%</td>
                             {% for student in students %}
-                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC11SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
-                            {% endfor %}
+                                {% if student.grade.C1_1 %}
+                                    <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC11SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C1_1}}" readonly></td>
+                                {% else %}
+                                    <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC11SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                                {% endif %}                         
+                        {% endfor %}
                         </tr>
                         <tr>
                             <td>C1.2: Khảo sát các thành phần liên quan đến đề tài</td>
                             <td class="weight">35%</td>
                             {% for student in students %}
+                            {% if student.grade.C1_2 %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC12SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C1_2}}" readonly></td>
+                        {% else %}
                             <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC12SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
-                            {% endfor %}
+                        {% endif %}                            
+                        {% endfor %}
                         </tr>
                         <tr>
                             <td><strong class="fs-6">CLO 5</strong>. Vận dụng kỹ năng làm việc nhóm trong nhóm ngành điện tử hoặc trong nhóm đa ngành nhằm giải quyết vấn đề hiệu quả</td>
                             <td>C5.1: Đóng góp có nhóm trong nhóm làm việc</td>
                             <td class="weight">30%</td>
                             {% for student in students %}
+                            {% if student.grade.C5_1 %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC51SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C5_1}}" readonly></td>
+                        {% else %}
                             <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC51SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
-                            {% endfor %}
+                        {% endif %}                            
+                        {% endfor %}
                         </tr>
                         <tr class="table-light">
                             <td colspan="2" class="text-center">Điểm GPA</td>
                             <td></td>
                             {% for student in students %}
-                                                        <td><input class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}" readonly style="border: none; outline: none; background-color: #f8f9fa;"></input></td>
-
+                            {% if student.grade.gpa %}
+                            <td><input type="number" class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}" readonly style="border: none; outline: none; background-color: #f8f9fa;" value="{{ student.grade.gpa }}"></input></td>
+                        {% else %}
+                            <td><input type="number" class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}" readonly style="border: none; outline: none; background-color: #f8f9fa;"></input></td>
+                        {% endif %}
                             {% endfor %}
                         </tr>
                     </tbody>

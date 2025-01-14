@@ -113,7 +113,11 @@
                     <td>C3.3. Tiến hành được các thực nghiệm, cũng như phân tích, đánh giá và diễn giải các kết quả thực nghiệm.</td>
                     <td class="weight">20%</td>
                     {% for student in students %}
+                        {% if student.grade.C3_3 %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC33SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C3_3 }}" readonly></td>
+                        {% else %}
                             <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC33SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                        {% endif %}
                     {% endfor %}
                 </tr>
                 <tr>
@@ -121,7 +125,11 @@
                     <td>C4.2. Giải thích được tác động của kết quả nghiên cứu đối với cộng đồng, xã hội, hoặc ngành nghề</td>
                     <td class="weight">20%</td>
                     {% for student in students %}
+                        {% if student.grade.C4_2 %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC42SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C4_2}}" readonly></td>
+                        {% else %}
                             <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC42SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                        {% endif %}
                     {% endfor %}
                 </tr>
                 <tr>
@@ -129,7 +137,11 @@
                     <td>C5.3. Hiệu quả giải quyết vấn đề của nhóm</td>
                     <td class="weight">20%</td>
                     {% for student in students %}
+                        {% if student.grade.C5_3 %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC53SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C5_3}}" readonly></td>
+                        {% else %}
                             <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC53SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                        {% endif %}
                     {% endfor %}
                 </tr>
                 <tr>
@@ -137,14 +149,22 @@
                     <td>C6.3. Khả năng thuyết trình</td>
                     <td class="weight">20%</td>
                     {% for student in students %}
+                        {% if student.grade.C6_3 %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC63SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C6_3}}" readonly></td>
+                        {% else %}
                             <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC63SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                        {% endif %}
                     {% endfor %}
                 </tr>
                 <tr>
                     <td>C6.4. Khả năng giao tiếp đối thoại và trả lời các câu hỏi của hội đồng.</td>
                     <td class="weight">20%</td>
                     {% for student in students %}
+                        {% if student.grade.C6_4 %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC64SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C6_4}}" readonly></td>
+                        {% else %}
                             <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC64SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                        {% endif %}
                     {% endfor %}
                 </tr>
             </tbody>
@@ -152,7 +172,11 @@
                 <tr>
                     <td colspan="3">Điểm GPA</td>
                     {% for student in students %}
-                            <td><input class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}" readonly style="border: none; outline: none; background-color: #f8f9fa;"></input></td>
+                        {% if student.grade.gpa %}
+                            <td><input type="number" class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}" readonly style="border: none; outline: none; background-color: #f8f9fa;" value="{{ student.grade.gpa }}"></input></td>
+                        {% else %}
+                            <td><input type="number" class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}" readonly style="border: none; outline: none; background-color: #f8f9fa;"></input></td>
+                        {% endif %}
                     {% endfor %}
                 </tr>
             </tfoot>

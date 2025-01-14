@@ -106,7 +106,11 @@
                     <td>C2.3. Trình bày được giải pháp để giải quyết vấn đề thực tiễn đặt ra liên quan đến đồ án.</td>
                     <td class="weight">20%</td>
                     {% for student in students %}
-                    <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC23SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                    {% if student.grade.C2_3 %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC23SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C2_3}}" readonly></td>
+                        {% else %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC23SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                        {% endif %}   
                     {% endfor %}
 
                 </tr>
@@ -115,7 +119,11 @@
                     <td>C3.2. Thiết kế được các hệ thống điện tử đáp ứng yêu cầu đề ra.</td>
                     <td class="weight">20%</td>
                     {% for student in students %}
+                    {% if student.grade.C3_2 %}
+                    <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC32SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C3_2}}" readonly></td>
+                {% else %}
                     <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC32SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                {% endif %}   
                     {% endfor %}
 
                 </tr>
@@ -124,7 +132,11 @@
                     <td>C4.1. Nhận thức và thực hiện trách nhiệm nghề nghiệp, đạo đức trong thiết kế và triển khai hệ thống điện - điện tử.</td>
                     <td class="weight">20%</td>
                     {% for student in students %}
-                    <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC41SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                    {% if student.grade.C4_1 %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC41SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C4_1}}" readonly></td>
+                        {% else %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC41SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                        {% endif %}   
                     {% endfor %}
 
                 </tr>
@@ -133,15 +145,24 @@
                     <td>C6.1. Khả năng viết và bố cục của báo cáo.</td>
                     <td class="weight">20%</td>
                     {% for student in students %}
-                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC61SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
-                    {% endfor %}
+                    {% if student.grade.C6_1 %}
+                    <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC61SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C6_1}}" readonly></td>
+                {% else %}
+                    <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC61SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                {% endif %}                       
+                {% endfor %}
 
                 </tr>
                 <tr id="c6.2">
                     <td>C6.2. Khả năng cung cấp dữ liệu để minh chứng cho đồ án.</td>
                     <td class="weight">20%</td>
                     {% for student in students %}
-                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC62SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                    {% if student.grade.C6_2 %}
+                    <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC62SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C6_2}}" readonly></td>
+                {% else %}
+                    <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC62SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                {% endif %}   
+
                     {% endfor %}
 
                 </tr>
@@ -150,8 +171,11 @@
                 <tr id="gpa">
                     <td colspan="3">Điểm GPA</td>
                     {% for student in students %}
-                            <td><input class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}" readonly style="border: none; outline: none; background-color: #f8f9fa;"></input></td>
-
+                    {% if student.grade.gpa %}
+                    <td><input type="number" class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}" readonly style="border: none; outline: none; background-color: #f8f9fa;" value="{{ student.grade.gpa }}"></input></td>
+                {% else %}
+                    <td><input type="number" class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}" readonly style="border: none; outline: none; background-color: #f8f9fa;"></input></td>
+                {% endif %}
                     {% endfor %}
 
                 </tr>
