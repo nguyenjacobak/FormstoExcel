@@ -27,7 +27,9 @@ Tạo virtual environment
 Tạo môi trường ảo để quản lý các thư viện:
 
 python -m venv venv
+
 source venv/bin/activate      # Trên macOS/Linux
+
 venv\Scripts\activate       # Trên Windows
 
 Cài đặt các thư viện cần thiết
