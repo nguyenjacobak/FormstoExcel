@@ -115,6 +115,7 @@ def get_projects_by_lecture_and_type(lecturer_name, project_type):
     return projects
 
 def find_student_by_council_and_group_id(council_id=None, group_id=None):
+    print(council_id, group_id)
     students = []
     if group_id is None or council_id is None:
         return students
@@ -267,14 +268,15 @@ def hoiDongChuyenMon(request):
             project_type = data.get('projectType', '')
             projectName = [data.get('projectName', '')]
             unit = data.get('unit', '')
-            studentsMsvSameGroup = []   
+            studentsMsvSameGroup = []
+            print(group)
             if group is not None and group != '':
                 tmp = group.split(' - ')
                 council_id = int(tmp[0][2:])
                 group_id = int(tmp[1])
                 studentsMsvSameGroup = find_student_by_council_and_group_id(council_id, group_id)
                 studentsData = [students[msv] for msv in studentsMsvSameGroup]
-                projectName = [studentData['project'] for studentData in studentsData]
+                projectName = [f"{studentData['project']} ({studentData['msv']})" for studentData in studentsData]
 
         except (json.JSONDecodeError, AttributeError):
             return JsonResponse({'error': 'Dữ liệu không hợp lệ hoặc trống'}, status=400)
