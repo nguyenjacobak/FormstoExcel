@@ -132,30 +132,45 @@
                             <td>C1.1: Tổng hợp được các kiến thức lý thuyết và khoa học và công nghệ của ngành học để xác định vấn đề nghiên cứu nhằm giải quyết vấn đề kỹ thuật trong thực tiễn - thực tế</td>
                             <td class="weight">35%</td>
                             {% for student in students %}
-                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC11SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
-                            {% endfor %}
+                                {% if student.grade.C1_1 %}
+                                    <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC11SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C1_1}}" readonly></td>
+                                {% else %}
+                                    <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC11SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                                {% endif %}                         
+                        {% endfor %}
                         </tr>
                         <tr>
                             <td>C1.2: Khảo sát các thành phần liên quan đến đề tài</td>
                             <td class="weight">35%</td>
                             {% for student in students %}
+                            {% if student.grade.C1_2 %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC12SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C1_2}}" readonly></td>
+                        {% else %}
                             <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC12SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
-                            {% endfor %}
+                        {% endif %}                            
+                        {% endfor %}
                         </tr>
                         <tr>
                             <td><strong class="fs-6">CLO 5</strong>. Vận dụng kỹ năng làm việc nhóm trong nhóm ngành điện tử hoặc trong nhóm đa ngành nhằm giải quyết vấn đề hiệu quả</td>
                             <td>C5.1: Đóng góp có nhóm trong nhóm làm việc</td>
                             <td class="weight">30%</td>
                             {% for student in students %}
+                            {% if student.grade.C5_1 %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC51SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C5_1}}" readonly></td>
+                        {% else %}
                             <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC51SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
-                            {% endfor %}
+                        {% endif %}                            
+                        {% endfor %}
                         </tr>
                         <tr class="table-light">
                             <td colspan="2" class="text-center">Điểm GPA</td>
                             <td></td>
                             {% for student in students %}
-                                                        <td><input class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}" readonly style="border: none; outline: none; background-color: #f8f9fa;"></input></td>
-
+                            {% if student.grade.gpa %}
+                            <td><input type="number" class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}" readonly style="border: none; outline: none; background-color: #f8f9fa;" value="{{ student.grade.gpa }}"></input></td>
+                        {% else %}
+                            <td><input type="number" class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}" readonly style="border: none; outline: none; background-color: #f8f9fa;"></input></td>
+                        {% endif %}
                             {% endfor %}
                         </tr>
                     </tbody>
@@ -178,7 +193,9 @@
     </div>
 </body>
 </html>
-<script>
+<script type="module">
+    import { getCookie, autoFillGPA, submitForm } from '../static/js/utils.js';
+
     const dataPost = JSON.parse(localStorage.getItem('data'));
     const listMsvOfStudent  = window.location.search;
     const csrfToken = getCookie('csrftoken');
@@ -192,76 +209,8 @@
         body: JSON.stringify({ data: dataPost }),
     }).then(response => response.text())
     .then(html => {
-        document.body.innerHTML = html; // Thay đổi DOM nếu cần
+        document.body.innerHTML = html; 
         autoFillGPA();
-        submitForm();
+        submitForm("{% url 'process_form_hd1_new' %}");
     });
-    
-    function getCookie(name) {
-        const cookies = document.cookie.split(';');
-        for (let cookie of cookies) {
-            const [key, value] = cookie.trim().split('=');
-            if (key === name) return decodeURIComponent(value);
-        }
-        return null;
-    }
-
-    function autoFillGPA(){
-        const inputs = document.querySelectorAll(".diem");
-        const weights = document.querySelectorAll(".weight");
-        inputs.forEach((input, index) => {
-            input.addEventListener("input", function () {
-                const studentId = parseInt(input.getAttribute('stt').slice(2)); // Lấy ID sinh viên
-                const studentInputs = document.querySelectorAll(`.diemSV${studentId}`); // Lấy tất cả ô điểm của sinh viên
-                const gpaInput = document.getElementById(`diemGPASV${studentId}`);
-                let total = 0;
-                let count = 0;
-
-                studentInputs.forEach((i, index) => {
-                    const value = parseFloat(i.value);
-                    if (!isNaN(value)) {
-                        const weight = parseFloat(weights[0].innerHTML.replace("%", "")) / 100
-                        total += value * weight;
-                        count++;
-                    }
-                });
-                if (count === studentInputs.length) {
-                    gpaInput.value = (total).toFixed(1); // Làm tròn đến 2 chữ số thập phân
-                } else {
-                    gpaInput.value = ""; // Nếu chưa đủ 4 ô, xóa giá trị GPA
-                }
-            });
-        });
-    }
-
-    function submitForm(){
-        document.getElementById('evaluationForm').addEventListener('submit', async function(e) {
-            e.preventDefault(); 
-
-            const form = e.target;
-            const formData = new FormData(form);
-
-            try {
-                const response = await fetch("{% url 'process_form_hd3' %}", {
-                    method: "POST",
-                    headers: {
-                        "X-CSRFToken": formData.get('csrfmiddlewaretoken') 
-                    },
-                    body: formData
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    alert(data.message); 
-                    window.location.href = "/"; 
-                } else {
-                    const error = await response.json();
-                    alert(error.error || "Đã có lỗi xảy ra, vui lòng thử lại!");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                alert("Đã có lỗi xảy ra, vui lòng thử lại!");
-            }
-        });
-    }
 </script>

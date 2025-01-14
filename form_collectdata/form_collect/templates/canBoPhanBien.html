@@ -104,7 +104,11 @@
                     <td>C2.3. Trình bày được giải pháp để giải quyết vấn đề thực tiễn đặt ra liên quan đến đồ án.</td>
                     <td class="weight">20%</td>
                     {% for student in students %}
+                    {% if student.grade.C2_3 %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC23SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C2_3}}" readonly></td>
+                        {% else %}
                             <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC23SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                        {% endif %}   
                     {% endfor %}
                 </tr>
                 <tr>
@@ -112,7 +116,11 @@
                     <td>C3.2. Thiết kế được các hệ thống điện tử đáp ứng yêu cầu đề ra.</td>
                     <td class="weight">20%</td>
                     {% for student in students %}
-                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC32SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                    {% if student.grade.C3_2 %}
+                    <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC32SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C3_2}}" readonly></td>
+                {% else %}
+                    <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC32SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                {% endif %}   
                     {% endfor %}
                 </tr>
                 <tr>
@@ -120,22 +128,34 @@
                     <td>C4.1. Nhận thức và thực hiện trách nhiệm nghề nghiệp, đạo đức trong thiết kế và triển khai hệ thống điện - điện tử.</td>
                     <td class="weight">20%</td>
                     {% for student in students %}
+                    {% if student.grade.C4_1 %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC41SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C4_1}}" readonly></td>
+                        {% else %}
                             <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC41SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                        {% endif %}   
                     {% endfor %}
                 </tr>
                 <tr>
                     <td rowspan="2"><strong class="fs-6">CLO 6</strong>. Vận dụng kĩ tốt năng giao tiếp trong ngành điện - điện tử</td>
                     <td class="weight">C6.1. Khả năng viết và bố cục của báo cáo.</td>
-                    <td>20%</td>
+                    <td class="weight">20%</td>
                     {% for student in students %}
-                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC62SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                    {% if student.grade.C6_1 %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC61SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C6_1}}" readonly></td>
+                        {% else %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC61SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                        {% endif %}   
                     {% endfor %}
                 </tr>
                 <tr>
                     <td>C6.2. Khả năng cung cấp dữ liệu để minh chứng cho đồ án.</td>
                     <td class="weight">20%</td>
                     {% for student in students %}
+                    {% if student.grade.C6_2 %}
+                            <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC62SV{{ forloop.counter }}" min="0" max="10" step="0.1" value="{{ student.grade.C6_2}}" readonly></td>
+                        {% else %}
                             <td><input type="number" class="form-control text-center diemSV{{ forloop.counter }} diem" stt="SV{{ forloop.counter}}" name="diemC62SV{{ forloop.counter }}" min="0" max="10" step="0.1"></td>
+                        {% endif %}   
                     {% endfor %}
                 </tr>
             </tbody>
@@ -143,8 +163,11 @@
                 <tr>
                     <td colspan="3">Điểm GPA</td>
                     {% for student in students %}
-                                                        <td><input class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}" readonly style="border: none; outline: none; background-color: #f8f9fa;"></input></td>
-
+                    {% if student.grade.gpa %}
+                    <td><input type="number" class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}" readonly style="border: none; outline: none; background-color: #f8f9fa;" value="{{ student.grade.gpa }}"></input></td>
+                {% else %}
+                    <td><input type="number" class="text-center diemGPA" name="gpaSV{{ forloop.counter }}" id="diemGPASV{{ forloop.counter }}" readonly style="border: none; outline: none; background-color: #f8f9fa;"></input></td>
+                {% endif %}
                     {% endfor %}
                 </tr>
             </tfoot>
@@ -166,7 +189,9 @@
     </div>
 </body>
 </html>
-<script>
+<script type="module">
+    import { getCookie, submitForm, autoFillGPA } from "../static/js/utils.js";
+
     const dataPost = JSON.parse(localStorage.getItem('data'));
     const listMsvOfStudent  = window.location.search;
     const csrfToken = getCookie('csrftoken');
@@ -182,74 +207,8 @@
     .then(html => {
         document.body.innerHTML = html; // Thay đổi DOM nếu cần
         autoFillGPA();
-        submitForm();
+        submitForm("{% url 'process_form_pb' %}");
     });
     
-    function getCookie(name) {
-        const cookies = document.cookie.split(';');
-        for (let cookie of cookies) {
-            const [key, value] = cookie.trim().split('=');
-            if (key === name) return decodeURIComponent(value);
-        }
-        return null;
-    }
-
-    function autoFillGPA(){
-        const inputs = document.querySelectorAll(".diem");
-        const weights = document.querySelectorAll(".weight");
-        inputs.forEach((input, index) => {
-            input.addEventListener("input", function () {
-                const studentId = parseInt(input.getAttribute('stt').slice(2)); // Lấy ID sinh viên
-                const studentInputs = document.querySelectorAll(`.diemSV${studentId}`); // Lấy tất cả ô điểm của sinh viên
-                const gpaInput = document.getElementById(`diemGPASV${studentId}`);
-                let total = 0;
-                let count = 0;
-
-                studentInputs.forEach((i, index) => {
-                    const value = parseFloat(i.value);
-                    if (!isNaN(value)) {
-                        const weight = parseFloat(weights[0].innerHTML.replace("%", "")) / 100
-                        total += value * weight;
-                        count++;
-                    }
-                });
-                if (count === studentInputs.length) {
-                    gpaInput.value = (total).toFixed(1); // Làm tròn đến 2 chữ số thập phân
-                } else {
-                    gpaInput.value = ""; // Nếu chưa đủ 4 ô, xóa giá trị GPA
-                }
-            });
-        });
-    }
-
-    function submitForm(){
-        document.getElementById('evaluationForm').addEventListener('submit', async function(e) {
-            e.preventDefault(); 
-
-            const form = e.target;
-            const formData = new FormData(form);
-
-            try {
-                const response = await fetch("{% url 'process_form_hd3' %}", {
-                    method: "POST",
-                    headers: {
-                        "X-CSRFToken": formData.get('csrfmiddlewaretoken') 
-                    },
-                    body: formData
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    alert(data.message); 
-                    window.location.href = "/"; 
-                } else {
-                    const error = await response.json();
-                    alert(error.error || "Đã có lỗi xảy ra, vui lòng thử lại!");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                alert("Đã có lỗi xảy ra, vui lòng thử lại!");
-            }
-        });
-    }
+    
 </script>
