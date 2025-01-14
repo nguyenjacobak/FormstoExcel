@@ -1183,5 +1183,5 @@ def process_final_new_baocao2():
     print("Dữ liệu đã được thêm vào file TongHopDiem2.xlsx")
  
 def xuat():
-    #process_final_new_baocao1()
-    #process_final_new_baocao2()
+    process_final_new_baocao1()
+    process_final_new_baocao2()
