@@ -5,10 +5,10 @@ from openpyxl import load_workbook
 
 def process_final_new_baocao2():
     # Đọc file Excel
-    final_new_path = r"FormstoExcel\form_collectdata\form_collect\DataCollected\final_new.xlsx"
+    final_new_path = r"DataCollected\final_new.xlsx"
     
     df_final_new = pd.read_excel(final_new_path)
-    
+    print(df_final_new.columns)
     # Điền giá trị NaN bằng 0
     df_final_new = df_final_new.fillna(0)
     
@@ -80,7 +80,7 @@ def process_final_new_baocao2():
     new_data = new_data[columns_to_extract]
 
     # Đường dẫn đến file TongHopDiem2.xlsx
-    tong_hop_diem2_path = r"FormstoExcel\form_collectdata\form_collect\DataCollected\TongHopDiem2.xlsx"
+    tong_hop_diem2_path = r"DataCollected\TongHopDiem2.xlsx"
 
     # Xóa dữ liệu cũ từ hàng số 4 trở đi và thêm dữ liệu mới
     workbook = load_workbook(tong_hop_diem2_path)
@@ -99,5 +99,5 @@ def process_final_new_baocao2():
     print("Dữ liệu đã được thêm vào file TongHopDiem2.xlsx")
 
 # Gọi hàm để xử lý dữ liệu và lấy kết quả
-process_final_new()
+process_final_new_baocao2()
 

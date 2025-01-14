@@ -480,23 +480,30 @@ def process_form_hdcm_new(request):
         if os.path.exists(file_path):
             workbook = load_workbook(file_path)
             sheet = workbook.active
-        else:
-            workbook = Workbook()
-            sheet = workbook.active
-            sheet.title = "Sheet1"
+            # Lấy header hiện tại
+            header_row = next(sheet.iter_rows(min_row=1, max_row=1, values_only=True), [])
             # Thêm các cột mới theo cấu trúc mới
-            sheet.append(["Họ và tên",   " Mã sinh viên",   " Lớp",   
-                        " HDCM_uv1-họ tên",   " HDCM_uv1_C3.3",   " HDCM_uv1_C4.2",   " HDCM_uv1_C5.3",   " HDCM_uv1_C6.3",   " HDCM_uv1_C6.4",   " HDCM_uv1_gpa",
-                        " HDCM_uv2-họ tên",   " HDCM_uv2_C3.3",   " HDCM_uv2_C4.2",   " HDCM_uv2_C5.3",   " HDCM_uv2_C6.3",   " HDCM_uv2_C6.4",   " HDCM_uv2_gpa",   
-                        " HDCM_uv3-họ tên",   " HDCM_uv3_C3.3",   " HDCM_uv3_C4.2",   " HDCM_uv3_C5.3",   " HDCM_uv3_C6.3",   " HDCM_uv3_C6.4",   " HDCM_uv3_gpa",   
-                        " HDCM_uv4-họ tên",   " HDCM_uv4_C3.3",   " HDCM_uv4_C4.2",   " HDCM_uv4_C5.3",   " HDCM_uv4_C6.3",   " HDCM_uv4_C6.4",   " HDCM_uv4_gpa",   
-                        " HDCM_uv5-họ tên",   " HDCM_uv5_C3.3",   " HDCM_uv5_C4.2",   " HDCM_uv5_C5.3",   " HDCM_uv5_C6.3",   " HDCM_uv5_C6.4",   " HDCM_uv5_gpa",   
-                        " CBHD_1-họ tên",   " CBHD_1_C1.1",   " CBHD_1_C1.2",   " CBHD_1_C5.1",   " CBHD_1_gpa",   
-                        " CBHD_2-họ tên",   " CBHD_2_C2.1",   " CBHD_2_C2.2",   " CBHD_2_C3.1",   " CBHD_2_C5.2",   " CBHD_2_gpa",   
-                        " CBHD_3-họ tên",   " CBHD_3_C2.3",   " CBHD_3_C3.2",   " CBHD_3_C4.1",   " CBHD_3_C6.1",   " CBHD_3_C6.2",   " CBHD_3_gpa",   
-                        " CBPB-họ tên",   " CBPB_C2.3",   " CBPB_C3.2",   " CBPB_C4.1",   " CBPB_C6.1",   " CBPB_C6.2",   " CBPB_gpa"])
-            workbook.save(file_path)
+            required_headers = ['Họ và tên', 'Mã sinh viên', 'Lớp', 
+            'HDCM_uv1-họ tên', 'HDCM_uv1_C3.3', 'HDCM_uv1_C4.2', 'HDCM_uv1_C5.3', 'HDCM_uv1_C6.3', 'HDCM_uv1_C6.4', 'HDCM_uv1_gpa', 
+            'HDCM_uv2-họ tên', 'HDCM_uv2_C3.3', 'HDCM_uv2_C4.2', 'HDCM_uv2_C5.3', 'HDCM_uv2_C6.3', 'HDCM_uv2_C6.4', 'HDCM_uv2_gpa', 
+            'HDCM_uv3-họ tên', 'HDCM_uv3_C3.3', 'HDCM_uv3_C4.2', 'HDCM_uv3_C5.3', 'HDCM_uv3_C6.3', 'HDCM_uv3_C6.4', 'HDCM_uv3_gpa', 
+            'HDCM_uv4-họ tên', 'HDCM_uv4_C3.3', 'HDCM_uv4_C4.2', 'HDCM_uv4_C5.3', 'HDCM_uv4_C6.3', 'HDCM_uv4_C6.4', 'HDCM_uv4_gpa', 
+            'HDCM_uv5-họ tên', 'HDCM_uv5_C3.3', 'HDCM_uv5_C4.2', 'HDCM_uv5_C5.3', 'HDCM_uv5_C6.3', 'HDCM_uv5_C6.4', 'HDCM_uv5_gpa', 
+            'CBHD_1-họ tên', 'CBHD_1_C1.1', 'CBHD_1_C1.2', 'CBHD_1_C5.1', 'CBHD_1_gpa', 
+            'CBHD_2-họ tên', 'CBHD_2_C2.1', 'CBHD_2_C2.2', 'CBHD_2_C3.1', 'CBHD_2_C5.2', 'CBHD_2_gpa', 
+            'CBHD_3-họ tên', 'CBHD_3_C2.3', 'CBHD_3_C3.2', 'CBHD_3_C4.1', 'CBHD_3_C6.1', 'CBHD_3_C6.2', 'CBHD_3_gpa', 
+            'CBPB-họ tên', 'CBPB_C2.3', 'CBPB_C3.2', 'CBPB_C4.1', 'CBPB_C6.1', 'CBPB_C6.2', 'CBPB_gpa'
+            ]
+            # Kiểm tra nếu header hiện tại không khớp với required_headers
+            if not header_row or list(header_row)  != required_headers:
+                # Xóa header hiện tại
+                sheet.delete_rows(1)
+                # Thêm header mới vào hàng đầu tiên
+                for col_num, header in enumerate(required_headers, 1):
+                    sheet.cell(row=1, column=col_num, value=header)
 
+            # Lưu lại workbook
+            workbook.save(file_path)   
         sheet = workbook.active
 
         # Mapping headers to column indexes
@@ -506,6 +513,8 @@ def process_form_hdcm_new(request):
             if cell:
                 headers[cell.strip().lower()] = idx + 1  # 1-based index
 
+        # Lưu lại workbook
+        workbook.save(file_path)
         
 
         # Duyệt qua từng sinh viên và lưu thông tin vào file Excel mới
@@ -599,6 +608,32 @@ def process_form_hd1_new(request):
         if os.path.exists(file_path):
             workbook = load_workbook(file_path)
             sheet = workbook.active
+            # Lấy header hiện tại
+            header_row = next(sheet.iter_rows(min_row=1, max_row=1, values_only=True), [])
+            # Thêm các cột mới theo cấu trúc mới
+            required_headers = ['Họ và tên', 'Mã sinh viên', 'Lớp', 
+            'HDCM_uv1-họ tên', 'HDCM_uv1_C3.3', 'HDCM_uv1_C4.2', 'HDCM_uv1_C5.3', 'HDCM_uv1_C6.3', 'HDCM_uv1_C6.4', 'HDCM_uv1_gpa', 
+            'HDCM_uv2-họ tên', 'HDCM_uv2_C3.3', 'HDCM_uv2_C4.2', 'HDCM_uv2_C5.3', 'HDCM_uv2_C6.3', 'HDCM_uv2_C6.4', 'HDCM_uv2_gpa', 
+            'HDCM_uv3-họ tên', 'HDCM_uv3_C3.3', 'HDCM_uv3_C4.2', 'HDCM_uv3_C5.3', 'HDCM_uv3_C6.3', 'HDCM_uv3_C6.4', 'HDCM_uv3_gpa', 
+            'HDCM_uv4-họ tên', 'HDCM_uv4_C3.3', 'HDCM_uv4_C4.2', 'HDCM_uv4_C5.3', 'HDCM_uv4_C6.3', 'HDCM_uv4_C6.4', 'HDCM_uv4_gpa', 
+            'HDCM_uv5-họ tên', 'HDCM_uv5_C3.3', 'HDCM_uv5_C4.2', 'HDCM_uv5_C5.3', 'HDCM_uv5_C6.3', 'HDCM_uv5_C6.4', 'HDCM_uv5_gpa', 
+            'CBHD_1-họ tên', 'CBHD_1_C1.1', 'CBHD_1_C1.2', 'CBHD_1_C5.1', 'CBHD_1_gpa', 
+            'CBHD_2-họ tên', 'CBHD_2_C2.1', 'CBHD_2_C2.2', 'CBHD_2_C3.1', 'CBHD_2_C5.2', 'CBHD_2_gpa', 
+            'CBHD_3-họ tên', 'CBHD_3_C2.3', 'CBHD_3_C3.2', 'CBHD_3_C4.1', 'CBHD_3_C6.1', 'CBHD_3_C6.2', 'CBHD_3_gpa', 
+            'CBPB-họ tên', 'CBPB_C2.3', 'CBPB_C3.2', 'CBPB_C4.1', 'CBPB_C6.1', 'CBPB_C6.2', 'CBPB_gpa'
+            ]
+            # Kiểm tra nếu header hiện tại không khớp với required_headers
+            if not header_row or list(header_row)  != required_headers:
+                # Xóa header hiện tại
+                sheet.delete_rows(1)
+                # Thêm header mới vào hàng đầu tiên
+                for col_num, header in enumerate(required_headers, 1):
+                    sheet.cell(row=1, column=col_num, value=header)
+
+            # Lưu lại workbook
+            workbook.save(file_path)   
+        sheet = workbook.active
+            
         
 
         # Ánh xạ header => index cột
@@ -608,17 +643,19 @@ def process_form_hd1_new(request):
             if cell:
                 headers[cell.strip().lower()] = idx + 1
 
-        required_headers = ["Họ và tên",   " Mã sinh viên",   " Lớp",   
-                        " HDCM_uv1-họ tên",   " HDCM_uv1_C3.3",   " HDCM_uv1_C4.2",   " HDCM_uv1_C5.3",   " HDCM_uv1_C6.3",   " HDCM_uv1_C6.4",   " HDCM_uv1_gpa",
-                        " HDCM_uv2-họ tên",   " HDCM_uv2_C3.3",   " HDCM_uv2_C4.2",   " HDCM_uv2_C5.3",   " HDCM_uv2_C6.3",   " HDCM_uv2_C6.4",   " HDCM_uv2_gpa",   
-                        " HDCM_uv3-họ tên",   " HDCM_uv3_C3.3",   " HDCM_uv3_C4.2",   " HDCM_uv3_C5.3",   " HDCM_uv3_C6.3",   " HDCM_uv3_C6.4",   " HDCM_uv3_gpa",   
-                        " HDCM_uv4-họ tên",   " HDCM_uv4_C3.3",   " HDCM_uv4_C4.2",   " HDCM_uv4_C5.3",   " HDCM_uv4_C6.3",   " HDCM_uv4_C6.4",   " HDCM_uv4_gpa",   
-                        " HDCM_uv5-họ tên",   " HDCM_uv5_C3.3",   " HDCM_uv5_C4.2",   " HDCM_uv5_C5.3",   " HDCM_uv5_C6.3",   " HDCM_uv5_C6.4",   " HDCM_uv5_gpa",   
-                        " CBHD_1-họ tên",   " CBHD_1_C1.1",   " CBHD_1_C1.2",   " CBHD_1_C5.1",   " CBHD_1_gpa",   
-                        " CBHD_2-họ tên",   " CBHD_2_C2.1",   " CBHD_2_C2.2",   " CBHD_2_C3.1",   " CBHD_2_C5.2",   " CBHD_2_gpa",   
-                        " CBHD_3-họ tên",   " CBHD_3_C2.3",   " CBHD_3_C3.2",   " CBHD_3_C4.1",   " CBHD_3_C6.1",   " CBHD_3_C6.2",   " CBHD_3_gpa",   
-                        " CBPB-họ tên",   " CBPB_C2.3",   " CBPB_C3.2",   " CBPB_C4.1",   " CBPB_C6.1",   " CBPB_C6.2",   " CBPB_gpa"
-                        ]
+        # Kiểm tra nếu header hiện tại không khớp với required_headers
+        if list(headers.keys()) != required_headers:
+            # Xóa header hiện tại
+            sheet.delete_rows(1)
+            # Chèn hàng mới ở vị trí đầu tiên
+            sheet.insert_rows(1)
+            # Thêm header mới vào hàng đầu tiên
+            for col_num, header in enumerate(required_headers, 1):
+                sheet.cell(row=1, column=col_num, value=header)
+
+        # Lưu lại workbook
+        workbook.save(file_path)
+        
         
 
         # Duyệt qua từng sinh viên
@@ -706,6 +743,32 @@ def process_form_hd2_new(request):
         if os.path.exists(file_path):
             workbook = load_workbook(file_path)
             sheet = workbook.active
+            # Lấy header hiện tại
+            header_row = next(sheet.iter_rows(min_row=1, max_row=1, values_only=True), [])
+            # Thêm các cột mới theo cấu trúc mới
+            required_headers = ['Họ và tên', 'Mã sinh viên', 'Lớp', 
+            'HDCM_uv1-họ tên', 'HDCM_uv1_C3.3', 'HDCM_uv1_C4.2', 'HDCM_uv1_C5.3', 'HDCM_uv1_C6.3', 'HDCM_uv1_C6.4', 'HDCM_uv1_gpa', 
+            'HDCM_uv2-họ tên', 'HDCM_uv2_C3.3', 'HDCM_uv2_C4.2', 'HDCM_uv2_C5.3', 'HDCM_uv2_C6.3', 'HDCM_uv2_C6.4', 'HDCM_uv2_gpa', 
+            'HDCM_uv3-họ tên', 'HDCM_uv3_C3.3', 'HDCM_uv3_C4.2', 'HDCM_uv3_C5.3', 'HDCM_uv3_C6.3', 'HDCM_uv3_C6.4', 'HDCM_uv3_gpa', 
+            'HDCM_uv4-họ tên', 'HDCM_uv4_C3.3', 'HDCM_uv4_C4.2', 'HDCM_uv4_C5.3', 'HDCM_uv4_C6.3', 'HDCM_uv4_C6.4', 'HDCM_uv4_gpa', 
+            'HDCM_uv5-họ tên', 'HDCM_uv5_C3.3', 'HDCM_uv5_C4.2', 'HDCM_uv5_C5.3', 'HDCM_uv5_C6.3', 'HDCM_uv5_C6.4', 'HDCM_uv5_gpa', 
+            'CBHD_1-họ tên', 'CBHD_1_C1.1', 'CBHD_1_C1.2', 'CBHD_1_C5.1', 'CBHD_1_gpa', 
+            'CBHD_2-họ tên', 'CBHD_2_C2.1', 'CBHD_2_C2.2', 'CBHD_2_C3.1', 'CBHD_2_C5.2', 'CBHD_2_gpa', 
+            'CBHD_3-họ tên', 'CBHD_3_C2.3', 'CBHD_3_C3.2', 'CBHD_3_C4.1', 'CBHD_3_C6.1', 'CBHD_3_C6.2', 'CBHD_3_gpa', 
+            'CBPB-họ tên', 'CBPB_C2.3', 'CBPB_C3.2', 'CBPB_C4.1', 'CBPB_C6.1', 'CBPB_C6.2', 'CBPB_gpa'
+            ]
+            # Kiểm tra nếu header hiện tại không khớp với required_headers
+            if not header_row or list(header_row)  != required_headers:
+                # Xóa header hiện tại
+                sheet.delete_rows(1)
+                # Thêm header mới vào hàng đầu tiên
+                for col_num, header in enumerate(required_headers, 1):
+                    sheet.cell(row=1, column=col_num, value=header)
+
+            # Lưu lại workbook
+            workbook.save(file_path)   
+        sheet = workbook.active
+            
         
 
         # Ánh xạ header => index cột
@@ -715,18 +778,17 @@ def process_form_hd2_new(request):
             if cell:
                 headers[cell.strip().lower()] = idx + 1
 
-        required_headers = ["Họ và tên",   " Mã sinh viên",   " Lớp",   
-                        " HDCM_uv1-họ tên",   " HDCM_uv1_C3.3",   " HDCM_uv1_C4.2",   " HDCM_uv1_C5.3",   " HDCM_uv1_C6.3",   " HDCM_uv1_C6.4",   " HDCM_uv1_gpa",
-                        " HDCM_uv2-họ tên",   " HDCM_uv2_C3.3",   " HDCM_uv2_C4.2",   " HDCM_uv2_C5.3",   " HDCM_uv2_C6.3",   " HDCM_uv2_C6.4",   " HDCM_uv2_gpa",   
-                        " HDCM_uv3-họ tên",   " HDCM_uv3_C3.3",   " HDCM_uv3_C4.2",   " HDCM_uv3_C5.3",   " HDCM_uv3_C6.3",   " HDCM_uv3_C6.4",   " HDCM_uv3_gpa",   
-                        " HDCM_uv4-họ tên",   " HDCM_uv4_C3.3",   " HDCM_uv4_C4.2",   " HDCM_uv4_C5.3",   " HDCM_uv4_C6.3",   " HDCM_uv4_C6.4",   " HDCM_uv4_gpa",   
-                        " HDCM_uv5-họ tên",   " HDCM_uv5_C3.3",   " HDCM_uv5_C4.2",   " HDCM_uv5_C5.3",   " HDCM_uv5_C6.3",   " HDCM_uv5_C6.4",   " HDCM_uv5_gpa",   
-                        " CBHD_1-họ tên",   " CBHD_1_C1.1",   " CBHD_1_C1.2",   " CBHD_1_C5.1",   " CBHD_1_gpa",   
-                        " CBHD_2-họ tên",   " CBHD_2_C2.1",   " CBHD_2_C2.2",   " CBHD_2_C3.1",   " CBHD_2_C5.2",   " CBHD_2_gpa",   
-                        " CBHD_3-họ tên",   " CBHD_3_C2.3",   " CBHD_3_C3.2",   " CBHD_3_C4.1",   " CBHD_3_C6.1",   " CBHD_3_C6.2",   " CBHD_3_gpa",   
-                        " CBPB-họ tên",   " CBPB_C2.3",   " CBPB_C3.2",   " CBPB_C4.1",   " CBPB_C6.1",   " CBPB_C6.2",   " CBPB_gpa"
-                        ]
-        
+        required_headers = ['Họ và tên', 'Mã sinh viên', 'Lớp', 
+                            'HDCM_uv1-họ tên', 'HDCM_uv1_C3.3', 'HDCM_uv1_C4.2', 'HDCM_uv1_C5.3', 'HDCM_uv1_C6.3', 'HDCM_uv1_C6.4', 'HDCM_uv1_gpa', 
+                            'HDCM_uv2-họ tên', 'HDCM_uv2_C3.3', 'HDCM_uv2_C4.2', 'HDCM_uv2_C5.3', 'HDCM_uv2_C6.3', 'HDCM_uv2_C6.4', 'HDCM_uv2_gpa', 
+                            'HDCM_uv3-họ tên', 'HDCM_uv3_C3.3', 'HDCM_uv3_C4.2', 'HDCM_uv3_C5.3', 'HDCM_uv3_C6.3', 'HDCM_uv3_C6.4', 'HDCM_uv3_gpa', 
+                            'HDCM_uv4-họ tên', 'HDCM_uv4_C3.3', 'HDCM_uv4_C4.2', 'HDCM_uv4_C5.3', 'HDCM_uv4_C6.3', 'HDCM_uv4_C6.4', 'HDCM_uv4_gpa', 
+                            'HDCM_uv5-họ tên', 'HDCM_uv5_C3.3', 'HDCM_uv5_C4.2', 'HDCM_uv5_C5.3', 'HDCM_uv5_C6.3', 'HDCM_uv5_C6.4', 'HDCM_uv5_gpa', 
+                            'CBHD_1-họ tên', 'CBHD_1_C1.1', 'CBHD_1_C1.2', 'CBHD_1_C5.1', 'CBHD_1_gpa', 
+                            'CBHD_2-họ tên', 'CBHD_2_C2.1', 'CBHD_2_C2.2', 'CBHD_2_C3.1', 'CBHD_2_C5.2', 'CBHD_2_gpa', 
+                            'CBHD_3-họ tên', 'CBHD_3_C2.3', 'CBHD_3_C3.2', 'CBHD_3_C4.1', 'CBHD_3_C6.1', 'CBHD_3_C6.2', 'CBHD_3_gpa', 
+                            'CBPB-họ tên', 'CBPB_C2.3', 'CBPB_C3.2', 'CBPB_C4.1', 'CBPB_C6.1', 'CBPB_C6.2', 'CBPB_gpa'
+                            ]
 
         # Duyệt qua từng sinh viên
         for student in students:
@@ -818,6 +880,31 @@ def process_form_hd3_new(request):
         if os.path.exists(file_path):
             workbook = load_workbook(file_path)
             sheet = workbook.active
+            # Lấy header hiện tại
+            header_row = next(sheet.iter_rows(min_row=1, max_row=1, values_only=True), [])
+            # Thêm các cột mới theo cấu trúc mới
+            required_headers = ['Họ và tên', 'Mã sinh viên', 'Lớp', 
+            'HDCM_uv1-họ tên', 'HDCM_uv1_C3.3', 'HDCM_uv1_C4.2', 'HDCM_uv1_C5.3', 'HDCM_uv1_C6.3', 'HDCM_uv1_C6.4', 'HDCM_uv1_gpa', 
+            'HDCM_uv2-họ tên', 'HDCM_uv2_C3.3', 'HDCM_uv2_C4.2', 'HDCM_uv2_C5.3', 'HDCM_uv2_C6.3', 'HDCM_uv2_C6.4', 'HDCM_uv2_gpa', 
+            'HDCM_uv3-họ tên', 'HDCM_uv3_C3.3', 'HDCM_uv3_C4.2', 'HDCM_uv3_C5.3', 'HDCM_uv3_C6.3', 'HDCM_uv3_C6.4', 'HDCM_uv3_gpa', 
+            'HDCM_uv4-họ tên', 'HDCM_uv4_C3.3', 'HDCM_uv4_C4.2', 'HDCM_uv4_C5.3', 'HDCM_uv4_C6.3', 'HDCM_uv4_C6.4', 'HDCM_uv4_gpa', 
+            'HDCM_uv5-họ tên', 'HDCM_uv5_C3.3', 'HDCM_uv5_C4.2', 'HDCM_uv5_C5.3', 'HDCM_uv5_C6.3', 'HDCM_uv5_C6.4', 'HDCM_uv5_gpa', 
+            'CBHD_1-họ tên', 'CBHD_1_C1.1', 'CBHD_1_C1.2', 'CBHD_1_C5.1', 'CBHD_1_gpa', 
+            'CBHD_2-họ tên', 'CBHD_2_C2.1', 'CBHD_2_C2.2', 'CBHD_2_C3.1', 'CBHD_2_C5.2', 'CBHD_2_gpa', 
+            'CBHD_3-họ tên', 'CBHD_3_C2.3', 'CBHD_3_C3.2', 'CBHD_3_C4.1', 'CBHD_3_C6.1', 'CBHD_3_C6.2', 'CBHD_3_gpa', 
+            'CBPB-họ tên', 'CBPB_C2.3', 'CBPB_C3.2', 'CBPB_C4.1', 'CBPB_C6.1', 'CBPB_C6.2', 'CBPB_gpa'
+            ]
+            # Kiểm tra nếu header hiện tại không khớp với required_headers
+            if not header_row or list(header_row)  != required_headers:
+                # Xóa header hiện tại
+                sheet.delete_rows(1)
+                # Thêm header mới vào hàng đầu tiên
+                for col_num, header in enumerate(required_headers, 1):
+                    sheet.cell(row=1, column=col_num, value=header)
+
+            # Lưu lại workbook
+            workbook.save(file_path)   
+        sheet = workbook.active
 
         # Ánh xạ header => index cột
         headers = {}
@@ -826,17 +913,17 @@ def process_form_hd3_new(request):
             if cell:
                 headers[cell.strip().lower()] = idx + 1
 
-        required_headers = ["Họ và tên",   " Mã sinh viên",   " Lớp",   
-                        " HDCM_uv1-họ tên",   " HDCM_uv1_C3.3",   " HDCM_uv1_C4.2",   " HDCM_uv1_C5.3",   " HDCM_uv1_C6.3",   " HDCM_uv1_C6.4",   " HDCM_uv1_gpa",
-                        " HDCM_uv2-họ tên",   " HDCM_uv2_C3.3",   " HDCM_uv2_C4.2",   " HDCM_uv2_C5.3",   " HDCM_uv2_C6.3",   " HDCM_uv2_C6.4",   " HDCM_uv2_gpa",   
-                        " HDCM_uv3-họ tên",   " HDCM_uv3_C3.3",   " HDCM_uv3_C4.2",   " HDCM_uv3_C5.3",   " HDCM_uv3_C6.3",   " HDCM_uv3_C6.4",   " HDCM_uv3_gpa",   
-                        " HDCM_uv4-họ tên",   " HDCM_uv4_C3.3",   " HDCM_uv4_C4.2",   " HDCM_uv4_C5.3",   " HDCM_uv4_C6.3",   " HDCM_uv4_C6.4",   " HDCM_uv4_gpa",   
-                        " HDCM_uv5-họ tên",   " HDCM_uv5_C3.3",   " HDCM_uv5_C4.2",   " HDCM_uv5_C5.3",   " HDCM_uv5_C6.3",   " HDCM_uv5_C6.4",   " HDCM_uv5_gpa",   
-                        " CBHD_1-họ tên",   " CBHD_1_C1.1",   " CBHD_1_C1.2",   " CBHD_1_C5.1",   " CBHD_1_gpa",   
-                        " CBHD_2-họ tên",   " CBHD_2_C2.1",   " CBHD_2_C2.2",   " CBHD_2_C3.1",   " CBHD_2_C5.2",   " CBHD_2_gpa",   
-                        " CBHD_3-họ tên",   " CBHD_3_C2.3",   " CBHD_3_C3.2",   " CBHD_3_C4.1",   " CBHD_3_C6.1",   " CBHD_3_C6.2",   " CBHD_3_gpa",   
-                        " CBPB-họ tên",   " CBPB_C2.3",   " CBPB_C3.2",   " CBPB_C4.1",   " CBPB_C6.1",   " CBPB_C6.2",   " CBPB_gpa"
-                        ]
+        required_headers = ['Họ và tên', 'Mã sinh viên', 'Lớp', 
+                            'HDCM_uv1-họ tên', 'HDCM_uv1_C3.3', 'HDCM_uv1_C4.2', 'HDCM_uv1_C5.3', 'HDCM_uv1_C6.3', 'HDCM_uv1_C6.4', 'HDCM_uv1_gpa', 
+                            'HDCM_uv2-họ tên', 'HDCM_uv2_C3.3', 'HDCM_uv2_C4.2', 'HDCM_uv2_C5.3', 'HDCM_uv2_C6.3', 'HDCM_uv2_C6.4', 'HDCM_uv2_gpa', 
+                            'HDCM_uv3-họ tên', 'HDCM_uv3_C3.3', 'HDCM_uv3_C4.2', 'HDCM_uv3_C5.3', 'HDCM_uv3_C6.3', 'HDCM_uv3_C6.4', 'HDCM_uv3_gpa', 
+                            'HDCM_uv4-họ tên', 'HDCM_uv4_C3.3', 'HDCM_uv4_C4.2', 'HDCM_uv4_C5.3', 'HDCM_uv4_C6.3', 'HDCM_uv4_C6.4', 'HDCM_uv4_gpa', 
+                            'HDCM_uv5-họ tên', 'HDCM_uv5_C3.3', 'HDCM_uv5_C4.2', 'HDCM_uv5_C5.3', 'HDCM_uv5_C6.3', 'HDCM_uv5_C6.4', 'HDCM_uv5_gpa', 
+                            'CBHD_1-họ tên', 'CBHD_1_C1.1', 'CBHD_1_C1.2', 'CBHD_1_C5.1', 'CBHD_1_gpa', 
+                            'CBHD_2-họ tên', 'CBHD_2_C2.1', 'CBHD_2_C2.2', 'CBHD_2_C3.1', 'CBHD_2_C5.2', 'CBHD_2_gpa', 
+                            'CBHD_3-họ tên', 'CBHD_3_C2.3', 'CBHD_3_C3.2', 'CBHD_3_C4.1', 'CBHD_3_C6.1', 'CBHD_3_C6.2', 'CBHD_3_gpa', 
+                            'CBPB-họ tên', 'CBPB_C2.3', 'CBPB_C3.2', 'CBPB_C4.1', 'CBPB_C6.1', 'CBPB_C6.2', 'CBPB_gpa'
+                            ]
         
 
         # Duyệt qua từng sinh viên
@@ -927,7 +1014,31 @@ def process_form_pb_new(request):
         if os.path.exists(file_path):
             workbook = load_workbook(file_path)
             sheet = workbook.active
-        
+            # Lấy header hiện tại
+            header_row = next(sheet.iter_rows(min_row=1, max_row=1, values_only=True), [])
+            # Thêm các cột mới theo cấu trúc mới
+            required_headers = ['Họ và tên', 'Mã sinh viên', 'Lớp', 
+            'HDCM_uv1-họ tên', 'HDCM_uv1_C3.3', 'HDCM_uv1_C4.2', 'HDCM_uv1_C5.3', 'HDCM_uv1_C6.3', 'HDCM_uv1_C6.4', 'HDCM_uv1_gpa', 
+            'HDCM_uv2-họ tên', 'HDCM_uv2_C3.3', 'HDCM_uv2_C4.2', 'HDCM_uv2_C5.3', 'HDCM_uv2_C6.3', 'HDCM_uv2_C6.4', 'HDCM_uv2_gpa', 
+            'HDCM_uv3-họ tên', 'HDCM_uv3_C3.3', 'HDCM_uv3_C4.2', 'HDCM_uv3_C5.3', 'HDCM_uv3_C6.3', 'HDCM_uv3_C6.4', 'HDCM_uv3_gpa', 
+            'HDCM_uv4-họ tên', 'HDCM_uv4_C3.3', 'HDCM_uv4_C4.2', 'HDCM_uv4_C5.3', 'HDCM_uv4_C6.3', 'HDCM_uv4_C6.4', 'HDCM_uv4_gpa', 
+            'HDCM_uv5-họ tên', 'HDCM_uv5_C3.3', 'HDCM_uv5_C4.2', 'HDCM_uv5_C5.3', 'HDCM_uv5_C6.3', 'HDCM_uv5_C6.4', 'HDCM_uv5_gpa', 
+            'CBHD_1-họ tên', 'CBHD_1_C1.1', 'CBHD_1_C1.2', 'CBHD_1_C5.1', 'CBHD_1_gpa', 
+            'CBHD_2-họ tên', 'CBHD_2_C2.1', 'CBHD_2_C2.2', 'CBHD_2_C3.1', 'CBHD_2_C5.2', 'CBHD_2_gpa', 
+            'CBHD_3-họ tên', 'CBHD_3_C2.3', 'CBHD_3_C3.2', 'CBHD_3_C4.1', 'CBHD_3_C6.1', 'CBHD_3_C6.2', 'CBHD_3_gpa', 
+            'CBPB-họ tên', 'CBPB_C2.3', 'CBPB_C3.2', 'CBPB_C4.1', 'CBPB_C6.1', 'CBPB_C6.2', 'CBPB_gpa'
+            ]
+            # Kiểm tra nếu header hiện tại không khớp với required_headers
+            if not header_row or list(header_row)  != required_headers:
+                # Xóa header hiện tại
+                sheet.delete_rows(1)
+                # Thêm header mới vào hàng đầu tiên
+                for col_num, header in enumerate(required_headers, 1):
+                    sheet.cell(row=1, column=col_num, value=header)
+
+            # Lưu lại workbook
+            workbook.save(file_path)  
+        sheet = workbook.active         
 
         # Ánh xạ header => index cột
         headers = {}
@@ -936,18 +1047,6 @@ def process_form_pb_new(request):
             if cell:
                 headers[cell.strip().lower()] = idx + 1
 
-        required_headers = ["Họ và tên",   " Mã sinh viên",   " Lớp",   
-                        " HDCM_uv1-họ tên",   " HDCM_uv1_C3.3",   " HDCM_uv1_C4.2",   " HDCM_uv1_C5.3",   " HDCM_uv1_C6.3",   " HDCM_uv1_C6.4",   " HDCM_uv1_gpa",
-                        " HDCM_uv2-họ tên",   " HDCM_uv2_C3.3",   " HDCM_uv2_C4.2",   " HDCM_uv2_C5.3",   " HDCM_uv2_C6.3",   " HDCM_uv2_C6.4",   " HDCM_uv2_gpa",   
-                        " HDCM_uv3-họ tên",   " HDCM_uv3_C3.3",   " HDCM_uv3_C4.2",   " HDCM_uv3_C5.3",   " HDCM_uv3_C6.3",   " HDCM_uv3_C6.4",   " HDCM_uv3_gpa",   
-                        " HDCM_uv4-họ tên",   " HDCM_uv4_C3.3",   " HDCM_uv4_C4.2",   " HDCM_uv4_C5.3",   " HDCM_uv4_C6.3",   " HDCM_uv4_C6.4",   " HDCM_uv4_gpa",   
-                        " HDCM_uv5-họ tên",   " HDCM_uv5_C3.3",   " HDCM_uv5_C4.2",   " HDCM_uv5_C5.3",   " HDCM_uv5_C6.3",   " HDCM_uv5_C6.4",   " HDCM_uv5_gpa",   
-                        " CBHD_1-họ tên",   " CBHD_1_C1.1",   " CBHD_1_C1.2",   " CBHD_1_C5.1",   " CBHD_1_gpa",   
-                        " CBHD_2-họ tên",   " CBHD_2_C2.1",   " CBHD_2_C2.2",   " CBHD_2_C3.1",   " CBHD_2_C5.2",   " CBHD_2_gpa",   
-                        " CBHD_3-họ tên",   " CBHD_3_C2.3",   " CBHD_3_C3.2",   " CBHD_3_C4.1",   " CBHD_3_C6.1",   " CBHD_3_C6.2",   " CBHD_3_gpa",   
-                        " CBPB-họ tên",   " CBPB_C2.3",   " CBPB_C3.2",   " CBPB_C4.1",   " CBPB_C6.1",   " CBPB_C6.2",   " CBPB_gpa"
-                        ]
-        
 
         # Duyệt qua từng sinh viên
         for student in students:
@@ -998,9 +1097,9 @@ def process_form_pb_new(request):
 
 def process_final_new_baocao1():
     # Đọc file Excel
-    final_new_path = r"FormstoExcel\form_collectdata\form_collect\DataCollected\final_new.xlsx"
-    tong_hop_diem_path = r"FormstoExcel\form_collectdata\form_collect\DataCollected\TongHopDiem1.xlsx"
-    
+    final_new_path = r"DataCollected\final_new.xlsx"
+    tong_hop_diem_path = r"DataCollected\TongHopDiem1.xlsx"
+
     df_final_new = pd.read_excel(final_new_path)
     df_tong_hop_diem = pd.read_excel(tong_hop_diem_path)
     
@@ -1090,7 +1189,7 @@ def process_final_new_baocao1():
 
 def process_final_new_baocao2():
     # Đọc file Excel
-    final_new_path = r"FormstoExcel\form_collectdata\form_collect\DataCollected\final_new.xlsx"
+    final_new_path = r"DataCollected\final_new.xlsx"
     df_final_new = pd.read_excel(final_new_path)
     
     # Điền giá trị NaN bằng 0
@@ -1164,7 +1263,7 @@ def process_final_new_baocao2():
     new_data = new_data[columns_to_extract]
 
     # Đường dẫn đến file TongHopDiem2.xlsx
-    tong_hop_diem2_path = r"FormstoExcel\form_collectdata\form_collect\DataCollected\TongHopDiem2.xlsx"
+    tong_hop_diem2_path = r"DataCollected\TongHopDiem2.xlsx"
 
     # Xóa dữ liệu cũ từ hàng số 4 trở đi và thêm dữ liệu mới
     workbook = load_workbook(tong_hop_diem2_path)
