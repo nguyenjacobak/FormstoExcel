@@ -16,6 +16,5 @@ urlpatterns = [
     # path('process_form_hdcm/', views.process_form_hdcm, name='process_form_hdcm'),
     path('process_form_pb/', views.process_form_pb_new, name='process_form_pb'),
     path('process_form_hdcm_new/', views.process_form_hdcm_new, name='process_form_hdcm_new'),
-    path('process_form_hd1_new/', views.process_form_hd1_new, name='process_form_hd1_new'),
-
+    path('process_form_hd1_new/', views.process_form_hd1_new, name='process_form_hd1_new')
 ]

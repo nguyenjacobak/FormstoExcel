@@ -258,17 +258,32 @@
     const projectList = document.getElementById('project_list');
 
     function getProjects() {
+
         projectList.innerHTML = '';
         if (localStorage.getItem('students')) {
             const students = JSON.parse(localStorage.getItem('students'));
-            const projects = new Set();
+            let project_student = {};
+
 
             Object.values(students).forEach(student => {
                 if (checkNameAndType(selectName.value, selectProjectType.value, student)) {
-                    projects.add(student['project']);
+                  let project_name = student['project'];
+                  let msv = student['msv'];
+                  if (!project_student[project_name]) {
+                      project_student[project_name] = [msv];
+                  }
+                  else {
+                      project_student[project_name].push(msv);
+                  }
                 }
             });
 
+            let projects = [];
+            for (let project in project_student) {
+                let projectStr = project + ' (' + project_student[project].join(' - ') + ')';
+                projects.push(projectStr);
+            }
+            
             projects.forEach(project => {
                 const option = document.createElement('option');
                 option.value = project;
@@ -280,40 +295,53 @@
 
     function checkNameAndType(name, projectType, student) {
         const councilOfStudents = student['council'];
-        const instructor = student['instructor'].split('. ')[1];
-        const councilsName = councilOfStudents.map(council => council['name'].split('. ')[1]);
+        const instructor = student['instructor'].split('. ')[1].replace("TS", "").trim();
+        const councilsName = councilOfStudents.map(council => council['name'].split('. ')[1].replace("TS", "").trim());
+        const opponent = student['opponent'].split('. ')[1].replace("TS", "").trim();
 
         const matchesInstructor = instructor === name;
         const matchesCouncil = councilsName.includes(name);
+        const matchesOpponent = opponent === name;
         const matchesType = student['project_type'] === projectType;
 
-        return (matchesInstructor || matchesCouncil) && matchesType;
+        return (matchesInstructor || matchesCouncil || matchesOpponent) && matchesType;
     }
 
     selectName.addEventListener('change', getProjects);
     selectProjectType.addEventListener('change', getProjects);
 
     getProjects();
-}
+  }
 
-function updateRadioType() {
+  function updateRadioType() {
     const selectName = document.getElementById('name');
     const projectList = document.getElementById('project_list');
     const radioContainer = document.querySelector('.form-selection');
     const projectType = document.getElementById('project_type');
 
-
     function getRoleOfUserFromProject(projectName, name) {
         const students = JSON.parse(localStorage.getItem('students'));
         const roles = new Set();
+        
+        let index_p = 0;
+        for (let i = 0; i < projectName.length; i++) {
+            if (projectName[i] === '(') { 
+                index_p = i;
+            }
+        }
+        let listMsv = [];
+        if (index_p !== 0) {
+            listMsv = projectName.slice(index_p + 1, projectName.length - 1).split(' - ');
+        }
+        projectName = projectName.slice(0, index_p - 1).trim();
 
         Object.values(students).forEach(student => {
-            if (student['project'] === projectName) {
+            if (student['project'].trim() === projectName && listMsv.includes(student['msv'])) {
                 student['council'].forEach(council => {
-                    if (council['name'].split('. ')[1] === name) roles.add('council');
+                    if (council['name'].split('. ')[1].replace("TS", "").trim() === name) roles.add('council');
                 });
-                if (student['instructor'].split('. ')[1] === name) roles.add('instructor');
-                if (student['opponent'].split('. ')[1] === name) roles.add('opponent');
+                if (student['instructor'].split('. ')[1].replace("TS", "").trim() === name) roles.add('instructor');
+                if (student['opponent'].split('. ')[1].replace("TS", "").trim() === name) roles.add('opponent');
             }
         });
 
@@ -388,9 +416,9 @@ function updateRadioType() {
     });
 
     getRoleOfUserFromProject(projectList.value, selectName.value);
-}
+  }
 
-function goToNextForm() {
+  async function goToNextForm() {
     const name = document.getElementById('name').value;
     const projectType = document.getElementById('project_type').value;
     const projectName = document.getElementById('project_list').value;
@@ -401,53 +429,42 @@ function goToNextForm() {
     const lecturesInfo = JSON.parse(localStorage.getItem('lecturers'));
 
     if (name && projectType && projectName && formType) {
-        const csrfToken = getCookie('csrftoken');
-        fetch(`/get-students`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken
-            },
-            body: JSON.stringify({ project_name: projectName })
-        })
-            .then(response => response.json())
-            .then(students => {
-                const data = { name, projectType, projectName, formType, students: {} };
-                students.forEach(student => {
-                    data['students'][student.msv] = studentsInfo[student.msv];
-                });
-                const group = data['students'][Object.keys(data['students'])[0]]['group'];
-                let unit = '';
-                lecturesInfo.forEach(lecture => {
-                    if (lecture.name.split('. ')[1] === name) {
-                        unit = lecture.unit;
-                    }
-                });
-                data['unit'] = unit;
-                localStorage.setItem('data', JSON.stringify(data));
-                const listMsvOfStudent = Object.keys(data['students']);
-                let listMsvStr = '';
-                listMsvOfStudent.forEach(msv => {
-                    listMsvStr += `msv=${msv}&`;
-                });
-                listMsvStr = listMsvStr.slice(0, -1);
-                let newUrl = '';
-                console.log(selectedGroup)
-                if (selectedRadioValue === 'hoiDongChuyenMon' && selectedGroup === 'doAnNhomGhep') {
-                    newUrl = `/hoiDongChuyenMon?${listMsvStr}&groupType=${selectedGroup}&group=${group}`;
-                } else if (selectedRadioValue === 'hoiDongChuyenMon' && selectedGroup === 'doAnNhomBinhThuong') {
-                    newUrl = `/hoiDongChuyenMon?${listMsvStr}&groupType=${selectedGroup}&group=`;
-                } else {
-                    newUrl = `${formType}?${listMsvStr}`;
-                }
-                window.location.href = newUrl;
-            });
+      const students = await getStudentsByProject(projectName);
+      const data = { name, projectType, projectName, formType, students: {} };
+      students.forEach(student => {
+          data['students'][student.msv] = studentsInfo[student.msv];
+      });
+
+      const group = data['students'][Object.keys(data['students'])[0]]['group'];
+      let unit = '';
+      lecturesInfo.forEach(lecture => {
+          if (lecture.name.split('. ')[1].replace("TS", "").trim() === name) {
+              unit = lecture.unit;
+          }
+      });
+      data['unit'] = unit;
+      localStorage.setItem('data', JSON.stringify(data));
+      const listMsvOfStudent = Object.keys(data['students']);
+      let listMsvStr = '';
+      listMsvOfStudent.forEach(msv => {
+          listMsvStr += `msv=${msv}&`;
+      });
+      listMsvStr = listMsvStr.slice(0, -1);
+      let newUrl = '';
+      if (selectedRadioValue === 'hoiDongChuyenMon' && selectedGroup === 'doAnNhomGhep') {
+          newUrl = `/hoiDongChuyenMon?${listMsvStr}&groupType=${selectedGroup}&group=${group}`;
+      } else if (selectedRadioValue === 'hoiDongChuyenMon' && selectedGroup === 'doAnNhomBinhThuong') {
+          newUrl = `/hoiDongChuyenMon?${listMsvStr}&groupType=${selectedGroup}&group=`;
+      } else {
+          newUrl = `${formType}?${listMsvStr}`;
+      }
+      window.location.href = newUrl;
     } else {
         alert('Please fill in all required fields.');
     }
-}
+  }
 
-async function getStudentsData() {
+  async function getStudentsData() {
     if (!localStorage.getItem('students')) {
         await fetch('/get-all-students')
             .then(response => response.json())
@@ -455,9 +472,9 @@ async function getStudentsData() {
                 localStorage.setItem('students', JSON.stringify(students));
             });
     }
-}
+  }
 
-async function getCouncilssData() {
+  async function getCouncilssData() {
     if (!localStorage.getItem('lecturers')) {
         await fetch('/get-all-councils')
             .then(response => response.json())
@@ -466,7 +483,22 @@ async function getCouncilssData() {
                 localStorage.setItem('lecturers', JSON.stringify(lectures));
             });
     }
-}
+  }
+
+
+  async function getStudentsByProject(projectName) {
+    console.log(1);
+    const csrfToken = getCookie('csrftoken');
+    const response = await fetch(`/get-students`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+        },
+        body: JSON.stringify({ project_name: projectName })
+    });
+    return await response.json();
+  }
 
 getCouncilssData();
 

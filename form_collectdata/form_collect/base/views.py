@@ -6,6 +6,7 @@ import pandas as pd
 from django.http import JsonResponse
 import json
 from django.shortcuts import redirect
+import re
 
 # Create your views here.
 def get_students_view(request):
@@ -23,14 +24,21 @@ def get_all_councils_view(request):
     return JsonResponse(councils, safe=False)
 
 def get_students_by_project_name(project_name):
+    index = 0
+    for i in range(len(project_name)):
+        if project_name[i] == '(':
+            index = i
+    
+    list_msv = project_name[index+1 : -1].split(' - ')
+    project_name = project_name[:index].strip()
+    print(project_name, list_msv)
     file_path = os.path.join('DataBase', 'db.xlsx')
     df = pd.read_excel(file_path, sheet_name="Danh sách các đồ án ", skiprows=12)
     df = df.fillna(method='ffill')
 
     students = []
     col = 'Tên đề tài đồ án/ khóa luận tốt nghiệp'
-    df_students = df[df[col].str.contains(project_name, case=False)]
-    
+    df_students = df[df[col].str.contains(project_name, case=False, regex=False ) & df['Mã sinh viên'].isin(list_msv)]
     first_students = list(df_students['Họ và tên'])
     second_students = list(df_students['Unnamed: 3'])
     fullname_students = [f"{first} {second}" for first, second in zip(first_students, second_students)]
@@ -48,19 +56,45 @@ def get_students_by_project_name(project_name):
 
 def get_lecturers():
     file_path = os.path.join('DataBase', 'db.xlsx')
-    workbook = load_workbook(filename=file_path)
-    sheet = workbook.worksheets[3]  # Trang thứ 3 của file Excel
-    lecturers = set()
+    df = pd.read_excel(file_path, sheet_name="DS Hội đồng_DN", skiprows=2)
+    df = df.drop(columns = ['Unnamed: 4'])
+    df = df.dropna(ignore_index=True)
+    df = df[df['Họ và tên'] != 'Họ và tên']
+    lecture_in_sheet1 = list(df['Họ và tên'].values)
 
-    for row in sheet.iter_rows(min_row=2, max_col=3, values_only=True):
-        name = str(row[0])  # Cột A
-        if name and '(' not in name and ')' not in name:
-            lecturers.add(name)
-        name = str(row[2])  # Cột C
-        if name and '(' not in name and ')' not in name and name != 'None':
-            lecturers.add(name)
-    lecturesList = [lecture for lecture in lecturers if lecture is not None]
-    
+    lecturers = set()
+    # Get hoi dong
+    for lecture in lecture_in_sheet1:
+        lecture =  lecture.replace("TS", "")
+        lecturers.add(lecture.split(". ")[1].strip())
+
+    # Get phan bien
+    df2 = pd.read_excel(file_path, sheet_name="DS SV các Hội đồng phân PB", skiprows=1)
+    df2 = df2.drop(columns = ['Unnamed: 0'])
+    df2.loc[1, 'Unnamed: 11'] = df2.loc[0, 'Unnamed: 11']
+    df2.loc[1, 'Unnamed: 12'] = df2.loc[0, 'Unnamed: 12']
+    df2.loc[1, 'Unnamed: 3'] = 'Tên'
+    df2.columns = df2.iloc[1]
+    df2 = df2.dropna(how='all', ignore_index=True)
+    for i in range(len(df2)):
+        msv = df2.loc[i, 'Mã sinh viên']
+        if 'Hội đồng' in msv or msv == 'Mã sinh viên':
+            continue
+        opponent = df2.loc[i, 'Phản biện  (Khoa)'].strip() if not pd.isna(df2.loc[i, 'Phản biện  (Khoa)']) else ''
+        if opponent != '':
+            opponent = opponent.replace("TS", "")
+            lecturers.add(opponent.split(". ")[1].strip())
+
+    # Get thay co huong dan
+    df3 = pd.read_excel(file_path, sheet_name="Danh sách các thầy cô")
+    lecturers.add(list(df3.columns)[0])
+    list_lecturers_in_sheet4 = df3.values.tolist()
+    for i in list_lecturers_in_sheet4:
+        pattern = r'()'
+        if not bool(re.search(pattern, i[0])):
+            lecturers.add(i[0])
+
+    lecturesList = list(lecturers)
     return sorted(lecturesList, key=lambda lecture: lecture.split()[-1])
 
 
@@ -145,10 +179,10 @@ def get_all_councils():
 def get_all_students():
     # file_path = os.path.join('DataBase', 'db.xlsx')
     # df2 = pd.read_excel(file_path, sheet_name="DS SV các Hội đồng phân PB", skiprows=1)
-    # df2 = df2.drop(columns = ['Unnamed: 0'])
     # df2.loc[1, 'Unnamed: 11'] = df2.loc[0, 'Unnamed: 11']
     # df2.loc[1, 'Unnamed: 12'] = df2.loc[0, 'Unnamed: 12']
     # df2.loc[1, 'Unnamed: 3'] = 'Tên'
+    # df2.loc[1, 'Unnamed: 0'] = 'TT'
     # df2.columns = df2.iloc[1]
     # df2 = df2.dropna(how='all', ignore_index=True)
     # councils = get_all_councils()
@@ -184,7 +218,8 @@ def get_all_students():
     #         'group': group,
     #         'opponent': opponent,
     #         'council': council,
-    #         'msv': msv
+    #         'msv': msv,
+    #         'tt': int(tt)
     #     }
     #     # Get students from final sheet
     # new_students = students.copy()
@@ -220,7 +255,6 @@ def index(request):
 
 def hoiDongChuyenMon(request):
     if request.method == 'POST':
-        studentsSameGroup = []
         try:
             msv_list = request.GET.getlist('msv', '')
             council_id, group_id = None, None
@@ -400,7 +434,7 @@ def canBoPhanBien(request):
     return render(request, 'canBoPhanBien.html', context)
 
 
-
+# Process submit form
 def process_form_hdcm_new(request):
     if request.method == 'POST':
         # Lấy số lượng sinh viên
@@ -520,7 +554,7 @@ def process_form_hdcm_new(request):
         # Chuyển hướng đến trang testOutput.html với dữ liệu
         return JsonResponse({'message': 'Chấm điểm thành công'})
 
-    return redirect('hoiDongChuyenMon')
+    return JsonResponse({'message': 'Chấm điểm không thành công'})
 
 def process_form_hd1_new(request):
     if request.method == 'POST':
@@ -626,7 +660,7 @@ def process_form_hd1_new(request):
         return JsonResponse({'message': 'Chấm điểm thành công'})
 
     # Nếu không phải POST, chuyển về baoCaoTienDoL1
-    return redirect('baoCaoTienDoL1')
+    return JsonResponse({'message': 'Chấm điểm không thành công'})
 
 def process_form_hd2_new(request):
     if request.method == 'POST':
@@ -736,7 +770,7 @@ def process_form_hd2_new(request):
         return JsonResponse({'message': 'Chấm điểm thành công'})
 
     # Nếu không phải POST, chuyển về baoCaoTienDoL1
-    return redirect('baoCaoTienDoL2')
+    return JsonResponse({'message': 'Chấm điểm không thành công'})
 
 
 def process_form_hd3_new(request):
@@ -846,7 +880,7 @@ def process_form_hd3_new(request):
         return JsonResponse({'message': 'Chấm điểm thành công'})
 
     # Nếu không phải POST, chuyển về baoCaoTienDoL1
-    return redirect('huongdan3')
+    return JsonResponse({'message': 'Chấm điểm không thành công'})
                     
 def process_form_pb_new(request):
     if request.method == 'POST':
@@ -957,4 +991,4 @@ def process_form_pb_new(request):
         return JsonResponse({'message': 'Chấm điểm thành công'})
 
     # Nếu không phải POST, chuyển về baoCaoTienDoL1
-    return redirect('canBoPhanBien')
+    return JsonResponse({'message': 'Chấm điểm không thành công'})

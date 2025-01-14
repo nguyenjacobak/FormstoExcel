@@ -41,7 +41,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT017"
+        "msv": "B20DCDT017",
+        "tt": 1
     },
     "B20DCDT029": {
         "name": "Trần Ngọc Danh",
@@ -85,7 +86,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT029"
+        "msv": "B20DCDT029",
+        "tt": 2
     },
     "B20DCDT037": {
         "name": "Nguyễn Tiến Duy",
@@ -129,7 +131,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT037"
+        "msv": "B20DCDT037",
+        "tt": 3
     },
     "B20DCDT100": {
         "name": "Trần Quang Hữu",
@@ -173,7 +176,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT100"
+        "msv": "B20DCDT100",
+        "tt": 4
     },
     "B20DCDT132": {
         "name": "Trần Đức Mạnh",
@@ -217,7 +221,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT132"
+        "msv": "B20DCDT132",
+        "tt": 5
     },
     "B20DCDT175": {
         "name": "Lê Sỹ Sang",
@@ -261,7 +266,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT175"
+        "msv": "B20DCDT175",
+        "tt": 6
     },
     "B20DCDT126": {
         "name": "Nguyễn Thị Mai",
@@ -305,7 +311,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT126"
+        "msv": "B20DCDT126",
+        "tt": 7
     },
     "B20DCDT076": {
         "name": "Tô Minh Hiếu",
@@ -349,7 +356,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT076"
+        "msv": "B20DCDT076",
+        "tt": 8
     },
     "B20DCDT130": {
         "name": "Phạm Đăng Mạnh",
@@ -393,7 +401,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT130"
+        "msv": "B20DCDT130",
+        "tt": 9
     },
     "B20DCDT199": {
         "name": "Nguyễn Xuân Thanh",
@@ -437,7 +446,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT199"
+        "msv": "B20DCDT199",
+        "tt": 10
     },
     "B20DCDT109": {
         "name": "Đỗ Duy Khánh",
@@ -481,7 +491,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT109"
+        "msv": "B20DCDT109",
+        "tt": 11
     },
     "B20DCDT105": {
         "name": "Đỗ Trung Kiển",
@@ -525,7 +536,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT105"
+        "msv": "B20DCDT105",
+        "tt": 12
     },
     "B20DCDT181": {
         "name": "Đặng Thị Thanh Tâm",
@@ -569,7 +581,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT181"
+        "msv": "B20DCDT181",
+        "tt": 13
     },
     "B20DCDT035": {
         "name": "Đinh Đức Duy",
@@ -613,7 +626,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT035"
+        "msv": "B20DCDT035",
+        "tt": 14
     },
     "B20DCDT065": {
         "name": "Nguyễn Văn Hào",
@@ -657,7 +671,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT065"
+        "msv": "B20DCDT065",
+        "tt": 15
     },
     "B20DCDT059": {
         "name": "Vũ Minh Đức",
@@ -701,7 +716,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT059"
+        "msv": "B20DCDT059",
+        "tt": 16
     },
     "B20DCDT010": {
         "name": "Hoàng Tuấn Anh",
@@ -745,7 +761,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT010"
+        "msv": "B20DCDT010",
+        "tt": 1
     },
     "B20DCDT122": {
         "name": "Vũ Văn Luật",
@@ -789,7 +806,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT122"
+        "msv": "B20DCDT122",
+        "tt": 2
     },
     "B20DCDT089": {
         "name": "Nguyễn Văn Huy",
@@ -833,7 +851,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT089"
+        "msv": "B20DCDT089",
+        "tt": 3
     },
     "B20DCDT228": {
         "name": "Lê Thế Vũ",
@@ -877,7 +896,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT228"
+        "msv": "B20DCDT228",
+        "tt": 4
     },
     "B20DCDT014": {
         "name": "Nguyễn Tuấn Anh",
@@ -921,7 +941,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT014"
+        "msv": "B20DCDT014",
+        "tt": 5
     },
     "B20DCDT004": {
         "name": "Hoàng Việt An",
@@ -965,7 +986,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT004"
+        "msv": "B20DCDT004",
+        "tt": 6
     },
     "B20DCDT141": {
         "name": "Viên Bình Minh",
@@ -1009,7 +1031,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT141"
+        "msv": "B20DCDT141",
+        "tt": 7
     },
     "B20DCDT169": {
         "name": "Đặng Bảo Quốc",
@@ -1053,7 +1076,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT169"
+        "msv": "B20DCDT169",
+        "tt": 8
     },
     "B20DCDT056": {
         "name": "Nguyễn Trọng Đức",
@@ -1097,7 +1121,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT056"
+        "msv": "B20DCDT056",
+        "tt": 9
     },
     "B20DCDT025": {
         "name": "Nguyễn Duy Cường",
@@ -1141,7 +1166,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT025"
+        "msv": "B20DCDT025",
+        "tt": 10
     },
     "B20DCDT128": {
         "name": "Đinh Quang Mạnh",
@@ -1185,7 +1211,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT128"
+        "msv": "B20DCDT128",
+        "tt": 11
     },
     "B20DCDT194": {
         "name": "Nguyễn Sơn Tùng",
@@ -1229,7 +1256,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT194"
+        "msv": "B20DCDT194",
+        "tt": 12
     },
     "B20DCDT131": {
         "name": "Tô Văn Mạnh",
@@ -1273,7 +1301,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT131"
+        "msv": "B20DCDT131",
+        "tt": 13
     },
     "B20DCDT020": {
         "name": "Tạ Ngọc Bích",
@@ -1317,7 +1346,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT020"
+        "msv": "B20DCDT020",
+        "tt": 14
     },
     "B20DCDT192": {
         "name": "Trương Minh Tuấn",
@@ -1361,7 +1391,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT192"
+        "msv": "B20DCDT192",
+        "tt": 15
     },
     "B20DCDT158": {
         "name": "La Thị Hồng Nhung",
@@ -1405,7 +1436,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT158"
+        "msv": "B20DCDT158",
+        "tt": 1
     },
     "B20DCDT190": {
         "name": "Nguyễn Trung Tuấn",
@@ -1449,7 +1481,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT190"
+        "msv": "B20DCDT190",
+        "tt": 2
     },
     "B20DCDT197": {
         "name": "Lê Chí Tuyến",
@@ -1493,7 +1526,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT197"
+        "msv": "B20DCDT197",
+        "tt": 3
     },
     "B20DCDT011": {
         "name": "Lưu Ngọc Anh",
@@ -1537,7 +1571,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT011"
+        "msv": "B20DCDT011",
+        "tt": 4
     },
     "B20DCDT212": {
         "name": "Bùi Thị Hương Trà",
@@ -1581,7 +1616,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT212"
+        "msv": "B20DCDT212",
+        "tt": 5
     },
     "B20DCDT049": {
         "name": "Phạm Thành Đạt",
@@ -1625,7 +1661,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT049"
+        "msv": "B20DCDT049",
+        "tt": 6
     },
     "B20DCDT142": {
         "name": "Vũ Văn Mười",
@@ -1669,7 +1706,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT142"
+        "msv": "B20DCDT142",
+        "tt": 7
     },
     "B20DCDT151": {
         "name": "Nguyễn Minh Nghĩa",
@@ -1713,7 +1751,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT151"
+        "msv": "B20DCDT151",
+        "tt": 8
     },
     "B20DCDT173": {
         "name": "Đoàn Thị Như Quỳnh",
@@ -1757,7 +1796,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT173"
+        "msv": "B20DCDT173",
+        "tt": 9
     },
     "B20DCDT203": {
         "name": "Phan Quang Thành",
@@ -1801,7 +1841,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT203"
+        "msv": "B20DCDT203",
+        "tt": 10
     },
     "B20DCDT054": {
         "name": "Lưu Việt Đức",
@@ -1845,7 +1886,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT054"
+        "msv": "B20DCDT054",
+        "tt": 11
     },
     "B20DCDT031": {
         "name": "Nguyễn Tiến Dũng",
@@ -1889,7 +1931,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT031"
+        "msv": "B20DCDT031",
+        "tt": 12
     },
     "B20DCDT075": {
         "name": "Lê Trương Đức Hiếu",
@@ -1933,7 +1976,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT075"
+        "msv": "B20DCDT075",
+        "tt": 13
     },
     "B20DCDT149": {
         "name": "Hoàng Trọng Nghĩa",
@@ -1977,7 +2021,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT149"
+        "msv": "B20DCDT149",
+        "tt": 14
     },
     "B20DCDT064": {
         "name": "Tạ Hồng Hải",
@@ -2021,7 +2066,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT064"
+        "msv": "B20DCDT064",
+        "tt": 15
     },
     "B20DCDT084": {
         "name": "Dương Quang Huy",
@@ -2065,7 +2111,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT084"
+        "msv": "B20DCDT084",
+        "tt": 16
     },
     "B20DCDT125": {
         "name": "Lưu Thị Mai",
@@ -2109,7 +2156,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT125"
+        "msv": "B20DCDT125",
+        "tt": 1
     },
     "B20DCDT033": {
         "name": "Phạm Tiến Dũng",
@@ -2153,7 +2201,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT033"
+        "msv": "B20DCDT033",
+        "tt": 2
     },
     "B20DCDT201": {
         "name": "Lại Văn Thành",
@@ -2197,7 +2246,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT201"
+        "msv": "B20DCDT201",
+        "tt": 3
     },
     "B20DCDT052": {
         "name": "Nguyễn Thành Đô",
@@ -2241,7 +2291,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT052"
+        "msv": "B20DCDT052",
+        "tt": 4
     },
     "B20DCDT078": {
         "name": "Vũ Ngọc Hoàn",
@@ -2285,7 +2336,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT078"
+        "msv": "B20DCDT078",
+        "tt": 5
     },
     "B20DCDT209": {
         "name": "Đồng Đức Thịnh",
@@ -2329,7 +2381,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT209"
+        "msv": "B20DCDT209",
+        "tt": 6
     },
     "B20DCDT127": {
         "name": "Nguyễn Xuân Mai",
@@ -2373,7 +2426,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT127"
+        "msv": "B20DCDT127",
+        "tt": 7
     },
     "B20DCDT174": {
         "name": "Nguyễn Thị Quỳnh",
@@ -2417,7 +2471,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT174"
+        "msv": "B20DCDT174",
+        "tt": 8
     },
     "B20DCDT032": {
         "name": "Nguyễn Tiến Dũng",
@@ -2461,7 +2516,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT032"
+        "msv": "B20DCDT032",
+        "tt": 9
     },
     "B20DCDT112": {
         "name": "Đỗ Trọng Khôi",
@@ -2505,7 +2561,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT112"
+        "msv": "B20DCDT112",
+        "tt": 10
     },
     "B20DCDT154": {
         "name": "Bùi Hoàng Ngọc",
@@ -2549,7 +2606,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT154"
+        "msv": "B20DCDT154",
+        "tt": 11
     },
     "B20DCDT196": {
         "name": "Phạm Tuyên",
@@ -2593,7 +2651,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT196"
+        "msv": "B20DCDT196",
+        "tt": 12
     },
     "B20DCDT135": {
         "name": "Hoàng Văn Minh",
@@ -2637,7 +2696,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT135"
+        "msv": "B20DCDT135",
+        "tt": 13
     },
     "B20DCDT022": {
         "name": "Vũ Văn Có",
@@ -2681,7 +2741,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT022"
+        "msv": "B20DCDT022",
+        "tt": 14
     },
     "B20DCDT177": {
         "name": "Nguyễn Xuân Siêu",
@@ -2725,7 +2786,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT177"
+        "msv": "B20DCDT177",
+        "tt": 15
     },
     "B20DCDT202": {
         "name": "Ngô Tiến Thành",
@@ -2769,7 +2831,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT202"
+        "msv": "B20DCDT202",
+        "tt": 16
     },
     "B20DCDT028": {
         "name": "Nguyễn Văn Danh",
@@ -2813,7 +2876,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT028"
+        "msv": "B20DCDT028",
+        "tt": 1
     },
     "B20DCDT104": {
         "name": "Vũ Khánh Kiên",
@@ -2857,7 +2921,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT104"
+        "msv": "B20DCDT104",
+        "tt": 2
     },
     "B20DCDT136": {
         "name": "Nguyễn Duy Minh",
@@ -2901,7 +2966,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT136"
+        "msv": "B20DCDT136",
+        "tt": 3
     },
     "B20DCDT095": {
         "name": "Mai Việt Hưng",
@@ -2945,7 +3011,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT095"
+        "msv": "B20DCDT095",
+        "tt": 4
     },
     "B20DCDT119": {
         "name": "Ngô Hải Long",
@@ -2989,7 +3056,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT119"
+        "msv": "B20DCDT119",
+        "tt": 5
     },
     "B20DCDT152": {
         "name": "Phan Chính Nghĩa",
@@ -3033,7 +3101,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT152"
+        "msv": "B20DCDT152",
+        "tt": 6
     },
     "B20DCDT088": {
         "name": "Nguyễn Trọng Huy",
@@ -3077,7 +3146,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT088"
+        "msv": "B20DCDT088",
+        "tt": 7
     },
     "B20DCDT015": {
         "name": "Nguyễn Tuấn Anh",
@@ -3121,7 +3191,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT015"
+        "msv": "B20DCDT015",
+        "tt": 8
     },
     "B20DCDT098": {
         "name": "Nguyễn Quang Hưng",
@@ -3165,7 +3236,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT098"
+        "msv": "B20DCDT098",
+        "tt": 9
     },
     "B20DCDT187": {
         "name": "Nguyễn Đỗ Anh Tú",
@@ -3209,7 +3281,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT187"
+        "msv": "B20DCDT187",
+        "tt": 10
     },
     "B20DCDT215": {
         "name": "Đinh Văn Trung",
@@ -3253,7 +3326,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT215"
+        "msv": "B20DCDT215",
+        "tt": 11
     },
     "B20DCDT005": {
         "name": "Nguyễn Văn An",
@@ -3297,7 +3371,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT005"
+        "msv": "B20DCDT005",
+        "tt": 12
     },
     "B20DCDT058": {
         "name": "Trần Hữu Đức",
@@ -3341,7 +3416,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT058"
+        "msv": "B20DCDT058",
+        "tt": 13
     },
     "B20DCDT138": {
         "name": "Nguyễn Nhật Minh",
@@ -3385,7 +3461,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT138"
+        "msv": "B20DCDT138",
+        "tt": 14
     },
     "B20DCDT171": {
         "name": "Bùi Minh Quý",
@@ -3429,7 +3506,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT171"
+        "msv": "B20DCDT171",
+        "tt": 15
     },
     "B20DCDT116": {
         "name": "Hà Hoàng Linh",
@@ -3473,7 +3551,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT116"
+        "msv": "B20DCDT116",
+        "tt": 1
     },
     "B20DCDT159": {
         "name": "Lê Tiến Phát",
@@ -3517,7 +3596,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT159"
+        "msv": "B20DCDT159",
+        "tt": 2
     },
     "B20DCDT178": {
         "name": "Lê Anh Sơn",
@@ -3561,7 +3641,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT178"
+        "msv": "B20DCDT178",
+        "tt": 3
     },
     "B20DCDT213": {
         "name": "Nguyễn Năng Trà",
@@ -3605,7 +3686,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT213"
+        "msv": "B20DCDT213",
+        "tt": 4
     },
     "B20DCDT118": {
         "name": "Nguyễn Tuấn Linh",
@@ -3649,7 +3731,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT118"
+        "msv": "B20DCDT118",
+        "tt": 5
     },
     "B20DCDT227": {
         "name": "Xuân Tiến Vinh",
@@ -3693,7 +3776,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT227"
+        "msv": "B20DCDT227",
+        "tt": 6
     },
     "B20DCDT016": {
         "name": "Nguyễn Việt Anh",
@@ -3737,7 +3821,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT016"
+        "msv": "B20DCDT016",
+        "tt": 7
     },
     "B20DCDT124": {
         "name": "Nguyễn Công Lý",
@@ -3781,7 +3866,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT124"
+        "msv": "B20DCDT124",
+        "tt": 8
     },
     "B20DCDT115": {
         "name": "Nguyễn Thị Liên",
@@ -3825,7 +3911,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT115"
+        "msv": "B20DCDT115",
+        "tt": 9
     },
     "B20DCDT147": {
         "name": "Trần Đức Nam",
@@ -3869,7 +3956,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT147"
+        "msv": "B20DCDT147",
+        "tt": 10
     },
     "B20DCDT164": {
         "name": "Nguyễn Thị Phượng",
@@ -3913,7 +4001,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT164"
+        "msv": "B20DCDT164",
+        "tt": 11
     },
     "B20DCDT200": {
         "name": "Đinh Duy Thành",
@@ -3957,7 +4046,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT200"
+        "msv": "B20DCDT200",
+        "tt": 12
     },
     "B20DCDT107": {
         "name": "Đào Trọng Khánh",
@@ -4001,7 +4091,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT107"
+        "msv": "B20DCDT107",
+        "tt": 13
     },
     "B20DCDT134": {
         "name": "Đoàn Công Minh",
@@ -4045,7 +4136,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT134"
+        "msv": "B20DCDT134",
+        "tt": 14
     },
     "B20DCDT077": {
         "name": "Ninh Thị Hoa",
@@ -4089,7 +4181,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT077"
+        "msv": "B20DCDT077",
+        "tt": 1
     },
     "B20DCDT021": {
         "name": "Nguyễn Tiến Binh",
@@ -4133,7 +4226,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT021"
+        "msv": "B20DCDT021",
+        "tt": 2
     },
     "B20DCDT092": {
         "name": "Giáp Thị Huyền",
@@ -4177,7 +4271,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT092"
+        "msv": "B20DCDT092",
+        "tt": 3
     },
     "B20DCDT137": {
         "name": "Nguyễn Nhật Minh",
@@ -4221,7 +4316,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT137"
+        "msv": "B20DCDT137",
+        "tt": 4
     },
     "B20DCDT185": {
         "name": "Trần Đức Tín",
@@ -4265,7 +4361,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT185"
+        "msv": "B20DCDT185",
+        "tt": 5
     },
     "B20DCDT229": {
         "name": "Đỗ Đức Vượng",
@@ -4309,7 +4406,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT229"
+        "msv": "B20DCDT229",
+        "tt": 6
     },
     "B20DCDT096": {
         "name": "Nguyễn Duy Hưng",
@@ -4353,7 +4451,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT096"
+        "msv": "B20DCDT096",
+        "tt": 7
     },
     "B20DCDT180": {
         "name": "Phan Thế Sơn",
@@ -4397,7 +4496,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT180"
+        "msv": "B20DCDT180",
+        "tt": 8
     },
     "B20DCDT073": {
         "name": "Hà Đức Hiếu",
@@ -4441,7 +4541,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT073"
+        "msv": "B20DCDT073",
+        "tt": 9
     },
     "B20DCDT189": {
         "name": "Nguyễn Minh Tuấn",
@@ -4485,7 +4586,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT189"
+        "msv": "B20DCDT189",
+        "tt": 10
     },
     "B20DCDT156": {
         "name": "Nguyễn Thị Nguyệt",
@@ -4529,7 +4631,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT156"
+        "msv": "B20DCDT156",
+        "tt": 11
     },
     "B20DCDT026": {
         "name": "Trần Đình Chiến",
@@ -4573,7 +4676,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT026"
+        "msv": "B20DCDT026",
+        "tt": 12
     },
     "B20DCDT055": {
         "name": "Nguyễn Minh Đức",
@@ -4617,7 +4721,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT055"
+        "msv": "B20DCDT055",
+        "tt": 13
     },
     "B20DCDT218": {
         "name": "Trịnh Trung",
@@ -4661,7 +4766,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT218"
+        "msv": "B20DCDT218",
+        "tt": 14
     },
     "B20DCDT040": {
         "name": "Vương Đức Duy",
@@ -4705,7 +4811,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT040"
+        "msv": "B20DCDT040",
+        "tt": 15
     },
     "B20DCDT090": {
         "name": "Thái Chử Tuấn Huy",
@@ -4749,7 +4856,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT090"
+        "msv": "B20DCDT090",
+        "tt": 8
     },
     "B20DCDT157": {
         "name": "Võ Quang Nhật",
@@ -4793,7 +4901,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT157"
+        "msv": "B20DCDT157",
+        "tt": 8
     },
     "B20DCDT103": {
         "name": "Trịnh Minh Kiên",
@@ -4837,7 +4946,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT103"
+        "msv": "B20DCDT103",
+        "tt": 9
     },
     "B20DCDT139": {
         "name": "Phan Đắc Minh",
@@ -4881,7 +4991,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT139"
+        "msv": "B20DCDT139",
+        "tt": 9
     },
     "B20DCDT211": {
         "name": "Nguyễn Bá Thịnh",
@@ -4925,7 +5036,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT211"
+        "msv": "B20DCDT211",
+        "tt": 10
     },
     "B20DCDT208": {
         "name": "Đỗ Công Thế",
@@ -4969,7 +5081,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT208"
+        "msv": "B20DCDT208",
+        "tt": 10
     },
     "B20DCDT053": {
         "name": "Bùi Ngọc Đức",
@@ -5013,7 +5126,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT053"
+        "msv": "B20DCDT053",
+        "tt": 11
     },
     "B20DCDT101": {
         "name": "Nguyễn Trung Kiên",
@@ -5057,7 +5171,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT101"
+        "msv": "B20DCDT101",
+        "tt": 11
     },
     "B20DCDT205": {
         "name": "Nguyễn Đức Thắng",
@@ -5101,7 +5216,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT205"
+        "msv": "B20DCDT205",
+        "tt": 12
     },
     "B20DCDT186": {
         "name": "Lê Minh Tú",
@@ -5145,7 +5261,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT186"
+        "msv": "B20DCDT186",
+        "tt": 12
     },
     "B20DCDT072": {
         "name": "Trần Mạnh Hiệp",
@@ -5189,7 +5306,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT072"
+        "msv": "B20DCDT072",
+        "tt": 14
     },
     "B20DCDT027": {
         "name": "Chu Cao Danh",
@@ -5233,7 +5351,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT027"
+        "msv": "B20DCDT027",
+        "tt": 14
     },
     "B20DCDT224": {
         "name": "Hoàng Thế Vinh",
@@ -5277,7 +5396,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT224"
+        "msv": "B20DCDT224",
+        "tt": 15
     },
     "B20DCDT222": {
         "name": "Đặng Quang Vinh",
@@ -5321,7 +5441,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT222"
+        "msv": "B20DCDT222",
+        "tt": 15
     },
     "B20DCDT051": {
         "name": "Trần Mạnh Điệp",
@@ -5365,7 +5486,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT051"
+        "msv": "B20DCDT051",
+        "tt": 16
     },
     "B20DCDT047": {
         "name": "Nguyễn Tiến Đạt",
@@ -5409,7 +5531,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT047"
+        "msv": "B20DCDT047",
+        "tt": 16
     },
     "B20DCDT001": {
         "name": "Nguyễn Minh Đức",
@@ -5453,7 +5576,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT001"
+        "msv": "B20DCDT001",
+        "tt": 3
     },
     "B20DCDT153": {
         "name": "Triệu Tuấn Nghĩa",
@@ -5497,7 +5621,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT153"
+        "msv": "B20DCDT153",
+        "tt": 3
     },
     "B20DCDT220": {
         "name": "Nguyễn Hợp Trường",
@@ -5541,7 +5666,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT220"
+        "msv": "B20DCDT220",
+        "tt": 4
     },
     "B20DCDT167": {
         "name": "Nguyễn Anh Quân",
@@ -5585,7 +5711,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT167"
+        "msv": "B20DCDT167",
+        "tt": 4
     },
     "B20DCDT034": {
         "name": "Bùi Đức Duy",
@@ -5629,7 +5756,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT034"
+        "msv": "B20DCDT034",
+        "tt": 5
     },
     "B20DCDT042": {
         "name": "Phạm Quang Dương",
@@ -5673,7 +5801,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT042"
+        "msv": "B20DCDT042",
+        "tt": 5
     },
     "B20DCDT145": {
         "name": "Nguyễn Văn Nam",
@@ -5717,7 +5846,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT145"
+        "msv": "B20DCDT145",
+        "tt": 10
     },
     "B20DCDT097": {
         "name": "Nguyễn Duy Hưng",
@@ -5761,7 +5891,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT097"
+        "msv": "B20DCDT097",
+        "tt": 10
     },
     "B20DCDT108": {
         "name": "Đặng Ngọc Khánh",
@@ -5805,7 +5936,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT108"
+        "msv": "B20DCDT108",
+        "tt": 11
     },
     "B20DCDT048": {
         "name": "Nguyễn Văn Đạt",
@@ -5849,7 +5981,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT048"
+        "msv": "B20DCDT048",
+        "tt": 11
     },
     "B20DCDT094": {
         "name": "Hoàng Văn Hưng",
@@ -5893,7 +6026,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT094"
+        "msv": "B20DCDT094",
+        "tt": 12
     },
     "B20DCDT038": {
         "name": "Tạ Đức Duy",
@@ -5937,7 +6071,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT038"
+        "msv": "B20DCDT038",
+        "tt": 12
     },
     "B20DCDT110": {
         "name": "Nguyễn Đăng Khoa",
@@ -5981,7 +6116,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT110"
+        "msv": "B20DCDT110",
+        "tt": 13
     },
     "B20DCDT216": {
         "name": "Lê Đức Trung",
@@ -6025,7 +6161,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT216"
+        "msv": "B20DCDT216",
+        "tt": 13
     },
     "B20DCDT057": {
         "name": "Nguyễn Trọng Đức",
@@ -6069,7 +6206,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT057"
+        "msv": "B20DCDT057",
+        "tt": 6
     },
     "B20DCDT081": {
         "name": "Đào Huy Hùng",
@@ -6113,7 +6251,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT081"
+        "msv": "B20DCDT081",
+        "tt": 6
     },
     "B20DCDT024": {
         "name": "Phạm Huy Cương",
@@ -6157,7 +6296,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT024"
+        "msv": "B20DCDT024",
+        "tt": 7
     },
     "B20DCDT086": {
         "name": "Nguyễn Đức Huy",
@@ -6201,7 +6341,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT086"
+        "msv": "B20DCDT086",
+        "tt": 7
     },
     "B20DCDT062": {
         "name": "Cao Đức Hai",
@@ -6245,7 +6386,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT062"
+        "msv": "B20DCDT062",
+        "tt": 8
     },
     "B20DCDT050": {
         "name": "Trần Huy Đạt",
@@ -6289,7 +6431,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT050"
+        "msv": "B20DCDT050",
+        "tt": 8
     },
     "B20DCDT217": {
         "name": "Trần Quốc Trung",
@@ -6333,7 +6476,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT217"
+        "msv": "B20DCDT217",
+        "tt": 9
     },
     "B20DCDT129": {
         "name": "Kiều Bùi Đức Mạnh",
@@ -6377,7 +6521,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT129"
+        "msv": "B20DCDT129",
+        "tt": 9
     },
     "B20DCDT083": {
         "name": "Nguyễn Văn Hùng",
@@ -6421,7 +6566,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT083"
+        "msv": "B20DCDT083",
+        "tt": 10
     },
     "B20DCDT210": {
         "name": "Lê Đức Thịnh",
@@ -6465,7 +6611,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT210"
+        "msv": "B20DCDT210",
+        "tt": 10
     },
     "B20DCDT041": {
         "name": "Nguyễn Xuân Dương",
@@ -6509,7 +6656,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT041"
+        "msv": "B20DCDT041",
+        "tt": 2
     },
     "B20DCDT066": {
         "name": "Đỗ Văn Hảo",
@@ -6553,7 +6701,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT066"
+        "msv": "B20DCDT066",
+        "tt": 2
     },
     "B20DCDT087": {
         "name": "Nguyễn Quang Huy",
@@ -6597,7 +6746,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT087"
+        "msv": "B20DCDT087",
+        "tt": 9
     },
     "B20DCDT091": {
         "name": "Vương Văn Huy",
@@ -6641,7 +6791,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT091"
+        "msv": "B20DCDT091",
+        "tt": 9
     },
     "B20DCDT182": {
         "name": "Đỗ Quý Tân",
@@ -6685,7 +6836,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT182"
+        "msv": "B20DCDT182",
+        "tt": 3
     },
     "B20DCDT009": {
         "name": "Hoàng Tuấn Anh",
@@ -6729,7 +6881,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT009"
+        "msv": "B20DCDT009",
+        "tt": 3
     },
     "B20DCDT144": {
         "name": "Nguyễn Hải Nam",
@@ -6773,7 +6926,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT144"
+        "msv": "B20DCDT144",
+        "tt": 4
     },
     "B20DCDT148": {
         "name": "Đặng Quang Ninh",
@@ -6817,7 +6971,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT148"
+        "msv": "B20DCDT148",
+        "tt": 4
     },
     "B20DCDT106": {
         "name": "Đinh Văn Khải",
@@ -6861,7 +7016,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT106"
+        "msv": "B20DCDT106",
+        "tt": 5
     },
     "B20DCDT121": {
         "name": "Lê Văn Luận",
@@ -6905,7 +7061,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT121"
+        "msv": "B20DCDT121",
+        "tt": 5
     },
     "B20DCDT162": {
         "name": "Dương Quốc Phương",
@@ -6949,7 +7106,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT162"
+        "msv": "B20DCDT162",
+        "tt": 6
     },
     "B20DCDT074": {
         "name": "Khuất Duy Hiếu",
@@ -6993,7 +7151,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT074"
+        "msv": "B20DCDT074",
+        "tt": 6
     },
     "B20DCDT019": {
         "name": "Đỗ Xuân Bắc",
@@ -7037,7 +7196,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT019"
+        "msv": "B20DCDT019",
+        "tt": 13
     },
     "B20DCDT061": {
         "name": "Hoàng Như Ngọc Hà",
@@ -7081,7 +7241,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT061"
+        "msv": "B20DCDT061",
+        "tt": 13
     },
     "B20DCDT114": {
         "name": "Nguyễn Vũ Lập",
@@ -7125,7 +7286,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT114"
+        "msv": "B20DCDT114",
+        "tt": 14
     },
     "B20DCDT102": {
         "name": "Phạm Trung Kiên",
@@ -7169,7 +7331,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT102"
+        "msv": "B20DCDT102",
+        "tt": 14
     },
     "B20DCDT093": {
         "name": "Bùi Văn Hưng",
@@ -7213,7 +7376,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT093"
+        "msv": "B20DCDT093",
+        "tt": 15
     },
     "B20DCDT085": {
         "name": "Mai Văn Huy",
@@ -7257,7 +7421,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT085"
+        "msv": "B20DCDT085",
+        "tt": 15
     },
     "B20DCDT172": {
         "name": "Nguyễn Tiến Quyết",
@@ -7301,7 +7466,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT172"
+        "msv": "B20DCDT172",
+        "tt": 3
     },
     "B20DCDT067": {
         "name": "Cao Duy Hậu",
@@ -7345,7 +7511,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT067"
+        "msv": "B20DCDT067",
+        "tt": 3
     },
     "B20DCDT179": {
         "name": "Nguyễn Thái Sơn",
@@ -7389,7 +7556,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT179"
+        "msv": "B20DCDT179",
+        "tt": 4
     },
     "B20DCDT219": {
         "name": "Vũ Thành Trung",
@@ -7433,7 +7601,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT219"
+        "msv": "B20DCDT219",
+        "tt": 4
     },
     "B20DCDT111": {
         "name": "Nguyễn Xuân Khoa",
@@ -7477,7 +7646,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT111"
+        "msv": "B20DCDT111",
+        "tt": 5
     },
     "B20DCDT099": {
         "name": "Nguyễn Trọng Hưởng",
@@ -7521,7 +7691,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT099"
+        "msv": "B20DCDT099",
+        "tt": 5
     },
     "B20DCDT060": {
         "name": "Hoàng Văn Giỏi",
@@ -7565,7 +7736,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT060"
+        "msv": "B20DCDT060",
+        "tt": 6
     },
     "B20DCDT140": {
         "name": "Trịnh Xuân Minh",
@@ -7609,7 +7781,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT140"
+        "msv": "B20DCDT140",
+        "tt": 6
     },
     "B20DCDT160": {
         "name": "Lê Hồng Phong",
@@ -7653,7 +7826,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT160"
+        "msv": "B20DCDT160",
+        "tt": 7
     },
     "B20DCDT166": {
         "name": "Đỗ Minh Quân",
@@ -7697,7 +7871,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT166"
+        "msv": "B20DCDT166",
+        "tt": 7
     },
     "B20DCDT013": {
         "name": "Nguyễn Đức Anh",
@@ -7741,7 +7916,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT013"
+        "msv": "B20DCDT013",
+        "tt": 5
     },
     "B20DCDT045": {
         "name": "Lê Duy Đạt",
@@ -7785,7 +7961,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT045"
+        "msv": "B20DCDT045",
+        "tt": 5
     },
     "B20DCDT143": {
         "name": "Hướng Thành Nam",
@@ -7829,7 +8006,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT143"
+        "msv": "B20DCDT143",
+        "tt": 6
     },
     "B20DCDT223": {
         "name": "Đinh Thế Vinh",
@@ -7873,7 +8051,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT223"
+        "msv": "B20DCDT223",
+        "tt": 6
     },
     "B20DCDT195": {
         "name": "Nguyễn Trọng Tuyên",
@@ -7917,7 +8096,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT195"
+        "msv": "B20DCDT195",
+        "tt": 12
     },
     "B20DCDT007": {
         "name": "Bùi Văn Quốc Anh",
@@ -7961,7 +8141,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT007"
+        "msv": "B20DCDT007",
+        "tt": 12
     },
     "B20DCDT184": {
         "name": "Phạm Ngọc Tiến",
@@ -8005,7 +8186,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT184"
+        "msv": "B20DCDT184",
+        "tt": 13
     },
     "B20DCDT183": {
         "name": "Nguyễn Minh Tiến",
@@ -8049,7 +8231,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT183"
+        "msv": "B20DCDT183",
+        "tt": 13
     },
     "B20DCDT165": {
         "name": "Đàm Minh Quân",
@@ -8093,7 +8276,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT165"
+        "msv": "B20DCDT165",
+        "tt": 12
     },
     "B20DCDT133": {
         "name": "Vũ Duy Mạnh",
@@ -8137,7 +8321,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT133"
+        "msv": "B20DCDT133",
+        "tt": 12
     },
     "B20DCDT043": {
         "name": "Nguyễn Văn Dưỡng",
@@ -8181,7 +8366,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT043"
+        "msv": "B20DCDT043",
+        "tt": 13
     },
     "B20DCDT063": {
         "name": "Nguyễn Cao Hải",
@@ -8225,7 +8411,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT063"
+        "msv": "B20DCDT063",
+        "tt": 13
     },
     "B20DCDT150": {
         "name": "Lương Văn Nghĩa",
@@ -8269,7 +8456,8 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT150"
+        "msv": "B20DCDT150",
+        "tt": 14
     },
     "B20DCDT214": {
         "name": "Nguyễn Quốc Trọng",
@@ -8313,6 +8501,7 @@
                 "unit": "Khoa Kỹ thuật Điện tử 1, Học viện Công nghệ Bưu chính Viễn thông"
             }
         ],
-        "msv": "B20DCDT214"
+        "msv": "B20DCDT214",
+        "tt": 14
     }
 }
