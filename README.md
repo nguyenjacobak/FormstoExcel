@@ -19,6 +19,7 @@ Clone repository
 Sử dụng lệnh sau để clone repository từ GitHub:
 
 git clone <https://github.com/nguyenjacobak/FormstoExcel>
+
 cd Lab_project\Web_form_collect_data\FormstoExcel\form_collectdata\form_collect
 
 Tạo virtual environment
