@@ -37,8 +37,11 @@ Cài đặt các thư viện cần thiết
 Chạy lệnh sau để cài đặt các thư viện:
 
 pip install django
+
 pip install openpyxl
+
 pip install pandas
+
 pip install numpy
 
 Chạy lệnh:
