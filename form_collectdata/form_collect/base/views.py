@@ -32,7 +32,6 @@ def get_students_by_project_name(project_name):
     
     list_msv = project_name[index+1 : -1].split(' - ')
     project_name = project_name[:index].strip()
-    print(project_name, list_msv)
     file_path = os.path.join('DataBase', 'db.xlsx')
     df = pd.read_excel(file_path, sheet_name="Danh sách các đồ án ", skiprows=12)
     df = df.fillna(method='ffill')
@@ -116,7 +115,6 @@ def get_projects_by_lecture_and_type(lecturer_name, project_type):
     return projects
 
 def find_student_by_council_and_group_id(council_id=None, group_id=None):
-    print(council_id, group_id)
     students = []
     if group_id is None or council_id is None:
         return students
@@ -290,7 +288,6 @@ def hoiDongChuyenMon(request):
             'projects_name': projectName,
             'unit': unit
         }
-        print(context)
         return render(request, 'hoiDongChuyenMon.html', context)
     
     # Xử lý GET request (truy cập trực tiếp từ trình duyệt)
@@ -1128,9 +1125,8 @@ def getGradeOfStudent(msv, name, formType):
         'canBoPhanBien': 'CBPB',
         'hoiDongChuyenMon': 'HDCM'
     }
-
     for column in df_sv.columns:
-        if df.loc[0, column] == name:
+        if df_sv[column].values[0] == name:
             column_tmp = column.split('-')
             if formTypeToPrefix[formType] in column_tmp[0]:
                 prefix_column = column_tmp[0]
@@ -1146,7 +1142,6 @@ def getGradeOfStudent(msv, name, formType):
             'CBHD_3_C2.3', 'CBHD_3_C3.2', 'CBHD_3_C4.1', 'CBHD_3_C6.1', 'CBHD_3_C6.2', 'CBHD_3_gpa', 
            'CBPB_C2.3', 'CBPB_C3.2', 'CBPB_C4.1', 'CBPB_C6.1', 'CBPB_C6.2', 'CBPB_gpa'
     ]
-    print(2)
     true_columns = []
     for column in grade_columns:
         if column.startswith(prefix_column):
@@ -1155,6 +1150,7 @@ def getGradeOfStudent(msv, name, formType):
         if not pd.isnull(df_sv[column].values[0]):
             grade_student[column.split('_')[-1].replace(".", "_")] = df_sv[column].values[0]
     return grade_student
+
 def process_final_new_baocao1():
     # Đọc file Excel
     final_new_path = r"DataCollected\final_new.xlsx"
