@@ -180,11 +180,13 @@
             <textarea class="form-control mb-3" name="nhanXet" rows="5" style="border:1px solid #000"></textarea>
         </div>
 
+        {% if canSubmit %}
         <div class="d-flex justify-content-center w-100"> 
             <button class="btn btn-primary mt-4 mb-5" id="submit" type="submit">
                 Submit
             </button>
         </div>
+        {% endif %}
     </form>
     </div>
 </body>

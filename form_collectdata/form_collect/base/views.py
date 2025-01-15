@@ -286,7 +286,8 @@ def hoiDongChuyenMon(request):
             'name': name,
             'project_type': project_type,
             'projects_name': projectName,
-            'unit': unit
+            'unit': unit,
+            'canSubmit': studentsData[0]['grade']['canSubmit']
         }
         return render(request, 'hoiDongChuyenMon.html', context)
     
@@ -297,7 +298,8 @@ def hoiDongChuyenMon(request):
         'name': '',
         'project_type': '',
         'projects_name': [],
-        'studentsSameGroup': []
+        'studentsSameGroup': [],
+        'canSubmit': True
     }
     return render(request, 'hoiDongChuyenMon.html', context)
 
@@ -322,7 +324,8 @@ def baoCaoTienDoL1(request):
             'students_count': len(students),
             'name': name,
             'project_type': project_type,
-            'project_name': projectName
+            'project_name': projectName,
+            'canSubmit': students[0]['grade']['canSubmit']
         }
         return render(request, 'baoCaoTienDoL1.html', context)
     
@@ -332,7 +335,8 @@ def baoCaoTienDoL1(request):
         'students_count': 0,
         'name': '',
         'project_type': '',
-        'project_name': ''
+        'project_name': '',
+        'canSubmit': True
     }
     return render(request, 'baoCaoTienDoL1.html', context)
 
@@ -356,7 +360,8 @@ def baoCaoTienDoL2(request):
             'students_count': len(students),
             'name': name,
             'project_type': project_type,
-            'project_name': projectName
+            'project_name': projectName,
+            'canSubmit': students[0]['grade']['canSubmit']
         }
         return render(request, 'baoCaoTienDoL2.html', context)
     
@@ -366,7 +371,8 @@ def baoCaoTienDoL2(request):
         'students_count': 0,
         'name': '',
         'project_type': '',
-        'project_name': ''
+        'project_name': '',
+        'canSubmit': True
     }
     return render(request, 'baoCaoTienDoL2.html', context)
 
@@ -390,7 +396,8 @@ def huongdan3(request):
             'students_count': len(students),
             'name': name,
             'project_type': project_type,
-            'project_name': projectName
+            'project_name': projectName,
+            'canSubmit': students[0]['grade']['canSubmit']
         }
         return render(request, 'huongdan3.html', context)
     
@@ -400,7 +407,8 @@ def huongdan3(request):
         'students_count': 0,
         'name': '',
         'project_type': '',
-        'project_name': ''
+        'project_name': '',
+        'canSubmit': True
     }
     return render(request, 'huongdan3.html', context)
 
@@ -424,7 +432,8 @@ def canBoPhanBien(request):
             'students_count': len(students),
             'name': name,
             'project_type': project_type,
-            'project_name': projectName
+            'project_name': projectName,
+            'canSubmit': students[0]['grade']['canSubmit']
         }
         return render(request, 'canBoPhanBien.html', context)
     
@@ -434,7 +443,8 @@ def canBoPhanBien(request):
         'students_count': 0,
         'name': '',
         'project_type': '',
-        'project_name': ''
+        'project_name': '',
+        'canSubmit': True
     }
     return render(request, 'canBoPhanBien.html', context)
 
@@ -1064,12 +1074,13 @@ def process_form_pb_new(request):
 
 def getGradeOfStudent(msv, name, formType):
     grade_student = {
+        'canSubmit': True
     }
     file_path = os.path.join('DataCollected', 'final_new.xlsx')
     df = pd.read_excel(file_path)
     df_sv = df[df['Mã sinh viên'] == msv]
     if df_sv.empty:
-        return None
+        return grade_student
     prefix_column = 'ZZZ'
     formTypeToPrefix = {
         'baoCaoTienDoL1': 'CBHD_1',
@@ -1102,6 +1113,7 @@ def getGradeOfStudent(msv, name, formType):
     for column in true_columns:
         if not pd.isnull(df_sv[column].values[0]):
             grade_student[column.split('_')[-1].replace(".", "_")] = df_sv[column].values[0]
+            grade_student['canSubmit'] = False
     return grade_student
 
 def process_final_new_baocao1():
